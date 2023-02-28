@@ -1,4 +1,5 @@
 import React from "react";
+import { getButtonBackGroundTheme } from "../../util/theme/theme";
 
 interface ButtonProps {
   label: string;
@@ -8,14 +9,12 @@ interface ButtonProps {
 }
 
 export const Button = (props: ButtonProps) => {
-  const baseStyle = "text-white font-bold py-2 px-4 rounded ";
-  const themeStyle =
-    "bg-" + props.theme + "-default hover:bg-" + props.theme + "-dark";
+  const themeStyle = getButtonBackGroundTheme(props.theme);
   return (
     <>
       <button
         type={props.type}
-        className={themeStyle + baseStyle}
+        className={`text-white font-bold py-2 px-4 rounded ${themeStyle}`}
         onClick={props.action}
       >
         {props.label}
