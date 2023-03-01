@@ -593,6 +593,14 @@ video {
   width: 100vw;
 }
 
+.w-48 {
+  width: 12rem;
+}
+
+.w-44 {
+  width: 11rem;
+}
+
 .flex-auto {
   flex: 1 1 auto;
 }
@@ -636,6 +644,10 @@ video {
 
 .gap-4 {
   gap: 1rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
 }
 
 .whitespace-nowrap {
@@ -805,6 +817,18 @@ video {
 
 .pt-8 {
   padding-top: 2rem;
+}
+
+.pl-3 {
+  padding-left: 0.75rem;
+}
+
+.pt-3 {
+  padding-top: 0.75rem;
+}
+
+.pb-3 {
+  padding-bottom: 0.75rem;
 }
 
 .text-2xl {

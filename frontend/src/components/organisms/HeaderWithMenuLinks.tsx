@@ -5,6 +5,7 @@ import { HeaderTitle } from "../atoms/HeaderTitle";
 import { ListLinkItems } from "../molecules/ListLinkItems";
 
 interface HeaderWithMenuLinksProps {
+  headerIcon: React.ElementType;
   headerTitle: string;
   headerTheme:
     | "primary"
@@ -19,7 +20,11 @@ interface HeaderWithMenuLinksProps {
 export const HeaderWithMenuLinks = (props: HeaderWithMenuLinksProps) => {
   return (
     <Header>
-      <HeaderTitle title={props.headerTitle} theme={props.headerTheme} />
+      <HeaderTitle
+        title={props.headerTitle}
+        theme={props.headerTheme}
+        icon={props.headerIcon}
+      />
       <nav className="pt-4 w-1/2">
         <ListLinkItems items={props.headerMenuLinks} />
       </nav>
