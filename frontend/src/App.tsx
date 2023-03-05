@@ -7,7 +7,7 @@ export const App = () => {
   return (
     <div className="flex flex-col h-screen w-screen">
       <HeaderWithMenuLinkConatainer />
-      <div className="flex flex-row h-full w-full bg-slate-200">
+      <div className="flex flex-row h-full w-full bg-slate-100">
         <SideMenuContainer />
         <MainContantsContainer />
       </div>

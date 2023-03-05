@@ -34,6 +34,23 @@ export const getBorderTheme = (theme: theme) => {
   }
 };
 
+export const getDrakBorderBackGroundTheme = (theme: theme) => {
+  switch (theme) {
+    case "primary":
+      return "border-primary-dark bg-primary-default";
+    case "secondary":
+      return "border-secondary-dark bg-secondary-default";
+    case "success":
+      return "border-success-dark bg-success-default";
+    case "danger":
+      return "border-danger-dark bg-danger-default";
+    case "warning":
+      return "border-warning-dark bg-warning-default";
+    case "normal":
+      return "border-normal-dark bg-normal-default";
+  }
+};
+
 export const getButtonBackGroundTheme = (theme: theme) => {
   switch (theme) {
     case "primary":
