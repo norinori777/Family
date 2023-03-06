@@ -34,6 +34,10 @@ export const getBorderTheme = (theme: theme) => {
   }
 };
 
+export const getDirection = (direction: "row" | "col") => {
+  return "flex flex-" + direction;
+};
+
 export const getDrakBorderBackGroundTheme = (theme: theme) => {
   switch (theme) {
     case "primary":
