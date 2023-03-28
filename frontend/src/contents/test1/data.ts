@@ -6,18 +6,20 @@ import {
 } from "../../domain/contents/types";
 import { Pencil } from "../../components/Icons/Pencil";
 import { test } from "../../components/pages/test";
+import { UserContainer } from "../../containers/pages/UserContainer";
+import Chat from "../../components/pages/Chat";
 
 const sideMenuItems: SideMenuItem[] = [
   { icon: Pencil, text: "Chat", link: "/Chat" },
-  { icon: Pencil, text: "MenuTitle2", link: "/test2" },
+  { icon: Pencil, text: "ユーザー情報", link: "/User" },
   { icon: Pencil, text: "MenuTitle3", link: "/test3" },
   { icon: Pencil, text: "MenuTitle4", link: "/test4" },
   { icon: Pencil, text: "MenuTitle5", link: "/test5" },
 ];
 
 const contentItems: ContentItem[] = [
-  { link: "/Chat", component: test },
-  { link: "/test2", component: test },
+  { link: "/Chat", component: Chat },
+  { link: "/User", component: UserContainer },
   { link: "/test3", component: test },
   { link: "/test4", component: test },
   { link: "/test5", component: test },

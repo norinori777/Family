@@ -1,7 +1,7 @@
 import React from "react";
 import { getButtonBackGroundTheme } from "../../util/theme/theme";
 
-interface ButtonProps {
+export interface ButtonProps {
   label: string;
   theme: "primary" | "secondary" | "success" | "danger" | "warning" | "normal";
   type: "button" | "submit" | "reset" | undefined;

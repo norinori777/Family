@@ -17,6 +17,40 @@ export const getTextTheme = (theme: theme) => {
   }
 };
 
+export const getTextDarkTheme = (theme: theme) => {
+  switch (theme) {
+    case "primary":
+      return "text-primary-dark";
+    case "secondary":
+      return "text-secondary-dark";
+    case "success":
+      return "text-success-dark";
+    case "danger":
+      return "text-danger-dark";
+    case "warning":
+      return "text-warning-dark";
+    case "normal":
+      return "text-normal-dark";
+  }
+};
+
+export const getFocusTextTheme = (theme: theme) => {
+  switch (theme) {
+    case "primary":
+      return "focus:text-primary-default";
+    case "secondary":
+      return "focus:text-secondary-default";
+    case "success":
+      return "focus:text-success-default";
+    case "danger":
+      return "focus:text-danger-default";
+    case "warning":
+      return "focus:text-warning-default";
+    case "normal":
+      return "focus:text-normal-default";
+  }
+};
+
 export const getBorderTheme = (theme: theme) => {
   switch (theme) {
     case "primary":
@@ -69,5 +103,73 @@ export const getButtonBackGroundTheme = (theme: theme) => {
       return "bg-warning-default hover:bg-warning-dark";
     case "normal":
       return "bg-normal-default hover:bg-normal-dark";
+  }
+};
+
+export const getFocusRingTheme = (theme: theme) => {
+  switch (theme) {
+    case "primary":
+      return "focus:ring-primary-default";
+    case "secondary":
+      return "focus:ring-secondary-default";
+    case "success":
+      return "focus:ring-success-default";
+    case "danger":
+      return "focus:ring-danger-default";
+    case "warning":
+      return "focus:ring-warning-default";
+    case "normal":
+      return "focus:ring-normal-default";
+  }
+};
+
+export const getLightBackGroundTheme = (theme: theme) => {
+  switch (theme) {
+    case "primary":
+      return "bg-lightPrimary-light";
+    case "secondary":
+      return "bg-lightSecondary-light";
+    case "success":
+      return "bg-lightSuccess-light";
+    case "danger":
+      return "bg-lightDanger-light";
+    case "warning":
+      return "bg-lightWarning-light";
+    case "normal":
+      return "bg-lightNormal-light";
+  }
+};
+
+export const getPlaceholderTheme = (theme: theme) => {
+  switch (theme) {
+    case "primary":
+      return "placeholder-primary-light";
+    case "secondary":
+      return "placeholder-secondary-light";
+    case "success":
+      return "placeholder-success-light";
+    case "danger":
+      return "placeholder-danger-light";
+    case "warning":
+      return "placeholder-warning-light";
+    case "normal":
+      return "placeholder-normal-light";
+  }
+};
+
+export const getFocusPlaceholderTheme = (theme: theme) => {
+  switch (theme) {
+    case "primary":
+      return "focus:placeholder-primary-light";
+    case "secondary":
+      return "focus:placeholder-secondary-light";
+    case "success":
+      return "focus:placeholder-success-light";
+    case "danger":
+      return "focus:placeholder-danger-light";
+    case "warning":
+      return "focus:placeholder-warning-light";
+    case "normal":
+      return "focus:placeholder-normal-light";
   }
 };

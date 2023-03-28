@@ -14,7 +14,7 @@ module.exports = {
         use: [
           {
             loader: "babel-loader",
-            options: { presets: ["@babel/preset-env", "@babel/react"] },
+            options: { presets: ["@babel/preset-env", "@babel/react", "@babel/preset-typescript"] },
           },
           {
             loader: "ts-loader",

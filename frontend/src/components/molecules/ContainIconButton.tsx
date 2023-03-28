@@ -16,12 +16,11 @@ export const ContainIconButton = (props: ContainIconButtonProps) => {
   return (
     <button
       type={props.type}
-      className={`inline-flex box-border border-solid border ${borderTheme} rounded-lg p-2 items-center cursor-pointer`}
+      className={`inline-flex box-border border-solid border-2 ${borderTheme} rounded-2xl p-3 items-center cursor-pointer bg-white`}
+      onClick={props.action}
     >
       <Icon theme={props.theme} />
       <span className={` ml-1 font-medium ${textTheme}`}>{props.label}</span>
     </button>
   );
 };
-
-// className={`box-border border-solid bottom-2 border-black rounded cursor-pointer`}

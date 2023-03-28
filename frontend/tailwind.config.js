@@ -45,8 +45,8 @@ module.exports = {
           dark: "#fcd9eb",
         },
         lightSuccess: {
-          light: "#cce5d5",
-          default: "#c3e2ce",
+          light: "#d9fce5",
+          default: "c5f7d7",
           dark: "#b5e2c6",
         },
         lightDanger: {

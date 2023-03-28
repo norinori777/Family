@@ -2,7 +2,7 @@ import React from "react";
 import { getTextTheme } from "../../util/theme/theme";
 import { theme } from "../../util/theme/types";
 
-interface HeaderTitleProps {
+export interface HeaderTitleProps {
   icon: React.ElementType;
   title: string;
   theme: theme;
@@ -22,3 +22,4 @@ export const HeaderTitle = (props: HeaderTitleProps) => {
     </div>
   );
 };
+
