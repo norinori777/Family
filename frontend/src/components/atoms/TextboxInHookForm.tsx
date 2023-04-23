@@ -16,11 +16,12 @@ interface TextboxProps {
   description: string;
   theme: theme;
   field: any;
-  error?: FieldError;
+  error?: string;
 }
 
 export const TextboxInHookForm = (props: TextboxProps) => {
   const [inputFocus, setInputFocus] = useState(false);
+  const [message, setMessage] = useState("");
 
   const textTheme =
     inputFocus == true ? getTextTheme(props.theme) : "text-gray-500";
@@ -49,6 +50,7 @@ export const TextboxInHookForm = (props: TextboxProps) => {
       <input
         type={props.type}
         id={props.name}
+        name={props.name}
         className={`${focusRingTheme} ring-gray-300 ring-2 focus:ring-2 focus:outline-none ${focusTextTheme} placeholder-gray-300 ${focusPlaceholderTheme} text-sm rounded-lg block w-full p-2.5`}
         placeholder={props.placeholder}
         onBlur={onBlurHandle}
@@ -56,7 +58,7 @@ export const TextboxInHookForm = (props: TextboxProps) => {
         {...props.field}
       />
       <p className={`mt-2 text-sm ${textTheme}`}>{props.description}</p>
-      {props.error && <span>{"名前は必須です。"}</span>}
+      {<span>{props.error}</span>}
     </div>
   );
 };

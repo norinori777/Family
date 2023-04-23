@@ -1,13 +1,16 @@
 import { HeaderTitle } from "components/atoms/HeaderTitle";
 import React from "react";
 
-interface TableProps {
+interface TableProps<T extends { [key in string]: string | boolean | number }> {
   titleHeader: string[];
-  items: { [key in string]: string | boolean | number }[];
+  items: T[] | null;
 }
 
-export const Table = (props: TableProps) => {
+export const Table = <T extends { [key in string]: string | boolean | number }>(
+  props: TableProps<T>
+) => {
   return (
+    props.items === null ? <p>{"データがありません。"}</p> : 
     <div className="flex flex-col">
       <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -25,7 +28,7 @@ export const Table = (props: TableProps) => {
                 </tr>
               </thead>
               <tbody>
-                {props.items.map((item) => {
+                {props.items?.map((item) => {
                   return <Row titleHeader={props.titleHeader} item={item} />;
                 })}
               </tbody>
@@ -37,12 +40,12 @@ export const Table = (props: TableProps) => {
   );
 };
 
-interface RowProps {
+interface RowProps<T extends { [key in string]: string | boolean | number }> {
   titleHeader: string[];
-  item: { [key in string]: string | boolean | number };
+  item: T;
 }
 
-const Row = (props: RowProps) => {
+const Row = <T extends { [key in string]: string | boolean | number}>(props: RowProps<T>) => {
   return (
     <tr className="border-b dark:border-neutral-500">
       {props.titleHeader.map((element) => {

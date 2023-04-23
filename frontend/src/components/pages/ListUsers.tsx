@@ -1,28 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { UserForm } from "../organisms/UserForm";
 import { ContainIconButton } from "../molecules/ContainIconButton";
 import { Plus } from "../Icons/Plus";
 import { Table } from "../molecules/Table";
-
-const items = [
-  { "No.": 1, name: "山田太郎", email: "Tarou@co.jp" },
-  { "No.": 2, name: "山田次郎", email: "Jirou@co.jp" },
-  { "No.": 3, name: "山田三郎", email: "Saburou@co.jp" },
-  { "No.": 4, name: "山田四郎", email: "Sirou@co.jp" },
-  { "No.": 5, name: "山田五郎", email: "Gorou@co.jp" },
-];
+import { useAxios } from "../../util/hooks/useAxios";
+import { ResponseUserData, User } from "../../domain/user/types";
 
 interface UserProps {
   openHandle: () => void;
   isDisplay: boolean;
 }
 
-export const User = (props: UserProps) => {
+export const ListUsers = (props: UserProps) => {
   const openHandle = () => {
     props.openHandle();
   };
+  const {data, error, isLoading} = useAxios<User[]>({
+    url: "/user/list",
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
   return (
+    isLoading ? <div>loading...</div> :
     <div>
       <ContainIconButton
         type={"button"}
@@ -36,11 +38,11 @@ export const User = (props: UserProps) => {
         user={{
           name: "",
           password: "",
-          email: "",
+          emailAddress: "",
         }}
         handleModal={props.openHandle}
       />
-      <Table titleHeader={["No.", "name", "email"]} items={items} />
+      <Table<User> titleHeader={["name", "emailAddress", "state", "createAt", "updateAt"]} items={data} />
     </div>
   );
 };

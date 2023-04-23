@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilState } from "recoil";
 import { isDisplayRegistUserModal } from "../../domain/modal/atoms";
-import { User } from "../../components/pages/User";
+import { ListUsers } from "../../components/pages/ListUsers";
 
 export const UserContainer = () => {
   const [isDisplayedUserModalAtom, setDisplayedUserModalAtom] = useRecoilState(
@@ -11,5 +11,5 @@ export const UserContainer = () => {
   const handleModal = () => {
     setDisplayedUserModalAtom(!isDisplayedUserModalAtom);
   };
-  return <User openHandle={handleModal} isDisplay={isDisplayedUserModalAtom} />;
+  return <ListUsers openHandle={handleModal} isDisplay={isDisplayedUserModalAtom} />;
 };

@@ -7,20 +7,20 @@ interface UseAxiosState<T> {
   loading: boolean;
 }
 
-const useDirectAxios = <T,>() => {
+const useDirectAxios = <T,D>() => {
   const [state, setState] = useState<UseAxiosState<T>>({
     response: null,
     error: null,
     loading: false,
   });
 
-  const sendRequest = async (config: AxiosRequestConfig) => {
+  const sendRequest = async (config: AxiosRequestConfig<D>) => {
     setState({ ...state, loading: true });
     try {
       const res = await axios(config);
-      setState({ response: res, error: null, loading: false });
+      setState({ ...state, response: res, error: null, loading: false });
     } catch (error) {
-      setState({ ...state, error, loading: false });
+      setState({ ...state, error: error, loading: false });
     }
   };
 

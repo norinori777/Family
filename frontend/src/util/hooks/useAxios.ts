@@ -49,7 +49,7 @@ export const useAxios = <T>({
     return () => {
       isMounted = false;
     };
-  }, [url, method, headers]);
+  }, []);
 
   return { data, error, isLoading };
 };
