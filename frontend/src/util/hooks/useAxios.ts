@@ -5,6 +5,7 @@ interface UseAxiosOptions {
   url: string;
   method?: AxiosRequestConfig["method"];
   headers?: AxiosRequestConfig["headers"];
+  reGet: number;
 }
 
 interface UseAxiosResponse<T> {
@@ -17,6 +18,7 @@ export const useAxios = <T>({
   url,
   method = "get",
   headers = {},
+  reGet,
 }: UseAxiosOptions): UseAxiosResponse<T> => {
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<Error | null>(null);
@@ -49,7 +51,7 @@ export const useAxios = <T>({
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [reGet]);
 
   return { data, error, isLoading };
 };

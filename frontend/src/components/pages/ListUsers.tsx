@@ -5,22 +5,24 @@ import { Plus } from "../Icons/Plus";
 import { Table } from "../molecules/Table";
 import { useAxios } from "../../util/hooks/useAxios";
 import { ResponseUserData, User } from "../../domain/user/types";
+import { UserFormContainer } from "../../containers/organisms/UserFormContainer";
 
 interface UserProps {
   openHandle: () => void;
-  isDisplay: boolean;
+  reGet: number;
 }
 
 export const ListUsers = (props: UserProps) => {
   const openHandle = () => {
     props.openHandle();
   };
-  const {data, error, isLoading} = useAxios<User[]>({
+  const {data, error, isLoading,} = useAxios<User[]>({
     url: "/user/list",
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
+    reGet: props.reGet,
   });
 
   return (
@@ -33,15 +35,7 @@ export const ListUsers = (props: UserProps) => {
         icon={Plus}
         action={openHandle}
       />
-      <UserForm
-        isDisplay={props.isDisplay}
-        user={{
-          name: "",
-          password: "",
-          emailAddress: "",
-        }}
-        handleModal={props.openHandle}
-      />
+      <UserFormContainer />
       <Table<User> titleHeader={["name", "emailAddress", "state", "createAt", "updateAt"]} items={data} />
     </div>
   );

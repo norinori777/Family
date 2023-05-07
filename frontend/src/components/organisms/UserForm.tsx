@@ -13,6 +13,7 @@ interface UserFormProps {
   user: RegistUser;
   isDisplay: boolean;
   handleModal: () => void;
+  handleReGet: () => void;
 }
 
 export const UserForm = (props: UserFormProps) => {
@@ -29,17 +30,20 @@ export const UserForm = (props: UserFormProps) => {
       url: "/user/add",
       method: "POST",
       params: data,
-    });
-    if (response) {
-      console.log(response);
-    } else if (error) {
-      console.log(error);
-    }
+    }).then((response) => {
+      console.log(response)
+      handleModal();
+      handleReGet();
+    }).catch((error) => console.log(error));
   };
 
   const handleModal = () => {
     props.handleModal();
   };
+
+  const handleReGet = () => {
+    props.handleReGet();
+  }
 
   return (
     <Modal isDisplayed={props.isDisplay}>
