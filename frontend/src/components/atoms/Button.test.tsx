@@ -24,5 +24,29 @@ describe("Buttonコンポーネント", () => {
     fireEvent.click(getByRole("button"));
     expect(mockAction).toHaveBeenCalled();
   });
-});
 
+  it("「真の値」の検証", ()=>{
+    expect(1).toBeTruthy();
+    expect("1").toBeTruthy();
+    expect(true).toBeTruthy();
+  //  expect(0).toBeTruthy(); // これはエラーになる
+    //expect("").toBeTruthy();  // これはエラーになる
+   // expect(false).toBeTruthy(); // これはエラーになる
+  });
+  it("「偽の値」の検証", ()=>{
+    //expect(1).toBeFalsy();    // これはエラーになる
+    //expect("1").toBeFalsy();  // これはエラーになる
+    //expect(true).toBeFalsy(); // これはエラーになる
+    expect(0).toBeFalsy();
+    expect("").toBeFalsy();
+    expect(false).toBeFalsy();
+  });
+
+  it("「null,undefined」の検証", ()=>{
+    expect(null).toBeNull();
+    expect(undefined).toBeUndefined();
+    expect(null).toBeFalsy();
+    //expect(undefined).toBeFalsey(); // これはエラーになる
+    expect(undefined).not.toBeDefined();
+  });
+});

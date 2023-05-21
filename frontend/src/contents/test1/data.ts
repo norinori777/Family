@@ -7,7 +7,7 @@ import {
 import { Pencil } from "../../components/Icons/Pencil";
 import { test } from "../../components/pages/test";
 import { UserContainer } from "../../containers/pages/UserContainer";
-import Chat from "../../components/pages/Chat";
+import { ChatContainer } from "../../containers/pages/ChatContainer";
 
 const sideMenuItems: SideMenuItem[] = [
   { icon: Pencil, text: "Chat", link: "/Chat" },
@@ -18,7 +18,7 @@ const sideMenuItems: SideMenuItem[] = [
 ];
 
 const contentItems: ContentItem[] = [
-  { link: "/Chat", component: Chat },
+  { link: "/Chat", component: ChatContainer },
   { link: "/User", component: UserContainer },
   { link: "/test3", component: test },
   { link: "/test4", component: test },

@@ -1,63 +1,38 @@
-import React, { useEffect, useState } from "react";
-import Stomp from "stompjs";
+import React, { useState } from "react";
 
 interface Message {
-  content: string;
+  message: string;
 }
 
-const Chat = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
+interface ChatProps{
+  messages: Message[];
+  submit: (message:Message) => void;
+}
+
+const Chat = (props:ChatProps) => {
   const [newMessage, setNewMessage] = useState<string>("");
-  const [stompClient, setStompClient] = useState<Stomp.Client | null>(null);
-
-  useEffect(() => {
-    const client = Stomp.client("ws://localhost:8080/test");
-    client.connect({}, () => {
-      console.log("WebSocket connection established.");
-      setStompClient(client);
-
-      client.subscribe("/receive/response", (message) => {
-        const newMessage: Message = JSON.parse(message.body);
-        setMessages([...messages, newMessage]);
-      });
-    });
-
-    return () => {
-      if (client) {
-        client.disconnect(() => {
-          console.log("disconnected");
-        });
-      }
-    };
-  }, [messages]);
-
-  const handleMessageSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (newMessage) {
-      stompClient?.send(
-        "/send/chat",
-        {},
-        JSON.stringify({ content: newMessage })
-      );
-      setNewMessage("");
-    }
-  };
 
   const handleMessageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewMessage(e.target.value);
   };
 
+  const handleMessageSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    props.submit({ message: newMessage });
+    setNewMessage("");
+  };
+
   return (
     <div>
-      <ul>
-        {messages.map((message, index) => (
-          <li key={index}>{message.content}</li>
-        ))}
-      </ul>
       <form onSubmit={handleMessageSubmit}>
         <input type="text" value={newMessage} onChange={handleMessageChange} />
         <button type="submit">Send</button>
       </form>
+      <ul>
+        {props.messages.map((message, index) => (
+          <li key={index}>{message.message}</li>
+        ))}
+      </ul>
     </div>
   );
 };
