@@ -1,3 +1,4 @@
+import { SpeechBubble } from "../../components/atoms/SpeechBubble";
 import React, { useState } from "react";
 
 interface Message {
@@ -28,11 +29,11 @@ const Chat = (props:ChatProps) => {
         <input type="text" value={newMessage} onChange={handleMessageChange} />
         <button type="submit">Send</button>
       </form>
-      <ul>
+      <div className="flex flex-col">
         {props.messages.map((message, index) => (
-          <li key={index}>{message.message}</li>
+            <SpeechBubble key={index} message={message.message} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

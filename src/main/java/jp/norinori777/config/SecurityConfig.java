@@ -20,7 +20,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class SecurituyConfig {
+public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -77,8 +77,5 @@ public class SecurituyConfig {
         users.setUsersByUsernameQuery(USER_SQL);
         users.setAuthoritiesByUsernameQuery(ROLE_SQL);
         return users;
-    }
-
-    
-
+    } 
 }
