@@ -6,10 +6,10 @@ interface SpeechBubbleProps {
 
 export const SpeechBubble = (props: SpeechBubbleProps) => {
   return (
-    <span
+    <p
       className={
         "relative " +
-        "inline-block " +
+        "block " +
         "whitespace-nowrap " +
         "rounded " +
         "bg-green-400 " +
@@ -17,6 +17,8 @@ export const SpeechBubble = (props: SpeechBubbleProps) => {
         "py-1 " +
         "mb-2 " +
         "max-w-2/5 " +
+        "w-fit " +
+        "whitespace-pre-wrap " +
         "text-white " +
         "before:content-[''] " +
         "before:absolute " +
@@ -29,6 +31,6 @@ export const SpeechBubble = (props: SpeechBubbleProps) => {
       }
     >
       {props.message}
-    </span>
+    </p>
   );
 };

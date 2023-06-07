@@ -8,7 +8,7 @@ import jp.norinori777.domain.RegistUser.service.RegistUserService;
 import jp.norinori777.repository.RegistUserMapper;
 
 @Service
-public class RegistUserImpl implements RegistUserService {
+public class RegistUserServiceImpl implements RegistUserService {
 
 	@Autowired
 	private RegistUserMapper mapper;

@@ -1,8 +1,8 @@
 package jp.norinori777.domain.RegistUser;
 
-import jp.norinori777.domain.user.EmailAddress;
-import jp.norinori777.domain.user.Name;
-import jp.norinori777.domain.user.Password;
+// import jp.norinori777.domain.user.EmailAddress;
+// import jp.norinori777.domain.user.Name;
+// import jp.norinori777.domain.user.Password;
 import lombok.Data;
 
 @Data

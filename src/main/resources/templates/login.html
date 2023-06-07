@@ -6,8 +6,8 @@
   </head>
   <body>
     <form id="loginForm" method="post" th:action="@{/login}">
-      <label>ユーザーID:</label>
-      <input type="text" name="userId" /><br />
+      <label>メールアドレス:</label>
+      <input type="text" name="username" /><br />
       <br />
       <label>パスワード：</label>
       <input type="password" name="password" /><br />
@@ -16,7 +16,7 @@
       <br />
       <p
         th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
-        th:text="${session['SPRING_SECUREITY_LAST_EXCEPTION'].message}"
+        th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
         class="text-danger"
       >
         ログインエラーメッセージ

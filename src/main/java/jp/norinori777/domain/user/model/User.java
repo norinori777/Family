@@ -1,14 +1,16 @@
 package jp.norinori777.domain.user.model;
 
-import java.sql.Date;
+import java.security.Timestamp;
 
 import lombok.Data;
 
 @Data
 public class User {
-	private String name;
+	private String password;
 	private String emailAddress;
+	private boolean enabled;
 	private Integer state;
-	private Date createAt;
-	private Date updateAt;
+	private Integer loginMissTimes;
+	private Timestamp createAt;
+	private Timestamp updateAt;
 }
