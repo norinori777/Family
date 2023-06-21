@@ -3,15 +3,12 @@ import React, { useEffect, useRef, useState } from "react";
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import { useAxios } from "../../util/hooks/useAxios";
-import { CsrfToken } from "domain/csrf/types";
-
-interface Message {
-    message: string;
-  }
+import { CsrfToken } from "../../domain/csrf/types";
+import { TalkMessage } from "../../domain/TalkMessage/types";
 
 export const ChatContainer = () => {
     const [stompClient, setStompClient] = useState<Stomp.Client | null>(null);
-    const [messages, setMessages] = useState<Message[]>([]);
+    const [receiveMessages, setReceiveMessages] = useState<TalkMessage[]>([]);
     const {data, error, isLoading,} = useAxios<CsrfToken>({
       url: "/csrf",
       method: "GET",
@@ -36,23 +33,23 @@ export const ChatContainer = () => {
       }
     }, [isLoading]);
 
-    const receiveMessage = (message: Message) => {
-        setMessages((preMessages) => [...preMessages, message]);
+    const receiveMessage = (receiveMessage: TalkMessage) => {
+      setReceiveMessages((preMessages) => [...preMessages, receiveMessage]);
     };
 
-    const handleMessageSubmit = (message:Message) => {
-        if (message) {
-          stompClient?.send(
-            "/app/message",
-            {},
-            JSON.stringify(message)
-          );
-        }
+    const handleMessageSubmit = (sendMessage:string) => {
+      if (sendMessage) {
+        stompClient?.send(
+          "/app/message",
+          {},
+          JSON.stringify({message: sendMessage})
+        );
+      }
     };
 
     return (
         <div>
-            <Chat messages={messages} submit={handleMessageSubmit} />
+            <Chat talkMessages={receiveMessages} submit={handleMessageSubmit} />
         </div>
     )
 }

@@ -1,13 +1,10 @@
-import { SpeechBubble } from "../../components/atoms/SpeechBubble";
 import React, { useState } from "react";
-
-interface Message {
-  message: string;
-}
+import { TalkMessage } from "../../domain/TalkMessage/types";
+import { Talk } from "../../components/molecules/Talk";
 
 interface ChatProps{
-  messages: Message[];
-  submit: (message:Message) => void;
+  talkMessages: TalkMessage[];
+  submit: (message:string) => void;
 }
 
 const Chat = (props:ChatProps) => {
@@ -19,7 +16,7 @@ const Chat = (props:ChatProps) => {
 
   const handleMessageSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    props.submit({ message: newMessage });
+    props.submit(newMessage);
     setNewMessage("");
   };
 
@@ -30,8 +27,8 @@ const Chat = (props:ChatProps) => {
         <button type="submit">Send</button>
       </form>
       <div className="flex flex-col">
-        {props.messages.map((message, index) => (
-            <SpeechBubble key={index} message={message.message} />
+        {props.talkMessages.map((talkMessage, index) => (
+            <Talk key={index} talkMessage={talkMessage} />
         ))}
       </div>
     </div>

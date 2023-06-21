@@ -1,24 +1,25 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { SpeechBubble } from "../SpeechBubble";
+import { SpeechBubbleAside } from "../SpeechBubbleAside";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "atoms/SpeechBubble",
-  component: SpeechBubble,
+  title: "atoms/SpeechBubbleAside",
+  component: SpeechBubbleAside,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {},
-} as ComponentMeta<typeof SpeechBubble>;
+} as ComponentMeta<typeof SpeechBubbleAside>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof SpeechBubble> = (args) => (
-  <SpeechBubble {...args} />
+const Template: ComponentStory<typeof SpeechBubbleAside> = (args) => (
+  <SpeechBubbleAside {...args} />
 );
 
 export const Normal = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Normal.args = {
-  message: "コメントを記載します。了解。",
+  name: "山田太郎",
+  date: "2021/10/10 10:10:10",
 };
 
