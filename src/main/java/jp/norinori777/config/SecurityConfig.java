@@ -24,13 +24,14 @@ public class SecurityConfig {
             .failureUrl("/login/error")
             .permitAll()
         ).logout(logout -> logout.logoutSuccessUrl("/login")
+        ).headers(headers -> headers.frameOptions().sameOrigin()
         ).authorizeHttpRequests(authz -> authz
             .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
             .requestMatchers("/").permitAll()
             .requestMatchers("/general").hasRole("GENERAL")
             .requestMatchers("/admin").hasRole("ADMIN")
             .anyRequest().authenticated()
-            );
+        );
 
         return http.build();
     }

@@ -7,6 +7,7 @@ import java.util.Map;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -22,6 +23,7 @@ import jp.norinori777.domain.RegistUser.RegistUser;
 import jp.norinori777.domain.RegistUser.service.RegistUserService;
 import jp.norinori777.domain.Rest.RestResult;
 import jp.norinori777.domain.user.model.User;
+import jp.norinori777.domain.user.model.UserAccountCredential;
 import jp.norinori777.form.RegistUserForm;
 import lombok.extern.slf4j.Slf4j;
 
@@ -63,6 +65,9 @@ public class UserRestController {
 	
 	@GetMapping("list")	
 	public List<User> ListUsers() {
+		        UserAccountCredential user =(UserAccountCredential) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		log.info(user.getUsername());
+		log.info(user.getPassword());
 		List<User> users = listUserService.getUsers();
 		return users;
 	}
