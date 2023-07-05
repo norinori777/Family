@@ -5,3 +5,9 @@ export const isDisplayRegistUserModal = atom<boolean>({
   key: "isDisplayRegsitUserModal",
   default: false,
 });
+
+export const isDisplayRegistChatRoomModal = atom<boolean>({
+  key: "isDisplayRegistChatRoomModal",
+  default: false,
+});
+

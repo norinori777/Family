@@ -59,7 +59,6 @@ public class UserRestController {
 		log.info(registUser.toString());
 		registUserService.addUser(registUser);
 		
-		
 		return new RestResult(0, null);
 	}
 	
