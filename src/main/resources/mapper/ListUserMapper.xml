@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jp.norinori777.repository.ListUserMapper">
-	<select id="selectUsers" resultType="User">
-		select 
+	<select id="selectUsers" resultType="jp.norinori777.domain.model.User.User">
+		select
+			user_id, 
 			name,
 			email_address,
-			state, create_at, 
+			state,
+			enabled, 
+			create_at, 
 			update_at
 		from m_user
 	</select>

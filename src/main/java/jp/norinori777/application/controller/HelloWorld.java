@@ -4,7 +4,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import jp.norinori777.domain.user.model.UserAccountCredential;
+import jp.norinori777.domain.model.User.UserAccountCredential;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import jp.norinori777.domain.user.model.User;
+import jp.norinori777.domain.model.User.User;
 
 @Mapper
 public interface ListUserMapper {
