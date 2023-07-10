@@ -8,6 +8,7 @@
 			email_address,
 			state,
 			enabled, 
+			login_miss_times,
 			create_at, 
 			update_at
 		from m_user

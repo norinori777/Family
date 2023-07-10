@@ -57,7 +57,7 @@ public class ChatRoomRestController {
         UserAccountCredential loginUser =(UserAccountCredential) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = loginUserService.getUser(loginUser.getEmailAddress());
         Integer userId = user.getUserId();
-        List<Room> rooms = listChatRoomsService.getRooms(userId);
+        List<Room> rooms = listChatRoomsService.getChatRooms(userId);
         return rooms;
     }
 }

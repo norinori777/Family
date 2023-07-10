@@ -24,4 +24,6 @@ public class Room {
     @NumberFormat(style = NumberFormat.Style.NUMBER)
     @Min(1)
     private Integer roomOwnerId;
+    @Min(1)
+    private Integer state;
 }

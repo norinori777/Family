@@ -36,7 +36,7 @@ export const ListChatRoom = (props: ListChatRoomProps) => {
                 action={openHandle}
             />
             <ChatRoomFormContainer />
-            {/* <Table<ChatRoom> titleHeader={["roomId", "roomName", "roomDescription", "createAt", "updateAt"]} items={data} />             */}
+            <Table<ChatRoom> titleHeader={["roomId", "roomName", "roomDescription", "createAt", "updateAt"]} items={data} />            
         </div>
     )
 

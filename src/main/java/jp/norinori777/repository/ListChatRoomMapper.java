@@ -8,5 +8,5 @@ import jp.norinori777.domain.model.Room.Room;
 
 @Mapper
 public interface ListChatRoomMapper {
-    public List<Room> selectRooms(Integer userId);
+    public List<Room> selectChatRooms(Integer userId);
 }

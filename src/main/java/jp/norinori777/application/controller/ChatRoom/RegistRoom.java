@@ -14,7 +14,6 @@ public class RegistRoom {
     @Size(max = 256)
     //private RoomDescription roomDescription;
     private String roomDescription;
-    @NotBlank
     @Min(1)
     private Integer roomOwnerId;
 }

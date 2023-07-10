@@ -15,8 +15,15 @@ public class ListChatRoomsServiceImpl implements ListChatRoomsService {
     private ListChatRoomMapper mapper;
     
     @Override
-    public List<Room> getRooms(Integer userId) {
-        List<Room> rooms = mapper.selectRooms(userId);
+    public List<Room> getChatRooms(Integer userId) {
+        List<Room> rooms = null;
+        try{
+            rooms = mapper.selectChatRooms(userId);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return rooms;
+        
     }
 }

@@ -3,12 +3,13 @@
 <mapper namespace="jp.norinori777.repository.LoginUserMapper">
 	<select id="selectOne" resultType="jp.norinori777.domain.model.User.User">
 		select 
+			user_id,
 			name,
-			login_miss_times,
 			email_address,
-			state,
-			enabled,
 			password,
+			state,
+			login_miss_times,
+			enabled,
 			create_at, 
 			update_at
 		from m_user

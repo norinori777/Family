@@ -3,14 +3,15 @@
 <mapper namespace="jp.norinori777.repository.ListChatRoomMapper">
 	<select id="selectChatRooms" resultType="jp.norinori777.domain.model.Room.Room">
 		select 
-			roomId,
-			roomName, 
-			roomDescription,
-            roomOwnerId,
-            create_at, 
-			update_at
-		from m_room
-		left innter join t_room_user on m_room.roomId = t_room_user.roomId
-		where t_room_user.userId = #{userId} OR room_owner_id = #{userId}
+			m.room_id,
+			room_name, 
+			room_description,
+            room_owner_id,
+			m.state,
+            m.create_at, 
+			m.update_at
+		from m_room m
+		left outer join t_room_member on m.room_id = t_room_member.room_id
+		where t_room_member.user_id = #{userId} OR room_owner_id = #{userId}
 	</select>
 </mapper>

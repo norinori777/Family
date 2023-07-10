@@ -5,7 +5,7 @@
 		insert into m_user(
 			name,
 			password,
-			email_address
+			email_address,
 		) values (
 			#{name},
 			#{password},
