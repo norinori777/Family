@@ -9,8 +9,9 @@
 			state,
 			enabled, 
 			login_miss_times,
-			create_at, 
-			update_at
+            to_char(create_at, 'YYYY-MM-DD') as create_at, 
+			to_char(update_at, 'YYYY-MM-DD') as update_at
 		from m_user
+		where state = 0 and enabled = true
 	</select>
 </mapper>
