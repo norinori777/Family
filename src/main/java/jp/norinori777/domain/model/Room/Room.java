@@ -26,4 +26,6 @@ public class Room {
     private Integer roomOwnerId;
     @Min(1)
     private Integer state;
+    private String createAt;
+    private String updateAt;
 }
