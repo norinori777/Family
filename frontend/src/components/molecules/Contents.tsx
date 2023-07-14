@@ -5,7 +5,10 @@ interface ContentsProps {
   /**
    * @var		mixed	content
    */
-  contents: { link: string; component: React.ElementType }[];
+  contents: {
+    link: string;
+    key: string;
+    component: React.ElementType }[];
 }
 
 export const Contents = (props: ContentsProps) => {
@@ -15,9 +18,9 @@ export const Contents = (props: ContentsProps) => {
       {props.contents.map((content) => {
         return (
           <Route
-            key={content.link}
+            key={content.key}
             path={content.link}
-            element={<content.component label={content.link} />}
+            element={<content.component label={content.key} />}
           />
         );
       })}

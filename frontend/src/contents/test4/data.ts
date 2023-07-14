@@ -16,11 +16,11 @@ const sideMenuItems: SideMenuItem[] = [
 ];
 
 const contentItems: ContentItem[] = [
-  { link: "/test16", component: test },
-  { link: "/test17", component: test },
-  { link: "/test18", component: test },
-  { link: "/test19", component: test },
-  { link: "/test20", component: test },
+  { link: "/test16", key:"test16", component: test },
+  { link: "/test17", key:"test17", component: test },
+  { link: "/test18", key:"test18",  component: test },
+  { link: "/test19", key:"test19",  component: test },
+  { link: "/test20", key:"test20", component: test },
 ];
 
 const headerMenuItem: HeaderMenuItem = {

@@ -11,7 +11,7 @@ import { ChatContainer } from "../../containers/pages/ChatContainer";
 import { ListChatRoomContainer } from "../../containers/pages/ListChatRoomConatainer";
 
 const sideMenuItems: SideMenuItem[] = [
-  { icon: Pencil, text: "Chat", link: "/Chat" },
+  { icon: Pencil, text: "Chat", link: "/Chat/1" },
   { icon: Pencil, text: "ユーザー情報", link: "/User" },
   { icon: Pencil, text: "チャットルーム", link: "/ChatRoom" },
   { icon: Pencil, text: "MenuTitle4", link: "/test4" },
@@ -19,11 +19,11 @@ const sideMenuItems: SideMenuItem[] = [
 ];
 
 const contentItems: ContentItem[] = [
-  { link: "/Chat", component: ChatContainer },
-  { link: "/User", component: UserContainer },
-  { link: "/ChatRoom", component: ListChatRoomContainer },
-  { link: "/test4", component: test },
-  { link: "/test5", component: test },
+  { link: "/Chat/:roomId", key: "chat", component: ChatContainer },
+  { link: "/User", key: "user", component: UserContainer },
+  { link: "/ChatRoom", key: "chatroom", component: ListChatRoomContainer },
+  { link: "/test4", key: "test4", component: test },
+  { link: "/test5", key: "test5", component: test },
 ];
 
 const headerMenuItem: HeaderMenuItem = {

@@ -5,8 +5,11 @@ import Stomp from "stompjs";
 import { useAxios } from "../../util/hooks/useAxios";
 import { CsrfToken } from "../../domain/csrf/types";
 import { TalkMessage } from "../../domain/TalkMessage/types";
+import { useParams } from "react-router-dom";
 
 export const ChatContainer = () => {
+  const params = useParams<{ roomId: string }>();
+    const roomId = params.roomId;
     const [stompClient, setStompClient] = useState<Stomp.Client | null>(null);
     const [receiveMessages, setReceiveMessages] = useState<TalkMessage[]>([]);
     const {data, error, isLoading,} = useAxios<CsrfToken>({
@@ -20,11 +23,11 @@ export const ChatContainer = () => {
     useEffect(() => {
       if(isLoading) return;
       const csrfToken = data != null ? {[data.headerName]: data.token} : {};
-      const socket = new SockJS("/ws");
+      const socket = new SockJS("/ws/" + roomId);
       const stompClient = Stomp.over(socket);
       stompClient?.connect(csrfToken, frame => {
         setStompClient(stompClient);
-        stompClient.subscribe('/topic/messages', message => {
+        stompClient.subscribe('/topic/' + roomId + 'messages', message => {
           receiveMessage(JSON.parse(message.body));
         });
       });
@@ -40,7 +43,7 @@ export const ChatContainer = () => {
     const handleMessageSubmit = (sendMessage:string) => {
       if (sendMessage) {
         stompClient?.send(
-          "/app/message",
+          "/app/" + roomId + "/message",
           {},
           JSON.stringify({message: sendMessage})
         );

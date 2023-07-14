@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 interface SidebarMenuItemProps {
   icon: React.ElementType;
@@ -13,9 +13,9 @@ export const SidebarMenuItem = (props: SidebarMenuItemProps) => {
       <span className="text-white text-2xl">
         {React.createElement(props.icon)}
       </span>
-      <Link className="text-white" to={props.link}>
+      <NavLink className="text-white" to={props.link}>
         {props.text}
-      </Link>
+      </NavLink>
     </nav>
   );
 };

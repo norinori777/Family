@@ -30,14 +30,17 @@ Normal.args = {
   contents: [
     {
       link: "/test1",
+      key:"test1", 
       component: test,
     },
     {
+      key:"test2", 
       link: "/test2",
       component: test,
     },
     {
       link: "/test3",
+      key:"test3", 
       component: test,
     },
   ],
