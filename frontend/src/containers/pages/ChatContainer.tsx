@@ -23,11 +23,11 @@ export const ChatContainer = () => {
     useEffect(() => {
       if(isLoading) return;
       const csrfToken = data != null ? {[data.headerName]: data.token} : {};
-      const socket = new SockJS("/ws/" + roomId);
+      const socket = new SockJS("/ws");
       const stompClient = Stomp.over(socket);
       stompClient?.connect(csrfToken, frame => {
         setStompClient(stompClient);
-        stompClient.subscribe('/topic/' + roomId + 'messages', message => {
+        stompClient.subscribe('/topic/' + roomId + '/messages', message => {
           receiveMessage(JSON.parse(message.body));
         });
       });
