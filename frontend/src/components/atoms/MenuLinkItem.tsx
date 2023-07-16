@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-interface LinkItemProps {
+interface MenuLinkItemProps {
   text: string;
   link: string;
 }
 
-export const MenuLinkItem = (props: LinkItemProps) => {
+export const MenuLinkItem = (props: MenuLinkItemProps) => {
 
   return (
     <>
