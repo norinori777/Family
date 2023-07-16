@@ -23,7 +23,7 @@ export const nowChapterSideMenu = selector<SideMenuItem[]>({
     const contents: Contents[] = all.filter((item) => {
       return item.headerMenuItem.text === now;
     });
-    return contents[0].sideMenuItems;
+    return contents[0]?.sideMenuItems;
   },
 });
 
@@ -35,7 +35,7 @@ export const nowChapterContents = selector<ContentItem[]>({
     const contents: Contents[] = all.filter((item) => {
       return item.headerMenuItem.text === now;
     });
-    return contents[0].contentItems;
+    return contents[0]?.contentItems;
   },
 });
 
@@ -44,7 +44,7 @@ export const headerMenu = selector<HeaderMenuItem[]>({
   get: ({ get }) => {
     const all: Contents[] = get(allContents);
     const menuItems: HeaderMenuItem[] = all.map((item) => {
-      return item.headerMenuItem;
+      return item?.headerMenuItem;
     });
     return menuItems;
   },

@@ -12,7 +12,7 @@ interface SidebarMenuListProps {
 export const SidebarMenuList = (prorps: SidebarMenuListProps) => {
   return (
     <div className="flex flex-col gap-10">
-      {prorps.items.map((item) => {
+      {prorps.items?.map((item) => {
         return (
           <SidebarMenuItem
             key={item.text}
