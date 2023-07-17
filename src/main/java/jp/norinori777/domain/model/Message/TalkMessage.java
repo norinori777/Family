@@ -4,7 +4,10 @@ import lombok.Data;
 
 @Data
 public class TalkMessage {
+    private Integer messageId;
     private String message;
-    private String speaker;
-    private String date;
+    private Integer userId;
+    private Integer roomId;
+    private String createAt;
+    private String updateAt;  
 }

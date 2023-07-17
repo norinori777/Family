@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.norinori777.repository.TalkMessageMapper">
+	<select id="selectTalkMessages" resultType="jp.norinori777.domain.model.Message.TalkMessage">
+		select
+			message_id, 
+			message,
+			room_id,
+			user_id,
+			state, 
+            to_char(create_at, 'YYYY-MM-DD') as create_at, 
+			to_char(update_at, 'YYYY-MM-DD') as update_at
+		from t_talk_messages
+		where state = 0 and  room_id = #{roomId}
+	</select>
+
+	<insert id="insertTalkMessage">
+		insert into t_talk_messages(
+			message,
+			room_id,
+			user_id,
+			state
+		) values (
+			#{message},
+			#{roomId},
+			#{userId},
+			0
+		)
+	</insert>
+
+	<delete id="deleteTalkMessage">
+		delete from t_talk_messages
+		where message_id = #{messageId}
+	</delete>
+</mapper>
