@@ -15,7 +15,7 @@ export const Contents = (props: ContentsProps) => {
   return (
     <Routes>
       <Route key={"logout"} path={"/logout"} element={<p>TEST</p>} />
-      {props.contents.map((content) => {
+      {props.contents?.map((content) => {
         return (
           <Route
             key={content.key}
