@@ -19,12 +19,16 @@
 			message,
 			room_id,
 			user_id,
-			state
+			state,
+			create_at,
+			update_at
 		) values (
 			#{message},
 			#{roomId},
 			#{userId},
-			0
+			0,
+			now(),
+			now()
 		)
 	</insert>
 

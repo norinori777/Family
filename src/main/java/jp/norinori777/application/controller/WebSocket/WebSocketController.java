@@ -35,22 +35,23 @@ public class WebSocketController {
     @SendTo("/topic/{roomId}/messages")
     public String sendMessage(@DestinationVariable String roomId, @Payload String message) throws ClassNotFoundException, IOException {
     	log.info(message);
-
+        // 認証情報取得
         UserAccountCredential accountCredential = (UserAccountCredential)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        log.info(accountCredential.getEmailAddress());
-        log.info(accountCredential.getPassword());
-        Calendar calendar = Calendar.getInstance();
+        // ユーザー情報取得
+        User user = userService.getUser(accountCredential.getEmailAddress());        Calendar calendar = Calendar.getInstance();
+        
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd kk:mm");
 
         ObjectMapper mapper = new ObjectMapper();
         ChatMessage returnMessage = mapper.readValue(message, ChatMessage.class);
 
-        returnMessage.setSpeaker(accountCredential.getEmailAddress());
+
+
+        returnMessage.setSpeaker(user.getName());
         returnMessage.setDate(sdf.format(calendar.getTime()).toString());
         returnMessage.setRoomId(Integer.parseInt(roomId));
 
-        // ユーザー情報取得
-        User user = userService.getUser(accountCredential.getEmailAddress());
+        
         // TODO: リファクタリング　TDOでデータクラスの作成を簡略化できないか
         TalkMessage talkMessage = new TalkMessage();
         talkMessage.setMessage(returnMessage.getMessage());

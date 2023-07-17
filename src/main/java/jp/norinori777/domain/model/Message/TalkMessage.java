@@ -8,6 +8,7 @@ public class TalkMessage {
     private String message;
     private Integer userId;
     private Integer roomId;
+    private Integer state;
     private String createAt;
     private String updateAt;  
 }
