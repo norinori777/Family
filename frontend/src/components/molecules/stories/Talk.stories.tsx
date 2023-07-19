@@ -17,6 +17,8 @@ export const Normal = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Normal.args = {
   talkMessage: {
+    userId: 1,
+    roomId: 1,
     message: "メッセージを空きました。やっぱり。。。",
     speaker: "山田太郎",
     date: "2021/10/10 10:10:10",

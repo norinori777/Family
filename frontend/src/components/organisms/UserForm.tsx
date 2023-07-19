@@ -8,6 +8,8 @@ import { ModalHeader } from "../../components/atoms/ModalHeader";
 import { ModalDescription } from "../../components/atoms/ModalDescription";
 import useDirectAxios from "../../util/hooks/useDirectAxios";
 import { RegistUser } from "../../domain/registUser/types";
+import { useAxios } from "../../util/hooks/useAxios";
+import { CsrfToken } from "../../domain/csrf/types";
 
 interface UserFormProps {
   user: RegistUser;
@@ -18,6 +20,13 @@ interface UserFormProps {
 
 export const UserForm = (props: UserFormProps) => {
   const {response, error, loading, sendRequest} = useDirectAxios<User, RegistUser>();
+  const {data: csrfData, error: csrfError, isLoading: isCsrfLoading,} = useAxios<CsrfToken>({
+    url: "/csrf",
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    reGet: 0,});
 
   const {
     control,
@@ -26,9 +35,12 @@ export const UserForm = (props: UserFormProps) => {
   } = useForm<RegistUser>();
 
   const onSubmit = (data: RegistUser) => {
+    if(isCsrfLoading) return;
+    const csrfToken = csrfData != null ? {[csrfData.headerName]: csrfData.token} : {};
     sendRequest({
       url: "/user/add",
       method: "POST",
+      headers: csrfToken,
       params: data,
     }).then((response) => {
       console.log(response)

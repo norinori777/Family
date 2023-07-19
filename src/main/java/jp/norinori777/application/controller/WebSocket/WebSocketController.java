@@ -50,6 +50,7 @@ public class WebSocketController {
         returnMessage.setSpeaker(user.getName());
         returnMessage.setDate(sdf.format(calendar.getTime()).toString());
         returnMessage.setRoomId(Integer.parseInt(roomId));
+        returnMessage.setUserId(user.getUserId());
 
         
         // TODO: リファクタリング　TDOでデータクラスの作成を簡略化できないか

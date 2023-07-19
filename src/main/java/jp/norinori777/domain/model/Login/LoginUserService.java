@@ -8,6 +8,7 @@ import jp.norinori777.domain.model.User.User;
 import jp.norinori777.domain.model.User.UserAccountCredential;
 
 public interface LoginUserService {
+
 	public User getUser(String emailAddress);
 
 	public List<GrantedAuthority> getUserRoles(String emailAddress);

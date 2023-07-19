@@ -3,6 +3,7 @@ import { TalkMessage } from "../../domain/TalkMessage/types";
 import { Talk } from "../../components/molecules/Talk";
 
 interface ChatProps{
+  userId: number;
   talkMessages: TalkMessage[];
   submit: (message:string) => void;
 }
@@ -28,7 +29,9 @@ const Chat = (props:ChatProps) => {
       </form>
       <div className="flex flex-col">
         {props.talkMessages.map((talkMessage, index) => (
-            <Talk key={index} talkMessage={talkMessage} />
+          props.userId === talkMessage.userId 
+? <div className="flex flex-row justify-start"><div><Talk key={index} talkMessage={talkMessage} /></div></div> :
+          <div className="flex flex-row justify-end"><div><Talk key={index} talkMessage={talkMessage} /></div></div>         
         ))}
       </div>
     </div>

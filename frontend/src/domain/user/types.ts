@@ -1,3 +1,10 @@
+export type LoginedUser = {
+  name: string;
+  emailAddress: string;
+  state: number;
+  userId: number;
+}
+
 export type User = {
   name: string;
   emailAddress: string;

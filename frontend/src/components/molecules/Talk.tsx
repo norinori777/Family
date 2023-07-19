@@ -1,7 +1,7 @@
 import React from 'react';
 import { SpeechBubble } from '../../components/atoms/SpeechBubble';
 import { SpeechBubbleAside } from '../../components/atoms/SpeechBubbleAside';
-import { TalkMessage } from 'domain/TalkMessage/types';
+import { TalkMessage } from '../../domain/TalkMessage/types';
 
 interface TalkProps {
     talkMessage: TalkMessage
