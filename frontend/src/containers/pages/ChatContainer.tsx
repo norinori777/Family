@@ -51,7 +51,7 @@ export const ChatContainer = () => {
     return () => {
       socket.close();
     }
-  }, [isLoading, isUserIdLoading]);
+  }, [isLoading, isUserIdLoading, isTalkMessageLoading]);
 
   const receiveMessage = (receiveMessage: TalkMessage) => {
     setReceiveMessages((preMessages) => [...preMessages, receiveMessage]);

@@ -30,8 +30,8 @@ const Chat = (props:ChatProps) => {
       <div className="flex flex-col">
         {props.talkMessages.map((talkMessage, index) => (
           props.userId === talkMessage.userId 
-? <div className="flex flex-row justify-start"><div><Talk key={index} talkMessage={talkMessage} /></div></div> :
-          <div className="flex flex-row justify-end"><div><Talk key={index} talkMessage={talkMessage} /></div></div>         
+? <div className="flex flex-row justify-start"><Talk key={index} talkMessage={talkMessage} /></div> :
+          <div className="flex flex-row justify-end"><Talk key={index} talkMessage={talkMessage} /></div>      
         ))}
       </div>
     </div>

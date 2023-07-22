@@ -10,7 +10,7 @@ interface TalkProps {
 export const Talk = (props: TalkProps) => {
     return(
         <div className="flex flex-col gap-1">
-            <SpeechBubbleAside name={props.talkMessage.speaker} date={props.talkMessage.date} />
+            <SpeechBubbleAside name={props.talkMessage.name} date={props.talkMessage.createAt} />
             <SpeechBubble message={props.talkMessage.message} />
         </div>
     );
