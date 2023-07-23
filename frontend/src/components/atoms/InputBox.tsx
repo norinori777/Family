@@ -8,16 +8,14 @@ import {
 } from "../../util/theme/theme";
 import { theme } from "../../util/theme/types";
 
-interface TextboxProps {
-  label: string;
+interface InputBoxProps {
   placeholder: string;
-  description: string;
   theme: theme;
   value: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Textbox = (props: TextboxProps) => {
+export const InputBox = (props: InputBoxProps) => {
   const [inputFocus, setInputFocus] = useState(false);
 
   const textTheme =
@@ -36,24 +34,17 @@ export const Textbox = (props: TextboxProps) => {
   };
 
   return (
-    <div className="mb-6">
-      <label
-        htmlFor="success"
-        className={`block mb-2 text-sm font-medium  ${textTheme}`}
-      >
-        {props.label}
-      </label>
+    <div className="w-80">
       <input
         type="text"
         id="success"
-        value={props.value}
         className={`${focusRingTheme} ring-gray-300 ring-2 focus:ring-2 focus:outline-none ${focusTextTheme} placeholder-gray-300 ${focusPlaceholderTheme} text-sm rounded-lg block w-full p-2.5`}
         placeholder={props.placeholder}
         onFocus={onFocusHandle}
         onBlur={onBlurHandle}
         onChange={props.handleChange}
+        value={props.value}
       />
-      <p className={`mt-2 text-sm ${textTheme}`}>{props.description}</p>
     </div>
   );
 };

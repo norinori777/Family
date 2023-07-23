@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      height: {
+        '87vh': '87vh',
+      },
       maxWidth: {
         "1/5": "20%",
         "2/5": "40%",
@@ -13,6 +16,30 @@ module.exports = {
         "2/3": "66.666667%",
         "1/4": "25%",
         "3/4": "75%",
+      },
+      screens: {
+        "container-sm": "400px",
+        "container-md": "540px",
+        "container-lg": "720px",
+        "container-xl": "960px",
+        "container-2xl": "1140px",
+        "container-3xl": "1320px",
+        "container-4xl": "1500px",
+        "container-5xl": "1680px",
+        "container-6xl": "1860px",
+        "container-7xl": "2040px",
+      },
+      w:{
+        "container-sm": "400px",
+        "container-md": "540px",
+        "container-lg": "720px",
+        "container-xl": "960px",
+        "container-2xl": "1140px",
+        "container-3xl": "1320px",
+        "container-4xl": "1500px",
+        "container-5xl": "1680px",
+        "container-6xl": "1860px",
+        "container-7xl": "2040px",
       },
       colors: {
         primary: {

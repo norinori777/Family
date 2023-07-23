@@ -20,7 +20,8 @@ Normal.args = {
     userId: 1,
     roomId: 1,
     message: "メッセージを空きました。やっぱり。。。",
-    speaker: "山田太郎",
-    date: "2021/10/10 10:10:10",
+    name: "山田太郎",
+    createAt: "2021/10/10 10:10:10",
+    updateAt: "2021/10/10 10:10:10",
   }
 };
