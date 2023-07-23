@@ -41,25 +41,25 @@ public class WebSocketController {
         User user = userService.getUser(accountCredential.getEmailAddress());        Calendar calendar = Calendar.getInstance();
         
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd kk:mm");
+        String now = sdf.format(calendar.getTime()).toString();
 
         ObjectMapper mapper = new ObjectMapper();
         ChatMessage returnMessage = mapper.readValue(message, ChatMessage.class);
 
 
-
-        returnMessage.setSpeaker(user.getName());
-        returnMessage.setDate(sdf.format(calendar.getTime()).toString());
         returnMessage.setRoomId(Integer.parseInt(roomId));
         returnMessage.setUserId(user.getUserId());
-
+        returnMessage.setName(user.getName());
+        returnMessage.setCreateAt(now);
+        returnMessage.setUpdateAt(now);
         
         // TODO: リファクタリング　TDOでデータクラスの作成を簡略化できないか
         TalkMessage talkMessage = new TalkMessage();
         talkMessage.setMessage(returnMessage.getMessage());
         talkMessage.setUserId(user.getUserId());
         talkMessage.setRoomId(Integer.parseInt(roomId));
-        talkMessage.setCreateAt(sdf.format(calendar.getTime()).toString());
-        talkMessage.setUpdateAt(sdf.format(calendar.getTime()).toString());
+        talkMessage.setCreateAt(now);
+        talkMessage.setUpdateAt(now);
 
         talkMessageService.addTalkMessage(talkMessage);
 

@@ -7,6 +7,7 @@ public class ChatMessage {
 	private Integer roomId;
     private Integer userId;
     private String message;
-    private String speaker;
-    private String date;
+    private String name;
+    private String createAt;
+    private String updateAt;
 }
