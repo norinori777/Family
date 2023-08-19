@@ -6,10 +6,20 @@
 			name,
 			password,
 			email_address,
+			state,
+			enabled,
+			login_miss_times,
+			create_at,
+			update_at
 		) values (
 			#{name},
 			#{password},
-			#{emailAddress}
+			#{emailAddress},
+			0,
+			true,
+			0,
+			now(),
+			now()
 		)
 	</insert>
 </mapper>

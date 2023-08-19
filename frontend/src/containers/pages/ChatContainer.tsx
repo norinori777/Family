@@ -9,50 +9,67 @@ import { useParams } from "react-router-dom";
 
 export const ChatContainer = () => {
   const params = useParams<{ roomId: string }>();
-    const roomId = params.roomId;
-    const [stompClient, setStompClient] = useState<Stomp.Client | null>(null);
-    const [receiveMessages, setReceiveMessages] = useState<TalkMessage[]>([]);
-    const {data, error, isLoading,} = useAxios<CsrfToken>({
-      url: "/csrf",
+  const roomId = params.roomId;
+  const [stompClient, setStompClient] = useState<Stomp.Client | null>(null);
+  const [receiveMessages, setReceiveMessages] = useState<TalkMessage[]>([]);
+  const {data, error, isLoading,} = useAxios<CsrfToken>({
+    url: "/csrf",
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    reGet: 0,});
+  
+  const {data: useridData, error: userIdError, isLoading: isUserIdLoading,} = useAxios<number>({
+    url: "/user/id",
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    reGet: 0,});
+
+    const {data:talkMessageData, error: talkMessageError, isLoading: isTalkMessageLoading,} = useAxios<TalkMessage[]>({
+      url: "/talkmessage/list/" + roomId,
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
       reGet: 0,});
 
-    useEffect(() => {
-      if(isLoading) return;
-      const csrfToken = data != null ? {[data.headerName]: data.token} : {};
-      const socket = new SockJS("/ws");
-      const stompClient = Stomp.over(socket);
-      stompClient?.connect(csrfToken, frame => {
-        setStompClient(stompClient);
-        stompClient.subscribe('/topic/' + roomId + '/messages', message => {
-          receiveMessage(JSON.parse(message.body));
-        });
+  useEffect(() => {
+    if(isLoading || isUserIdLoading || isTalkMessageLoading) return;
+    setReceiveMessages(talkMessageData ?? []);
+    const csrfToken = data != null ? {[data.headerName]: data.token} : {};
+    const socket = new SockJS("/ws");
+    const stompClient = Stomp.over(socket);
+    stompClient?.connect(csrfToken, frame => {
+      setStompClient(stompClient);
+      stompClient.subscribe('/topic/' + roomId + '/messages', message => {
+        receiveMessage(JSON.parse(message.body));
       });
-      return () => {
-        socket.close();
-      }
-    }, [isLoading]);
+    });
+    return () => {
+      socket.close();
+    }
+  }, [isLoading, isUserIdLoading, isTalkMessageLoading]);
 
-    const receiveMessage = (receiveMessage: TalkMessage) => {
-      setReceiveMessages((preMessages) => [...preMessages, receiveMessage]);
-    };
+  const receiveMessage = (receiveMessage: TalkMessage) => {
+    setReceiveMessages((preMessages) => [...preMessages, receiveMessage]);
+  };
 
-    const handleMessageSubmit = (sendMessage:string) => {
-      if (sendMessage) {
-        stompClient?.send(
-          "/app/" + roomId + "/message",
-          {},
-          JSON.stringify({message: sendMessage})
-        );
-      }
-    };
+  const handleMessageSubmit = (sendMessage:string) => {
+    if (sendMessage) {
+      stompClient?.send(
+        "/app/" + roomId + "/message",
+        {},
+        JSON.stringify({message: sendMessage})
+      );
+    }
+  };
 
-    return (
-        <div>
-            <Chat talkMessages={receiveMessages} submit={handleMessageSubmit} />
-        </div>
-    )
+  return (
+    <div>
+        <Chat talkMessages={receiveMessages} submit={handleMessageSubmit} userId={useridData ?? 0} />
+    </div>
+  )
 }

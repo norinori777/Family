@@ -3,15 +3,17 @@
 <mapper namespace="jp.norinori777.repository.TalkMessageMapper">
 	<select id="selectTalkMessages" resultType="jp.norinori777.domain.model.Message.TalkMessage">
 		select
-			message_id, 
-			message,
-			room_id,
-			user_id,
-			state, 
-            to_char(create_at, 'YYYY-MM-DD') as create_at, 
-			to_char(update_at, 'YYYY-MM-DD') as update_at
-		from t_talk_messages
-		where state = 0 and  room_id = #{roomId}
+			tm.message_id, 
+			tm.message,
+			tm.room_id,
+			tm.user_id,
+			mu.name,
+			tm.state, 
+            to_char(tm.create_at, 'YYYY-MM-DD') as create_at, 
+			to_char(tm.update_at, 'YYYY-MM-DD') as update_at
+		from t_talk_messages tm
+		Left outer join m_user mu on tm.user_id = mu.user_id
+		where tm.state = 0 and  tm.room_id = #{roomId}
 	</select>
 
 	<insert id="insertTalkMessage">

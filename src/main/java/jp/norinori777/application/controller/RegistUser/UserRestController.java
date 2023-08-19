@@ -22,6 +22,7 @@ import jp.norinori777.domain.model.User.ListUserService;
 import jp.norinori777.domain.model.User.RegistUserService;
 import jp.norinori777.domain.model.User.User;
 import jp.norinori777.domain.model.User.UserAccountCredential;
+import jp.norinori777.domain.model.User.UserService;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -33,6 +34,9 @@ public class UserRestController {
 	
 	@Autowired
 	private ListUserService listUserService;
+
+	@Autowired
+	private UserService userService;
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -58,5 +62,12 @@ public class UserRestController {
 		List<User> users = listUserService.getUsers();
 		return users;
 	}
-	
+
+	@GetMapping("id")	
+	public Integer getUserId() {
+		UserAccountCredential accountCredential =(UserAccountCredential) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		User user = userService.getUser(accountCredential.getEmailAddress());
+		return user.getUserId();
+	}
 }
