@@ -38,7 +38,8 @@ export const ListChatRoom = (props: ListChatRoomProps) => {
                 action={openHandle}
             />
             <ChatRoomFormContainer />
-            <DynamicTable<ChatRoom> titleHeader={["roomId", "roomName", "roomDescription", "createAt", "updateAt"]} targetLink={["roomName"]} items={data} Row={DynamicRow} />            
+            <DynamicTable<ChatRoom> titleHeader={["roomId", "roomName", "roomDescription", "createAt", "updateAt"]} targetLink={["roomName"]} items={data} Row={DynamicRow} />
+                        
         </div>
     )
 

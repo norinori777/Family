@@ -16,7 +16,7 @@ export const SpeechBubble = (props: SpeechBubbleProps) => {
         "px-2 " +
         "py-1 " +
         "mb-2 " +
-        "max-w-2/5 " +
+        "max-w-[10rem] " +
         "w-fit " +
         "whitespace-pre-wrap " +
         "text-white " +

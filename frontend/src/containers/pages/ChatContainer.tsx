@@ -6,6 +6,7 @@ import { useAxios } from "../../util/hooks/useAxios";
 import { CsrfToken } from "../../domain/csrf/types";
 import { TalkMessage } from "../../domain/TalkMessage/types";
 import { useParams } from "react-router-dom";
+import { Paper } from "../../components/atoms/Paper";
 
 export const ChatContainer = () => {
   const params = useParams<{ roomId: string }>();
@@ -68,8 +69,10 @@ export const ChatContainer = () => {
   };
 
   return (
-    <div>
-        <Chat talkMessages={receiveMessages} submit={handleMessageSubmit} userId={useridData ?? 0} />
+    <div className="w-96 sm:w-container-sm">
+    <Paper theme={"white"}>
+      <Chat talkMessages={receiveMessages} submit={handleMessageSubmit} userId={useridData ?? 0} />
+    </Paper>
     </div>
   )
 }

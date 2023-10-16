@@ -37,15 +37,15 @@ const Chat = (props:ChatProps) => {
   )
 
   return (
-    <div ref={scrollContainerRef} className="overflow-auto h-87vh md:container-sm:max-w-screen-container-sm">
-      <div className="flex flex-col">
+    <div ref={scrollContainerRef} className="relative h-87vh">
+      <div className="flex flex-col h-80vh overflow-auto hidden-scrollbar p-2">
         {props.talkMessages.map((talkMessage, index) => (
           props.userId === talkMessage.userId 
 ? <div className="flex flex-row justify-start"><Talk key={index} talkMessage={talkMessage} /></div> :
           <div className="flex flex-row justify-end"><Talk key={index} talkMessage={talkMessage} /></div>      
         ))}
       </div>
-      <div className="fixed bottom-0">
+      <div className="absolute bottom-0 p-2 border-t-2 w-full">
         <form onSubmit={handleMessageSubmit}>
           <div className="flex flex-row gap-1">
             <InputBox placeholder="メッセージを入力してください" handleChange={handleMessageChange} value={newMessage} theme={'success'}  />

@@ -34,7 +34,7 @@ export const InputBox = (props: InputBoxProps) => {
   };
 
   return (
-    <div className="w-80">
+    <div className="w-72">
       <input
         type="text"
         id="success"
