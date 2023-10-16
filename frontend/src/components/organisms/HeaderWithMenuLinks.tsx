@@ -20,12 +20,14 @@ interface HeaderWithMenuLinksProps {
 export const HeaderWithMenuLinks = (props: HeaderWithMenuLinksProps) => {
   return (
     <Header>
-      <HeaderTitle
-        title={props.headerTitle}
-        theme={props.headerTheme}
-        icon={props.headerIcon}
-      />
-      <nav className="pt-4 w-1/2">
+      <div className="max-md:hidden">
+        <HeaderTitle
+          title={props.headerTitle}
+          theme={props.headerTheme}
+          icon={props.headerIcon}
+        />
+      </div>
+      <nav className="pt-4 w-1/2 max-md:pl-3">
         <ListLinkItems items={props.headerMenuLinks} />
       </nav>
     </Header>

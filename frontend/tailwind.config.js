@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       height: {
         '87vh': '87vh',
+        '80vh': '80vh',
       },
       maxWidth: {
         "1/5": "20%",
@@ -18,18 +19,18 @@ module.exports = {
         "3/4": "75%",
       },
       screens: {
-        "container-sm": "400px",
-        "container-md": "540px",
-        "container-lg": "720px",
-        "container-xl": "960px",
-        "container-2xl": "1140px",
-        "container-3xl": "1320px",
-        "container-4xl": "1500px",
-        "container-5xl": "1680px",
-        "container-6xl": "1860px",
-        "container-7xl": "2040px",
+        'max-sm': {max: '640'},
+        'max-md': {max: '768px'},
+        'max-lg': {max: '1024px'},
+        'max-xl': {max: '1280x'},
+        'max-2xl': {max: '1536px'},
+        'max-3xl': {max: '1920px'},
+        'max-4xl': {max: '2560px'},
+        'max-5xl': {max: '3840px'},
+        'max-6xl': {max: '4096px'},
+        'max-7xl': {max: '5120px'},
       },
-      w:{
+      width:{
         "container-sm": "400px",
         "container-md": "540px",
         "container-lg": "720px",

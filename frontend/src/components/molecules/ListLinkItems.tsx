@@ -10,7 +10,7 @@ interface ListLinkItemsProps {
 
 export const ListLinkItems = (props: ListLinkItemsProps) => {
   return (
-    <div className="flex flex-row justify-around">
+    <div className="flex flex-row md:justify-around max-md:gap-2">
       {props.items.map((item) => {
         return (
           <LinkItemsContainer

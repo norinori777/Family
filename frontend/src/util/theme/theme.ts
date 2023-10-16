@@ -86,6 +86,27 @@ export const getDrakBorderBackGroundTheme = (theme: theme) => {
       return "border-warning-dark bg-warning-default";
     case "normal":
       return "border-normal-dark bg-normal-default";
+    case "white":
+      return "border-normal-default bg-white";
+  }
+};
+
+export const getLightBorderBackGroundTheme = (theme: theme) => {
+  switch (theme) {
+    case "primary":
+      return "border-primary-light bg-primary-default";
+    case "secondary":
+      return "border-secondary-light bg-secondary-default";
+    case "success":
+      return "border-success-light bg-success-default";
+    case "danger":
+      return "border-danger-light bg-danger-default";
+    case "warning":
+      return "border-warning-light bg-warning-default";
+    case "normal":
+      return "border-normal-light bg-normal-default";
+    case "white":
+      return "border-normal-light bg-white";
   }
 };
 
@@ -137,6 +158,8 @@ export const getLightBackGroundTheme = (theme: theme) => {
       return "bg-lightWarning-light";
     case "normal":
       return "bg-lightNormal-light";
+    case "white":
+      return "bg-white";
   }
 };
 
