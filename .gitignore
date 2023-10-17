@@ -31,6 +31,8 @@ build/
 
 ### frontEnd ###
 frontEnd/node_modules/
+frontEnd/.yarn
+
 
 ### bilded js ###
 src\main\resources\static\js\main.js
