@@ -1,5 +1,5 @@
-import React from '@storybook/react';
-import type { Meta, StoryObj } from '@storybook/react';
+import React from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { Paper } from '../Paper'
 
@@ -7,10 +7,10 @@ const meta: Meta<typeof Paper> = {
   title: 'atoms/Paper',
   component: Paper,
   argTypes: {},
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof Paper>;
+export default meta
+type Story = StoryObj<typeof Paper>
 
 export const Primary: Story = {
   args: {

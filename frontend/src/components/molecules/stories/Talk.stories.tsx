@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react'
 import { Talk } from '../Talk'
 
 const meta: Meta<typeof Talk> = {
   title: 'molecules/Talk',
   component: Talk,
   argTypes: {},
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof Talk>;
+export default meta
+type Story = StoryObj<typeof Talk>
 
 export const Normal: Story = {
   args: {
@@ -22,4 +22,3 @@ export const Normal: Story = {
     },
   },
 }
-

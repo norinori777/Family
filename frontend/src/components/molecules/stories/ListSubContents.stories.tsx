@@ -1,6 +1,6 @@
-import React from '@storybook/react';
+import React from '@storybook/react'
 import { MemoryRouter } from 'react-router-dom'
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react'
 import { ListSubContents } from '../ListSubContents'
 
 const meta: Meta<typeof ListSubContents> = {
@@ -13,10 +13,10 @@ const meta: Meta<typeof ListSubContents> = {
       </MemoryRouter>
     ),
   ],
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof ListSubContents>;
+export default meta
+type Story = StoryObj<typeof ListSubContents>
 
 export const Col: Story = {
   args: {
@@ -91,6 +91,5 @@ export const Row: Story = {
         theme: 'normal',
       },
     ],
-
-  }
+  },
 }

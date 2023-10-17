@@ -1,5 +1,5 @@
-import React from '@storybook/react';
-import type { Meta, StoryObj } from '@storybook/react';
+import React from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import { MemoryRouter } from 'react-router-dom'
 import { Contents } from '../Contents'
 import { test } from '../../pages/test'
@@ -14,10 +14,10 @@ const meta: Meta<typeof Contents> = {
       </MemoryRouter>
     ),
   ],
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof Contents>;
+export default meta
+type Story = StoryObj<typeof Contents>
 
 export const Normal: Story = {
   args: {

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { Plus } from '../Plus'
 
@@ -6,10 +6,10 @@ const meta: Meta<typeof Plus> = {
   title: 'Icons/Plus',
   component: Plus,
   argTypes: {},
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof Plus>;
+export default meta
+type Story = StoryObj<typeof Plus>
 
 export const Primary: Story = {
   args: {

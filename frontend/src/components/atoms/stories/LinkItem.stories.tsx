@@ -1,6 +1,6 @@
-import React from '@storybook/react';
-import { MemoryRouter } from 'react-router-dom';
-import type { Meta, StoryObj } from '@storybook/react';
+import React from '@storybook/react'
+import { MemoryRouter } from 'react-router-dom'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { LinkItem } from '../LinkItem'
 
@@ -14,10 +14,10 @@ const meta: Meta<typeof LinkItem> = {
       </MemoryRouter>
     ),
   ],
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof LinkItem>;
+export default meta
+type Story = StoryObj<typeof LinkItem>
 
 export const Normal: Story = {
   args: {

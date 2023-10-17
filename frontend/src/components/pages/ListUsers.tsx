@@ -2,10 +2,10 @@ import React, { useEffect } from 'react'
 import { UserForm } from '../organisms/UserForm'
 import { ContainIconButton } from '../molecules/ContainIconButton'
 import { Plus } from '../Icons/Plus'
-import { Table } from '../molecules/Table'
 import { useAxios } from '../../util/hooks/useAxios'
 import { ResponseUserData, User } from '../../domain/user/types'
 import { UserFormContainer } from '../../containers/organisms/UserFormContainer'
+import { UsersActionTableContainer } from '../../containers/molecules/UsersActionTableContainer'
 
 interface UserProps {
   openHandle: () => void
@@ -37,9 +37,10 @@ export const ListUsers = (props: UserProps) => {
         action={openHandle}
       />
       <UserFormContainer />
-      <Table<User>
+      <UsersActionTableContainer
         titleHeader={['name', 'emailAddress', 'state', 'createAt', 'updateAt']}
         items={data}
+        actionColumn={5}
       />
     </div>
   )

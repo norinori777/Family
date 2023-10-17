@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react'
 import { SubContent } from '../SubContent'
 
 const meta: Meta<typeof SubContent> = {
   title: 'molecules/SubContent',
   component: SubContent,
   argTypes: {},
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof SubContent>;
+export default meta
+type Story = StoryObj<typeof SubContent>
 
 export const Primary: Story = {
   args: {

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react'
 import { Plus } from '../../Icons/Plus'
 import { ContainIconButton } from '../ContainIconButton'
 
@@ -6,10 +6,10 @@ const meta: Meta<typeof ContainIconButton> = {
   title: 'molecules/ContainIconButton',
   component: ContainIconButton,
   argTypes: {},
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof ContainIconButton>;
+export default meta
+type Story = StoryObj<typeof ContainIconButton>
 
 export const Primary: Story = {
   args: {

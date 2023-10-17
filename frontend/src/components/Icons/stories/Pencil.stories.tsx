@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { Pencil } from '../Pencil'
 
@@ -6,10 +6,10 @@ const meta: Meta<typeof Pencil> = {
   title: 'Icons/Pencil',
   component: Pencil,
   argTypes: {},
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof Pencil>;
+export default meta
+type Story = StoryObj<typeof Pencil>
 
 export const Primary: Story = {
   args: {
