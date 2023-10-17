@@ -1,58 +1,60 @@
-import React from 'react'
-import { ComponentStory, ComponentMeta } from '@storybook/react'
-
+import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '../Button'
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-export default {
+const meta: Meta<typeof Button> = {
   title: 'atoms/Button',
   component: Button,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {},
-} as ComponentMeta<typeof Button>
+};
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />
+export default meta;
+type Story = StoryObj<typeof Button>;
 
-export const Primary = Template.bind({})
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {
-  label: 'primary',
-  theme: 'primary',
-  type: 'button',
-}
+export const Primary: Story = {
+  args: {
+    label: 'primary',
+    theme: 'primary',
+    type: 'button',
+  },
+};
 
-export const Secondary = Template.bind({})
-Secondary.args = {
-  label: 'secondary',
-  theme: 'secondary',
-  type: 'button',
-}
+export const Secondary: Story = {
+  args: {
+    label: 'secondary',
+    theme: 'secondary',
+    type: 'button',
+  },
+};
 
-export const Success = Template.bind({})
-Success.args = {
-  label: 'success',
-  theme: 'success',
-  type: 'button',
-}
+export const Success: Story = {
+  args: {
+    label: 'success',
+    theme: 'success',
+    type: 'button',
+  },
+};
 
-export const Danger = Template.bind({})
-Danger.args = {
-  label: 'danger',
-  theme: 'danger',
-  type: 'button',
-}
+export const Danger: Story = {
+  args: {
+    label: 'danger',
+    theme: 'danger',
+    type: 'button',
+  },
+};
 
-export const Warning = Template.bind({})
-Warning.args = {
-  label: 'warning',
-  theme: 'warning',
-  type: 'button',
-}
+export const Warning: Story = {
+  args: {
+    label: 'warning',
+    theme: 'warning',
+    type: 'button',
+  },
+};
 
-export const Normal = Template.bind({})
-Normal.args = {
-  label: 'normal',
-  theme: 'normal',
-  type: 'button',
-}
+export const Normal: Story = {
+  args: {
+    label: 'normal',
+    theme: 'normal',
+    type: 'button',
+  },
+};
+

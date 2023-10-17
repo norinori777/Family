@@ -1,50 +1,43 @@
-import React from 'react'
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 import { XCircle } from '../XCircle'
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-export default {
-  title: 'icons/XCircle',
+const meta: Meta<typeof XCircle> = {
+  title: 'Icons/XCircle',
   component: XCircle,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {},
-} as ComponentMeta<typeof XCircle>
+};
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof XCircle> = (args) => <XCircle {...args} />
+export default meta;
+type Story = StoryObj<typeof XCircle>;
 
-export const Primary = Template.bind({})
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {
-  theme: 'primary',
+export const Primary: Story = {
+  args: {
+    theme: 'primary',
+  },
 }
 
-export const secondary = Template.bind({})
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-secondary.args = {
-  theme: 'secondary',
+export const Secondary: Story = {
+  args: {
+    theme: 'secondary',
+  },
 }
-
-export const success = Template.bind({})
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-success.args = {
-  theme: 'success',
+export const Success: Story = {
+  args: {
+    theme: 'success',
+  },
 }
-
-export const danger = Template.bind({})
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-danger.args = {
-  theme: 'danger',
+export const Danger: Story = {
+  args: {
+    theme: 'danger',
+  },
 }
-
-export const warning = Template.bind({})
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-warning.args = {
-  theme: 'warning',
+export const Warning: Story = {
+  args: {
+    theme: 'warning',
+  },
 }
-
-export const normal = Template.bind({})
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-normal.args = {
-  theme: 'normal',
+export const Normal: Story = {
+  args: {
+    theme: 'normal',
+  },
 }
