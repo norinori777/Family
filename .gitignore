@@ -32,5 +32,8 @@ build/
 ### frontEnd ###
 frontEnd/node_modules/
 
+### bilded js ###
+src\main\resources\static\js\main.js
+
 ### VS Code ###
 .vscode/
