@@ -1,37 +1,36 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import {
   getFocusRingTheme,
   getLightBackGroundTheme,
   getFocusPlaceholderTheme,
   getFocusTextTheme,
   getTextTheme,
-} from "../../util/theme/theme";
-import { theme } from "../../util/theme/types";
+} from '../../util/theme/theme'
+import { theme } from '../../util/theme/types'
 
 interface InputBoxProps {
-  placeholder: string;
-  theme: theme;
-  value: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder: string
+  theme: theme
+  value: string
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export const InputBox = (props: InputBoxProps) => {
-  const [inputFocus, setInputFocus] = useState(false);
+  const [inputFocus, setInputFocus] = useState(false)
 
-  const textTheme =
-    inputFocus == true ? getTextTheme(props.theme) : "text-gray-500";
-  const focusTextTheme = getFocusTextTheme(props.theme);
-  const focusRingTheme = getFocusRingTheme(props.theme);
-  const backGroundTheme = getLightBackGroundTheme(props.theme);
-  const focusPlaceholderTheme = getFocusPlaceholderTheme(props.theme);
+  const textTheme = inputFocus == true ? getTextTheme(props.theme) : 'text-gray-500'
+  const focusTextTheme = getFocusTextTheme(props.theme)
+  const focusRingTheme = getFocusRingTheme(props.theme)
+  const backGroundTheme = getLightBackGroundTheme(props.theme)
+  const focusPlaceholderTheme = getFocusPlaceholderTheme(props.theme)
 
   const onFocusHandle = () => {
-    setInputFocus(true);
-  };
+    setInputFocus(true)
+  }
 
   const onBlurHandle = () => {
-    setInputFocus(false);
-  };
+    setInputFocus(false)
+  }
 
   return (
     <div className="w-72">
@@ -46,5 +45,5 @@ export const InputBox = (props: InputBoxProps) => {
         value={props.value}
       />
     </div>
-  );
-};
+  )
+}

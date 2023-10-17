@@ -1,46 +1,42 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import {
   getFocusRingTheme,
   getLightBackGroundTheme,
   getFocusPlaceholderTheme,
   getFocusTextTheme,
   getTextTheme,
-} from "../../util/theme/theme";
-import { theme } from "../../util/theme/types";
+} from '../../util/theme/theme'
+import { theme } from '../../util/theme/types'
 
 interface TextboxProps {
-  label: string;
-  placeholder: string;
-  description: string;
-  theme: theme;
-  value: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  label: string
+  placeholder: string
+  description: string
+  theme: theme
+  value: string
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export const Textbox = (props: TextboxProps) => {
-  const [inputFocus, setInputFocus] = useState(false);
+  const [inputFocus, setInputFocus] = useState(false)
 
-  const textTheme =
-    inputFocus == true ? getTextTheme(props.theme) : "text-gray-500";
-  const focusTextTheme = getFocusTextTheme(props.theme);
-  const focusRingTheme = getFocusRingTheme(props.theme);
-  const backGroundTheme = getLightBackGroundTheme(props.theme);
-  const focusPlaceholderTheme = getFocusPlaceholderTheme(props.theme);
+  const textTheme = inputFocus == true ? getTextTheme(props.theme) : 'text-gray-500'
+  const focusTextTheme = getFocusTextTheme(props.theme)
+  const focusRingTheme = getFocusRingTheme(props.theme)
+  const backGroundTheme = getLightBackGroundTheme(props.theme)
+  const focusPlaceholderTheme = getFocusPlaceholderTheme(props.theme)
 
   const onFocusHandle = () => {
-    setInputFocus(true);
-  };
+    setInputFocus(true)
+  }
 
   const onBlurHandle = () => {
-    setInputFocus(false);
-  };
+    setInputFocus(false)
+  }
 
   return (
     <div className="mb-6">
-      <label
-        htmlFor="success"
-        className={`block mb-2 text-sm font-medium  ${textTheme}`}
-      >
+      <label htmlFor="success" className={`block mb-2 text-sm font-medium  ${textTheme}`}>
         {props.label}
       </label>
       <input
@@ -55,5 +51,5 @@ export const Textbox = (props: TextboxProps) => {
       />
       <p className={`mt-2 text-sm ${textTheme}`}>{props.description}</p>
     </div>
-  );
-};
+  )
+}

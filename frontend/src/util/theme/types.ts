@@ -1,8 +1,1 @@
-export type theme =
-  | "primary"
-  | "secondary"
-  | "success"
-  | "danger"
-  | "warning"
-  | "normal"
-  | "white";
+export type theme = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'normal' | 'white'

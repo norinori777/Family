@@ -1,7 +1,7 @@
-import React from "react";
-import { HeaderWithMenuLinkConatainer } from "./containers/organisms/HeaderWithMenuLinksContainer";
-import { SideMenuContainer } from "./containers/organisms/SideMenuContainer";
-import { MainContantsContainer } from "./containers/organisms/MainContentsContainer";
+import React from 'react'
+import { HeaderWithMenuLinkConatainer } from './containers/organisms/HeaderWithMenuLinksContainer'
+import { SideMenuContainer } from './containers/organisms/SideMenuContainer'
+import { MainContantsContainer } from './containers/organisms/MainContentsContainer'
 
 export const App = () => {
   return (
@@ -12,5 +12,5 @@ export const App = () => {
         <MainContantsContainer />
       </div>
     </div>
-  );
-};
+  )
+}

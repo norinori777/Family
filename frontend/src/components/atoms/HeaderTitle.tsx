@@ -1,16 +1,16 @@
-import React from "react";
-import { getTextTheme } from "../../util/theme/theme";
-import { theme } from "../../util/theme/types";
+import React from 'react'
+import { getTextTheme } from '../../util/theme/theme'
+import { theme } from '../../util/theme/types'
 
 export interface HeaderTitleProps {
-  icon: React.ElementType;
-  title: string;
-  theme: theme;
+  icon: React.ElementType
+  title: string
+  theme: theme
 }
 
 export const HeaderTitle = (props: HeaderTitleProps) => {
-  const Icon = props.icon;
-  const themeStyle = getTextTheme(props.theme);
+  const Icon = props.icon
+  const themeStyle = getTextTheme(props.theme)
   return (
     <div
       className={`flex flex-row items-center gap-2 pt-3 pl-3 pb-3 border-r-2 border-slat-50 w-52`}
@@ -20,6 +20,5 @@ export const HeaderTitle = (props: HeaderTitleProps) => {
         {props.title}
       </p>
     </div>
-  );
-};
-
+  )
+}

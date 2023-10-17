@@ -1,12 +1,12 @@
-import React from "react";
-import { SidebarMenuItem } from "./SidebarMenuItem";
+import React from 'react'
+import { SidebarMenuItem } from './SidebarMenuItem'
 
 interface SidebarMenuListProps {
   items: {
-    icon: React.ComponentType;
-    text: string;
-    link: string;
-  }[];
+    icon: React.ComponentType
+    text: string
+    link: string
+  }[]
 }
 
 export const SidebarMenuList = (prorps: SidebarMenuListProps) => {
@@ -14,14 +14,9 @@ export const SidebarMenuList = (prorps: SidebarMenuListProps) => {
     <div className="flex flex-col gap-10">
       {prorps.items?.map((item) => {
         return (
-          <SidebarMenuItem
-            key={item.text}
-            icon={item.icon}
-            text={item.text}
-            link={item.link}
-          />
-        );
+          <SidebarMenuItem key={item.text} icon={item.icon} text={item.text} link={item.link} />
+        )
       })}
     </div>
-  );
-};
+  )
+}

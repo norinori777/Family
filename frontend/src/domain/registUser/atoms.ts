@@ -1,6 +1,6 @@
-import { atom } from "recoil";
+import { atom } from 'recoil'
 
 export const reGetFlag = atom<number>({
-    key: "reGetFlag",
-    default: 0,
-});
+  key: 'reGetFlag',
+  default: 0,
+})

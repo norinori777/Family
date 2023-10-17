@@ -1,13 +1,13 @@
-import React from "react";
-import { theme } from "../../util/theme/types";
-import { getTextTheme } from "../../util/theme/theme";
+import React from 'react'
+import { theme } from '../../util/theme/types'
+import { getTextTheme } from '../../util/theme/theme'
 
 interface PlusProps {
-  theme: theme;
+  theme: theme
 }
 
 export const Plus = (props: PlusProps) => {
-  const theme = getTextTheme(props.theme);
+  const theme = getTextTheme(props.theme)
   return (
     <>
       <svg
@@ -18,12 +18,8 @@ export const Plus = (props: PlusProps) => {
         stroke="currentColor"
         className={`w-6 h-6 fill-current ${theme}`}
       >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M12 4.5v15m7.5-7.5h-15"
-        />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
       </svg>
     </>
-  );
-};
+  )
+}

@@ -1,13 +1,13 @@
-import React from "react";
-import { theme } from "../../util/theme/types";
-import { getTextTheme } from "../../util/theme/theme";
+import React from 'react'
+import { theme } from '../../util/theme/types'
+import { getTextTheme } from '../../util/theme/theme'
 
 interface NextProps {
-  theme: theme;
+  theme: theme
 }
 
 export const Next = (props: NextProps) => {
-  const theme = getTextTheme(props.theme);
+  const theme = getTextTheme(props.theme)
   return (
     <svg
       aria-hidden="true"
@@ -22,5 +22,5 @@ export const Next = (props: NextProps) => {
         clip-rule="evenodd"
       ></path>
     </svg>
-  );
-};
+  )
+}

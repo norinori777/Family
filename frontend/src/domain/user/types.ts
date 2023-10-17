@@ -1,24 +1,24 @@
 export type LoginedUser = {
-  name: string;
-  emailAddress: string;
-  state: number;
-  userId: number;
+  name: string
+  emailAddress: string
+  state: number
+  userId: number
 }
 
 export type User = {
-  name: string;
-  emailAddress: string;
-  state: number;
-  createAt: string;
-  updateAt: string;
+  name: string
+  emailAddress: string
+  state: number
+  createAt: string
+  updateAt: string
 }
 
 export type ResponseUserData = {
-  name: string;
-  emailAddress: string;
-  state: number;
-  createAt: string;
-  updateAt: string;
+  name: string
+  emailAddress: string
+  state: number
+  createAt: string
+  updateAt: string
 }
 
 // export type User = {

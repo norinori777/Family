@@ -1,22 +1,22 @@
 export type SideMenuItem = {
-  icon: React.ComponentType;
-  text: string;
-  link: string;
-};
+  icon: React.ComponentType
+  text: string
+  link: string
+}
 
 export type HeaderMenuItem = {
-  text: string;
-  initialLink: string;
-};
+  text: string
+  initialLink: string
+}
 
 export type ContentItem = {
-  component: React.ElementType;
-  key: string;
-  link: string;
-};
+  component: React.ElementType
+  key: string
+  link: string
+}
 
 export type Contents = {
-  headerMenuItem: HeaderMenuItem;
-  sideMenuItems: SideMenuItem[];
-  contentItems: ContentItem[];
-};
+  headerMenuItem: HeaderMenuItem
+  sideMenuItems: SideMenuItem[]
+  contentItems: ContentItem[]
+}
