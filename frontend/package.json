@@ -6,8 +6,10 @@
   "dependencies": {
     "@babel/preset-typescript": "^7.23.2",
     "@stomp/stompjs": "^7.0.0",
+    "@storybook/router": "^7.4.6",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "@types/react-router-dom": "^5.3.3",
     "@types/sockjs-client": "^1.5.1",
     "@types/stompjs": "^2.3.5",
     "axios": "^1.3.4",

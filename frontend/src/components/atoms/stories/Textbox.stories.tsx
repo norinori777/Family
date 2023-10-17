@@ -1,64 +1,62 @@
-import React from 'react'
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { Textbox } from '../Textbox'
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-export default {
+const meta: Meta<typeof Textbox> = {
   title: 'atoms/Textbox',
   component: Textbox,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {},
-} as ComponentMeta<typeof Textbox>
+};
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Textbox> = (args) => <Textbox {...args} />
+export default meta;
+type Story = StoryObj<typeof Textbox>;
 
-export const Primary = Template.bind({})
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {
-  label: 'primary',
-  theme: 'primary',
-  placeholder: 'button',
-  description: 'description',
+export const Primary: Story = {
+  args: {
+    label: 'primary',
+    theme: 'primary',
+    placeholder: 'button',
+    description: 'description',
+  },
 }
 
-export const Secondary = Template.bind({})
-Secondary.args = {
-  label: 'secondary',
-  theme: 'secondary',
-  placeholder: 'button',
-  description: 'description',
+export const Secondary: Story = {
+  args: {
+    label: 'secondary',
+    theme: 'secondary',
+    placeholder: 'button',
+    description: 'description',
+  },
 }
-
-export const Success = Template.bind({})
-Success.args = {
-  label: 'success',
-  theme: 'success',
-  placeholder: 'button',
-  description: 'description',
+export const Success: Story = {
+  args: {
+    label: 'success',
+    theme: 'success',
+    placeholder: 'button',
+    description: 'description',
+  },
 }
-
-export const Danger = Template.bind({})
-Danger.args = {
-  label: 'danger',
-  theme: 'danger',
-  placeholder: 'button',
-  description: 'description',
+export const Danger: Story = {
+  args: {
+    label: 'danger',
+    theme: 'danger',
+    placeholder: 'button',
+    description: 'description',
+  },
 }
-
-export const Warning = Template.bind({})
-Warning.args = {
-  label: 'warning',
-  theme: 'warning',
-  placeholder: 'button',
-  description: 'description',
+export const Warning: Story = {
+  args: {
+    label: 'warning',
+    theme: 'warning',
+    placeholder: 'button',
+    description: 'description',
+  },
 }
-
-export const Normal = Template.bind({})
-Normal.args = {
-  label: 'normal',
-  theme: 'normal',
-  placeholder: 'button',
-  description: 'description',
+export const Normal: Story = {
+  args: {
+    label: 'normal',
+    theme: 'normal',
+    placeholder: 'button',
+    description: 'description',
+  },
 }

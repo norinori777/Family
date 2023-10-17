@@ -1,22 +1,19 @@
-import React from 'react'
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { Table } from '../Table'
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-export default {
-  title: 'atoms/Table',
+const meta: Meta<typeof Table> = {
+  title: 'molecules/Table',
   component: Table,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {},
-} as ComponentMeta<typeof Table>
+};
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Table> = (args) => <Table {...args} />
+export default meta;
+type Story = StoryObj<typeof Table>;
 
-export const Three = Template.bind({})
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-Three.args = {
+export const Three: Story = {
+  args: {
+    
   titleHeader: ['No.', 'TEST1', 'TEST2'],
   items: [
     { 'No.': 1, TEST1: 'AAAA', TEST2: 'BBBBB' },
@@ -25,12 +22,12 @@ Three.args = {
     { 'No.': 4, TEST1: 'AAAA', TEST2: 'BBBBB' },
     { 'No.': 5, TEST1: 'AAAA', TEST2: 'BBBBB' },
   ],
+  }
 }
 
-export const Five = Template.bind({})
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-Five.args = {
-  titleHeader: ['No.', 'TEST1', 'TEST2', 'TEST3', 'TEST4'],
+export const Five: Story = {
+  args: {
+    titleHeader: ['No.', 'TEST1', 'TEST2', 'TEST3', 'TEST4'],
   items: [
     {
       'No.': 1,
@@ -68,4 +65,6 @@ Five.args = {
       TEST4: 'DDDDDD',
     },
   ],
+
+  }
 }
