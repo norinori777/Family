@@ -1,8 +1,8 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useState } from 'react'
 
 interface ModalProps {
-  isDisplayed: boolean;
-  children: ReactNode;
+  isDisplayed: boolean
+  children: ReactNode
 }
 
 export const Modal = (props: ModalProps) => {
@@ -28,5 +28,5 @@ export const Modal = (props: ModalProps) => {
         </div>
       ) : null}
     </div>
-  );
-};
+  )
+}

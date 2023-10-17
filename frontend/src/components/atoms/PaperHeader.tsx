@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 interface PaperHeaderProps {
-  title: string;
+  title: string
 }
 
 export const PaperHeader = (props: PaperHeaderProps) => {
@@ -9,5 +9,5 @@ export const PaperHeader = (props: PaperHeaderProps) => {
     <div className=" text-xl text-white">
       <p>{props.title}</p>
     </div>
-  );
-};
+  )
+}

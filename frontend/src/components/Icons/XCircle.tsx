@@ -1,13 +1,13 @@
-import React from "react";
-import { getTextTheme } from "../../util/theme/theme";
-import { theme } from "../../util/theme/types";
+import React from 'react'
+import { getTextTheme } from '../../util/theme/theme'
+import { theme } from '../../util/theme/types'
 
 interface XCircleProps {
-  theme: theme;
+  theme: theme
 }
 
 export const XCircle = (props: XCircleProps) => {
-  const theme = getTextTheme(props.theme);
+  const theme = getTextTheme(props.theme)
   return (
     <>
       <svg
@@ -25,5 +25,5 @@ export const XCircle = (props: XCircleProps) => {
         />
       </svg>
     </>
-  );
-};
+  )
+}

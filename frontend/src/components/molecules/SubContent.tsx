@@ -1,13 +1,13 @@
-import React from "react";
-import { theme } from "../../util/theme/types";
-import { Paper } from "../atoms/Paper";
-import { PaperHeader } from "../atoms/PaperHeader";
-import { PaperDescription } from "../atoms/PaperDescription";
+import React from 'react'
+import { theme } from '../../util/theme/types'
+import { Paper } from '../atoms/Paper'
+import { PaperHeader } from '../atoms/PaperHeader'
+import { PaperDescription } from '../atoms/PaperDescription'
 
 interface SubContentProps {
-  title: string;
-  description: string;
-  theme: theme;
+  title: string
+  description: string
+  theme: theme
 }
 
 export const SubContent = (props: SubContentProps) => {
@@ -20,5 +20,5 @@ export const SubContent = (props: SubContentProps) => {
         </div>
       </div>
     </Paper>
-  );
-};
+  )
+}

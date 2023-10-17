@@ -1,31 +1,31 @@
-import { useState, useEffect } from "react";
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { useState, useEffect } from 'react'
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 
 interface UseAxiosOptions {
-  url: string;
-  method?: AxiosRequestConfig["method"];
-  headers?: AxiosRequestConfig["headers"];
-  reGet: number;
+  url: string
+  method?: AxiosRequestConfig['method']
+  headers?: AxiosRequestConfig['headers']
+  reGet: number
 }
 
 interface UseAxiosResponse<T> {
-  data: T | null;
-  error: Error | null;
-  isLoading: boolean;
+  data: T | null
+  error: Error | null
+  isLoading: boolean
 }
 
 export const useAxios = <T>({
   url,
-  method = "get",
+  method = 'get',
   headers = {},
   reGet,
 }: UseAxiosOptions): UseAxiosResponse<T> => {
-  const [data, setData] = useState<T | null>(null);
-  const [error, setError] = useState<Error | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [data, setData] = useState<T | null>(null)
+  const [error, setError] = useState<Error | null>(null)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    let isMounted = true;
+    let isMounted = true
 
     const fetchData = async () => {
       try {
@@ -33,25 +33,25 @@ export const useAxios = <T>({
           method,
           url,
           headers,
-        });
+        })
         if (isMounted) {
-          setData(response.data);
-          setIsLoading(false);
+          setData(response.data)
+          setIsLoading(false)
         }
       } catch (error: any) {
         if (isMounted) {
-          setError(error);
-          setIsLoading(false);
+          setError(error)
+          setIsLoading(false)
         }
       }
-    };
+    }
 
-    fetchData();
+    fetchData()
 
     return () => {
-      isMounted = false;
-    };
-  }, [reGet]);
+      isMounted = false
+    }
+  }, [reGet])
 
-  return { data, error, isLoading };
-};
+  return { data, error, isLoading }
+}

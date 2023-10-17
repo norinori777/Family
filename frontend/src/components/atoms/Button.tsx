@@ -1,15 +1,15 @@
-import React from "react";
-import { getButtonBackGroundTheme } from "../../util/theme/theme";
+import React from 'react'
+import { getButtonBackGroundTheme } from '../../util/theme/theme'
 
 export interface ButtonProps {
-  label: string;
-  theme: "primary" | "secondary" | "success" | "danger" | "warning" | "normal";
-  type: "button" | "submit" | "reset" | undefined;
-  action: () => void;
+  label: string
+  theme: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'normal'
+  type: 'button' | 'submit' | 'reset' | undefined
+  action: () => void
 }
 
 export const Button = (props: ButtonProps) => {
-  const themeStyle = getButtonBackGroundTheme(props.theme);
+  const themeStyle = getButtonBackGroundTheme(props.theme)
   return (
     <>
       <button
@@ -20,5 +20,5 @@ export const Button = (props: ButtonProps) => {
         {props.label}
       </button>
     </>
-  );
-};
+  )
+}

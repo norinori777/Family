@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 interface PaperDescriptionProps {
-  description: string;
+  description: string
 }
 
 export const PaperDescription = (props: PaperDescriptionProps) => {
@@ -9,5 +9,5 @@ export const PaperDescription = (props: PaperDescriptionProps) => {
     <div className="text-white">
       <p>{props.description}</p>
     </div>
-  );
-};
+  )
+}

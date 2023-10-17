@@ -1,9 +1,9 @@
-import React from "react";
-import { Contents } from "../molecules/Contents";
-import { ContentItem } from "../../domain/contents/types";
+import React from 'react'
+import { Contents } from '../molecules/Contents'
+import { ContentItem } from '../../domain/contents/types'
 
 interface MainContentsProps {
-  contentItems: ContentItem[];
+  contentItems: ContentItem[]
 }
 
 export const MainContents = (props: MainContentsProps) => {
@@ -11,5 +11,5 @@ export const MainContents = (props: MainContentsProps) => {
     <section className="p-4 h-full">
       <Contents contents={props.contentItems} />
     </section>
-  );
-};
+  )
+}

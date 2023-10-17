@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 interface SidebarTitleProps {
-  title: string;
+  title: string
 }
 
 export const SidebarTitle = (props: SidebarTitleProps) => {
@@ -9,5 +9,5 @@ export const SidebarTitle = (props: SidebarTitleProps) => {
     <>
       <p className="text-4xl text-white">{props.title}</p>
     </>
-  );
-};
+  )
+}

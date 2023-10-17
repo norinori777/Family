@@ -1,48 +1,44 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import {
   getFocusRingTheme,
   getFocusPlaceholderTheme,
   getFocusTextTheme,
   getTextTheme,
-} from "../../util/theme/theme";
-import { theme } from "../../util/theme/types";
-import { FieldError } from "react-hook-form/dist/types";
+} from '../../util/theme/theme'
+import { theme } from '../../util/theme/types'
+import { FieldError } from 'react-hook-form/dist/types'
 
 interface TextAreaProps {
-  name: string;
-  label: string;
-  placeholder: string;
-  description: string;
-  rowLength: number;
-  theme: theme;
-  field: any;
-  error?: string;
+  name: string
+  label: string
+  placeholder: string
+  description: string
+  rowLength: number
+  theme: theme
+  field: any
+  error?: string
 }
 
 export const TextAreaInHookForm = (props: TextAreaProps) => {
-  const [inputFocus, setInputFocus] = useState(false);
-  const [message, setMessage] = useState("");
+  const [inputFocus, setInputFocus] = useState(false)
+  const [message, setMessage] = useState('')
 
-  const textTheme =
-    inputFocus == true ? getTextTheme(props.theme) : "text-gray-500";
-  const focusTextTheme = getFocusTextTheme(props.theme);
-  const focusRingTheme = getFocusRingTheme(props.theme);
-  const focusPlaceholderTheme = getFocusPlaceholderTheme(props.theme);
+  const textTheme = inputFocus == true ? getTextTheme(props.theme) : 'text-gray-500'
+  const focusTextTheme = getFocusTextTheme(props.theme)
+  const focusRingTheme = getFocusRingTheme(props.theme)
+  const focusPlaceholderTheme = getFocusPlaceholderTheme(props.theme)
 
   const onFocusHandle = () => {
-    setInputFocus(true);
-  };
+    setInputFocus(true)
+  }
 
   const onBlurHandle = () => {
-    setInputFocus(false);
-  };
+    setInputFocus(false)
+  }
 
   return (
     <div className="mb-6">
-      <label
-        htmlFor={props.name}
-        className={`block mb-2 text-sm font-medium  ${textTheme}`}
-      >
+      <label htmlFor={props.name} className={`block mb-2 text-sm font-medium  ${textTheme}`}>
         {props.label}
       </label>
       <textarea
@@ -58,5 +54,5 @@ export const TextAreaInHookForm = (props: TextAreaProps) => {
       <p className={`mt-2 text-sm ${textTheme}`}>{props.description}</p>
       {<span>{props.error}</span>}
     </div>
-  );
-};
+  )
+}
