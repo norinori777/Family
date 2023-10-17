@@ -1,15 +1,17 @@
+import React from '@storybook/react'
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Table } from '../Table'
+import { ActionTable } from '../ActionTable'
+import { UserActionRowContainer } from '../../../containers/molecules/UsersActoinRowContainer'
 
-const meta: Meta<typeof Table> = {
-  title: 'molecules/Table',
-  component: Table,
+const meta: Meta<typeof ActionTable> = {
+  title: 'molecules/ActionTable',
+  component: ActionTable,
   argTypes: {},
 }
 
 export default meta
-type Story = StoryObj<typeof Table>
+type Story = StoryObj<typeof ActionTable>
 
 export const Three: Story = {
   args: {
@@ -21,6 +23,8 @@ export const Three: Story = {
       { 'No.': 4, TEST1: 'AAAA', TEST2: 'BBBBB' },
       { 'No.': 5, TEST1: 'AAAA', TEST2: 'BBBBB' },
     ],
+    actionRow: UserActionRowContainer,
+    actionColumn: 3,
   },
 }
 
@@ -64,5 +68,7 @@ export const Five: Story = {
         TEST4: 'DDDDDD',
       },
     ],
+    actionColumn: 5,
+    actionRow: UserActionRowContainer,
   },
 }

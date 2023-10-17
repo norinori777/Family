@@ -1,14 +1,16 @@
-import { HeaderTitle } from 'components/atoms/HeaderTitle'
 import React from 'react'
 
 interface ActionTableProps<T extends { [key in string]: string | boolean | number }> {
   titleHeader: string[]
   items: T[] | null
+  actionRow: React.ElementType
+  actionColumn: number
 }
 
 export const ActionTable = <T extends { [key in string]: string | boolean | number }>(
   props: ActionTableProps<T>
 ) => {
+  let count = 0
   return props.items === null ? (
     <p>{'データがありません。'}</p>
   ) : (
@@ -20,7 +22,17 @@ export const ActionTable = <T extends { [key in string]: string | boolean | numb
               <thead className="border-b font-medium dark:border-neutral-500">
                 <tr>
                   {props.titleHeader.map((title) => {
-                    return (
+                    count++
+                    return count === props.actionColumn ? (
+                      <>
+                        <th scope="col" className="px-6 py-4">
+                          {title}
+                        </th>
+                        <th scope="col" className="px-6 py-4">
+                          {'Action'}
+                        </th>
+                      </>
+                    ) : (
                       <th scope="col" className="px-6 py-4">
                         {title}
                       </th>
@@ -30,7 +42,13 @@ export const ActionTable = <T extends { [key in string]: string | boolean | numb
               </thead>
               <tbody>
                 {props.items?.map((item) => {
-                  return <Row titleHeader={props.titleHeader} item={item} />
+                  return (
+                    <props.actionRow
+                      titleHeader={props.titleHeader}
+                      item={item}
+                      actionColumn={props.actionColumn}
+                    />
+                  )
                 })}
               </tbody>
             </table>
@@ -38,20 +56,5 @@ export const ActionTable = <T extends { [key in string]: string | boolean | numb
         </div>
       </div>
     </div>
-  )
-}
-
-interface RowProps<T extends { [key in string]: string | boolean | number }> {
-  titleHeader: string[]
-  item: T
-}
-
-const Row = <T extends { [key in string]: string | boolean | number }>(props: RowProps<T>) => {
-  return (
-    <tr className="border-b dark:border-neutral-500">
-      {props.titleHeader.map((element) => {
-        return <td className="whitespace-nowrap px-6 py-4 font-medium">{props.item[element]}</td>
-      })}
-    </tr>
   )
 }

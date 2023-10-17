@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { HeaderTitle } from '../HeaderTitle'
 import { Puzzle } from '../../../components/Icons/Puzzle'
@@ -7,10 +7,10 @@ const meta: Meta<typeof HeaderTitle> = {
   title: 'atoms/HeaderTitle',
   component: HeaderTitle,
   argTypes: {},
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof HeaderTitle>;
+export default meta
+type Story = StoryObj<typeof HeaderTitle>
 
 export const Primary: Story = {
   args: {
@@ -18,7 +18,7 @@ export const Primary: Story = {
     title: 'タイトル',
     theme: 'primary',
   },
-};
+}
 
 export const Secondary: Story = {
   args: {
@@ -26,7 +26,7 @@ export const Secondary: Story = {
     title: 'タイトル',
     theme: 'secondary',
   },
-};
+}
 
 export const Success: Story = {
   args: {
@@ -34,7 +34,7 @@ export const Success: Story = {
     title: 'タイトル',
     theme: 'success',
   },
-};
+}
 
 export const Danger: Story = {
   args: {
@@ -42,18 +42,18 @@ export const Danger: Story = {
     title: 'タイトル',
     theme: 'danger',
   },
-};
+}
 export const Warning: Story = {
   args: {
     icon: Puzzle,
     title: 'タイトル',
     theme: 'warning',
   },
-};
+}
 export const Normal: Story = {
   args: {
     icon: Puzzle,
     title: 'タイトル',
     theme: 'normal',
   },
-};
+}

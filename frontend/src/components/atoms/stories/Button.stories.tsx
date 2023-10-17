@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react'
 import { Button } from '../Button'
 
 const meta: Meta<typeof Button> = {
   title: 'atoms/Button',
   component: Button,
   argTypes: {},
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof Button>;
+export default meta
+type Story = StoryObj<typeof Button>
 
 export const Primary: Story = {
   args: {
@@ -16,7 +16,7 @@ export const Primary: Story = {
     theme: 'primary',
     type: 'button',
   },
-};
+}
 
 export const Secondary: Story = {
   args: {
@@ -24,7 +24,7 @@ export const Secondary: Story = {
     theme: 'secondary',
     type: 'button',
   },
-};
+}
 
 export const Success: Story = {
   args: {
@@ -32,7 +32,7 @@ export const Success: Story = {
     theme: 'success',
     type: 'button',
   },
-};
+}
 
 export const Danger: Story = {
   args: {
@@ -40,7 +40,7 @@ export const Danger: Story = {
     theme: 'danger',
     type: 'button',
   },
-};
+}
 
 export const Warning: Story = {
   args: {
@@ -48,7 +48,7 @@ export const Warning: Story = {
     theme: 'warning',
     type: 'button',
   },
-};
+}
 
 export const Normal: Story = {
   args: {
@@ -56,5 +56,4 @@ export const Normal: Story = {
     theme: 'normal',
     type: 'button',
   },
-};
-
+}

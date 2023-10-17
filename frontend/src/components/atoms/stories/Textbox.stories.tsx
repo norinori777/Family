@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { Textbox } from '../Textbox'
 
@@ -6,10 +6,10 @@ const meta: Meta<typeof Textbox> = {
   title: 'atoms/Textbox',
   component: Textbox,
   argTypes: {},
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof Textbox>;
+export default meta
+type Story = StoryObj<typeof Textbox>
 
 export const Primary: Story = {
   args: {

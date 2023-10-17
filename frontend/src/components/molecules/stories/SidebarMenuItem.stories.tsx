@@ -1,5 +1,5 @@
-import React from '@storybook/react';
-import type { Meta, StoryObj } from '@storybook/react';
+import React from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import { MemoryRouter } from 'react-router-dom'
 import { SidebarMenuItem } from '../SidebarMenuItem'
 import { Pencil } from '../../Icons/Pencil'
@@ -14,10 +14,10 @@ const meta: Meta<typeof SidebarMenuItem> = {
       </MemoryRouter>
     ),
   ],
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof SidebarMenuItem>;
+export default meta
+type Story = StoryObj<typeof SidebarMenuItem>
 
 export const Normal: Story = {
   args: {
@@ -26,4 +26,3 @@ export const Normal: Story = {
     link: '/test',
   },
 }
-

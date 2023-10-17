@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react'
 import { userEvent as user, waitFor, within } from '@storybook/testing-library'
 import { TextArea } from '../TextArea'
 
@@ -6,10 +6,10 @@ const meta: Meta<typeof TextArea> = {
   title: 'atoms/TextArea',
   component: TextArea,
   argTypes: {},
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof TextArea>;
+export default meta
+type Story = StoryObj<typeof TextArea>
 
 export const Primary: Story = {
   args: {

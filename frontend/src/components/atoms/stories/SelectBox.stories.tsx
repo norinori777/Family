@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { SelectBox } from '../SelectBox'
 
@@ -6,10 +6,10 @@ const meta: Meta<typeof SelectBox> = {
   title: 'atoms/SelectBox',
   component: SelectBox,
   argTypes: {},
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof SelectBox>;
+export default meta
+type Story = StoryObj<typeof SelectBox>
 
 export const Primary: Story = {
   args: {
