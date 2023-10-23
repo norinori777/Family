@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import jp.norinori777.domain.model.Room.ListChatRoomsService;
 import jp.norinori777.domain.model.Room.Room;
-import jp.norinori777.repository.ListChatRoomMapper;
+import jp.norinori777.infrastructure.datasource.ListChatRoomMapper;
 
 @Service
 public class ListChatRoomsServiceImpl implements ListChatRoomsService {

@@ -1,4 +1,4 @@
-package jp.norinori777.repository;
+package jp.norinori777.infrastructure.datasource;
 
 import java.util.List;
 

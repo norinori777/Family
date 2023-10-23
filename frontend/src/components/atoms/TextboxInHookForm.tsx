@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ReactComponentElement, ReactElement, useState } from 'react'
 import {
   getFocusRingTheme,
   getFocusPlaceholderTheme,
@@ -6,7 +6,6 @@ import {
   getTextTheme,
 } from '../../util/theme/theme'
 import { theme } from '../../util/theme/types'
-import { FieldError } from 'react-hook-form/dist/types'
 
 interface TextboxProps {
   type: 'text' | 'password' | 'submit'
@@ -16,7 +15,7 @@ interface TextboxProps {
   description: string
   theme: theme
   field: any
-  error?: string
+  error: string | React.JSX.Element
 }
 
 export const TextboxInHookForm = (props: TextboxProps) => {

@@ -4,8 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jp.norinori777.application.controller.RegistUser.Model.RegistUser;
-import jp.norinori777.domain.model.User.RegistUserService;
-import jp.norinori777.repository.RegistUserMapper;
+import jp.norinori777.infrastructure.datasource.RegistUserMapper;
 
 @Service
 public class RegistUserServiceImpl implements RegistUserService {

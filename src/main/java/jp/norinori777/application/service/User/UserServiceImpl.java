@@ -4,17 +4,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jp.norinori777.domain.model.User.User;
-import jp.norinori777.domain.model.User.UserService;
-import jp.norinori777.repository.UserMapper;
+import jp.norinori777.infrastructure.datasource.UserMapper;
+import jp.norinori777.infrastructure.datasource.Repository.UpdateUserExclusiveControl;
 
 @Service
 public class UserServiceImpl implements UserService {
     
     @Autowired
     private UserMapper mapper;
+
+    @Autowired
+    private UpdateUserExclusiveControl updateUserExclusiveControl;
     
     @Override
     public User getUser(String emailAddress) {
         return mapper.selectUser(emailAddress);
+    }
+
+    @Override
+    public int updateUser(User user, String emailAddress, Integer version) {
+        return updateUserExclusiveControl.updateUserExclusiveControl(user, emailAddress, version);
     }
 }

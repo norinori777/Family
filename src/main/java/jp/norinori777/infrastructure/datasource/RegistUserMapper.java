@@ -1,4 +1,4 @@
-package jp.norinori777.repository;
+package jp.norinori777.infrastructure.datasource;
 
 import org.apache.ibatis.annotations.Mapper;
 

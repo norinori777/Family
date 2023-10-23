@@ -6,6 +6,7 @@ import { useAxios } from '../../util/hooks/useAxios'
 import { ResponseUserData, User } from '../../domain/user/types'
 import { UserFormContainer } from '../../containers/organisms/UserFormContainer'
 import { UsersActionTableContainer } from '../../containers/molecules/UsersActionTableContainer'
+import { UserEditFormContainer } from '../../containers/organisms/UserEditFormContainer'
 
 interface UserProps {
   openHandle: () => void
@@ -37,6 +38,7 @@ export const ListUsers = (props: UserProps) => {
         action={openHandle}
       />
       <UserFormContainer />
+      <UserEditFormContainer />
       <UsersActionTableContainer
         titleHeader={['name', 'emailAddress', 'state', 'createAt', 'updateAt']}
         items={data}
