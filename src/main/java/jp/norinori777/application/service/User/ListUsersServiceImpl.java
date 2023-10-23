@@ -5,9 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jp.norinori777.domain.model.User.ListUserService;
 import jp.norinori777.domain.model.User.User;
-import jp.norinori777.repository.ListUserMapper;
+import jp.norinori777.infrastructure.datasource.ListUserMapper;
 
 @Service
 public class ListUsersServiceImpl implements ListUserService {

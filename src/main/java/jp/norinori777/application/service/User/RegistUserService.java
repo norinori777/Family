@@ -1,4 +1,4 @@
-package jp.norinori777.domain.model.User;
+package jp.norinori777.application.service.User;
 
 import jp.norinori777.application.controller.RegistUser.Model.RegistUser;
 

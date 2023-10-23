@@ -11,13 +11,13 @@ import org.springframework.stereotype.Controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import jp.norinori777.application.service.User.UserService;
 import jp.norinori777.domain.model.Message.ChatMessage;
 import jp.norinori777.domain.model.Message.TalkMessage;
 import jp.norinori777.domain.model.Message.TalkMessageService;
 import jp.norinori777.domain.model.Time.TimeService;
 import jp.norinori777.domain.model.User.User;
 import jp.norinori777.domain.model.User.UserAccountCredential;
-import jp.norinori777.domain.model.User.UserService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

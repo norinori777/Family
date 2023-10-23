@@ -11,14 +11,23 @@ export type User = {
   state: number
   createAt: string
   updateAt: string
+  version: number
 }
 
 export type ResponseUserData = {
   name: string
   emailAddress: string
   state: number
+  version: number
   createAt: string
   updateAt: string
+}
+
+export type EditUser = {
+  name: string
+  emailAddress: string
+  beforeEmailAddress: string
+  version: number
 }
 
 // export type User = {

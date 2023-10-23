@@ -16,8 +16,10 @@
     "skipLibCheck": true,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
   },
+  "typeRoots": ["./node_modules/@types"],
   "include": ["src/**/*"],
   "exclude": ["./node_modules"],
   "compileOnSave": false

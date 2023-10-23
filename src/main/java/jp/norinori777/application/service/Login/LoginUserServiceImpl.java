@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import jp.norinori777.domain.model.Login.LoginUserService;
 import jp.norinori777.domain.model.User.User;
 import jp.norinori777.domain.model.User.UserAccountCredential;
-import jp.norinori777.repository.LoginUserMapper;
+import jp.norinori777.infrastructure.datasource.LoginUserMapper;
 
 @Service
 public class LoginUserServiceImpl implements LoginUserService {
