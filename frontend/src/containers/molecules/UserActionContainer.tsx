@@ -30,7 +30,7 @@ export const UserActionContainer = (props: UserActionContainerProps) => {
     console.log(props.item.name + ' delete user')
   }
   return (
-    <div className="flex flex-row gap-2">
+    <div className="flex flex-row gap-2 cursor-pointer">
       <Icon icon={Pencil} action={handleEditUser} />
       <Icon icon={XCircle} action={handleDeleteUser} />
     </div>

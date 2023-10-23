@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Controller, useForm } from 'react-hook-form'
+import React, { useEffect, useState } from 'react'
+import { Controller, set, useForm } from 'react-hook-form'
 import { Modal } from '../../components/atoms/Modal'
 import { EditUser } from '../../domain/user/types'
 import { ModalHeader } from '../../components/atoms/ModalHeader'
@@ -10,7 +10,8 @@ import { useAxios } from '../../util/hooks/useAxios'
 import useDirectAxios from '../../util/hooks/useDirectAxios'
 import { CsrfToken } from '../../domain/csrf/types'
 import { User } from '../../domain/user/types'
-import { AxiosError } from 'axios'
+import { AlertMessage } from '../../components/atoms/AlertMessage'
+import { TextMessage } from '../../components/atoms/TextMessage'
 
 interface UserEditForm {
   user: EditUser
@@ -20,8 +21,13 @@ interface UserEditForm {
 }
 
 export const UserEditForm = (props: UserEditForm) => {
+  const [alertMessage, setAlertMessage] = useState('')
+  const [showAlert, setShowAlert] = useState(false)
+
   const handleModal = () => {
     props.handleModal()
+    setShowAlert(false)
+    setAlertMessage('')
     reset()
   }
 
@@ -89,11 +95,12 @@ export const UserEditForm = (props: UserEditForm) => {
             { type: 'server', message: value as string }
           )
         }
+        setAlertMessage('入力情報に誤りがあります。')
+        setShowAlert(true)
       }
       if (error.response.status === 409) {
-        // 排他制御エラー
-        console.log('CONFLICT')
-        console.log(error.response.data)
+        setAlertMessage('すでに更新されています。再度読み込んでください。')
+        setShowAlert(true)
       }
     }
   }, [error, response])
@@ -109,6 +116,7 @@ export const UserEditForm = (props: UserEditForm) => {
             description="ユーザー情報を入力して、更新ボタンをクリックしてください。"
             theme={'normal'}
           />
+          <AlertMessage message={alertMessage} showAlert={showAlert} theme={'danger'} />
           <form id="regist-user-form" onSubmit={handleSubmit(onSubmit)}>
             <Controller
               name="name"
@@ -125,13 +133,21 @@ export const UserEditForm = (props: UserEditForm) => {
                   description={''}
                   theme={'primary'}
                   error={
-                    errors.name && errors.name?.type === 'required'
-                      ? '名前は必須です。'
-                      : '' + errors.name && errors.name?.type === 'maxLength'
-                      ? '名前は10文字以内で入力してください。'
-                      : '' + errors.name && errors.name?.type === 'server'
-                      ? errors.name.message
-                      : ''
+                    errors.name && errors.name?.type === 'required' ? (
+                      <TextMessage text={'名前は必須です'} theme={'danger'} size={'base'} />
+                    ) : '' + errors.name && errors.name?.type === 'maxLength' ? (
+                      <TextMessage
+                        text={'名前は10文字以内で入力してください。'}
+                        theme={'danger'}
+                        size={'base'}
+                      />
+                    ) : '' + errors.name &&
+                      errors.name?.type === 'server' &&
+                      errors.name?.message != undefined ? (
+                      <TextMessage text={errors.name.message} theme={'danger'} size={'base'} />
+                    ) : (
+                      ''
+                    )
                   }
                 />
               )}
@@ -151,13 +167,29 @@ export const UserEditForm = (props: UserEditForm) => {
                   description={''}
                   theme={'primary'}
                   error={
-                    errors.emailAddress && errors.emailAddress.type === 'required'
-                      ? 'メールアドレスは必須です。'
-                      : '' + errors.emailAddress && errors.emailAddress?.type === 'maxLength'
-                      ? 'メールアドレスは255文字以内で入力してください。'
-                      : '' + errors.emailAddress && errors.emailAddress?.type === 'server'
-                      ? errors.emailAddress.message
-                      : ''
+                    errors.emailAddress && errors.emailAddress.type === 'required' ? (
+                      <TextMessage
+                        text={'メールアドレスは必須です。'}
+                        theme={'danger'}
+                        size={'base'}
+                      />
+                    ) : '' + errors.emailAddress && errors.emailAddress?.type === 'maxLength' ? (
+                      <TextMessage
+                        text={'メールアドレスは255文字以内で入力してください。'}
+                        theme={'danger'}
+                        size={'base'}
+                      />
+                    ) : '' + errors.emailAddress &&
+                      errors.emailAddress?.type === 'server' &&
+                      errors.emailAddress?.message != undefined ? (
+                      <TextMessage
+                        text={errors.emailAddress.message}
+                        theme={'danger'}
+                        size={'base'}
+                      />
+                    ) : (
+                      ''
+                    )
                   }
                 />
               )}

@@ -842,6 +842,10 @@ video {
   border-right-width: 2px;
 }
 
+.border-r-8 {
+  border-right-width: 8px;
+}
+
 .border-t-2 {
   border-top-width: 2px;
 }
@@ -1320,6 +1324,10 @@ video {
 .placeholder-warning-light::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(253 224 71 / var(--tw-placeholder-opacity));
+}
+
+.opacity-70 {
+  opacity: 0.7;
 }
 
 .shadow-xl {
