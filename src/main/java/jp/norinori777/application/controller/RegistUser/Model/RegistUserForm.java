@@ -18,4 +18,6 @@ public class RegistUserForm {
 	private String password;
 	@Email
 	private String emailAddress;
+	@NotBlank
+	private String roleId;
 }

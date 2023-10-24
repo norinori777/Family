@@ -28,6 +28,7 @@ import jp.norinori777.application.controller.RegistUser.Model.RegistUserForm;
 import jp.norinori777.application.service.User.ListUserService;
 import jp.norinori777.application.service.User.RegistUserService;
 import jp.norinori777.application.service.User.UserService;
+import jp.norinori777.domain.model.Null.NullData;
 import jp.norinori777.domain.model.Rest.RestResult;
 import jp.norinori777.domain.model.User.User;
 import jp.norinori777.domain.model.User.UserAccountCredential;
@@ -54,27 +55,33 @@ public class UserRestController {
 	private MessageSource messageSource;
 	
 	@PostMapping("add")	
-	public ResponseEntity<RestResult> RegistUser(Model model, @ModelAttribute @Validated RegistUserForm form, BindingResult bindingResult, Locale locale) {
+	public ResponseEntity<RestResult<RegistUser>> RegistUser(Model model, @ModelAttribute @Validated RegistUserForm form, BindingResult bindingResult, Locale locale) {
 		if(bindingResult.hasErrors()) {
 			Map<String, String> errors = getErrorMessages(bindingResult, locale);
-			ResponseEntity<RestResult> responseEntity = new ResponseEntity<>(new RestResult(90, errors), HttpStatus.BAD_REQUEST);
+			ResponseEntity<RestResult<RegistUser>> responseEntity = new ResponseEntity<>(new RestResult<RegistUser>(90, errors), HttpStatus.BAD_REQUEST);
 			return responseEntity;
 		}
 		log.info(form.toString());
 		RegistUser registUser = modelMapper.map(form, RegistUser.class);
 		log.info(registUser.toString());
-		registUserService.addUser(registUser);
+		try {
+			registUserService.addUser(registUser);
+		} catch(Exception e) {
+			log.error(e.getMessage(), e);
+			ResponseEntity<RestResult<RegistUser>> responseEntity = new ResponseEntity<>(new RestResult<RegistUser>(99, null), HttpStatus.INTERNAL_SERVER_ERROR);
+			return responseEntity;
+		}
 		
-		ResponseEntity<RestResult> responseEntity = new ResponseEntity<>(new RestResult(0, null), HttpStatus.OK);
+		ResponseEntity<RestResult<RegistUser>> responseEntity = new ResponseEntity<>(new RestResult<RegistUser>(0, registUser, null), HttpStatus.OK);
 		return responseEntity;
 	}
 
 	@PutMapping("update")
 	// @ResponseStatus(HttpStatus.NO_CONTENT)
-	public ResponseEntity<RestResult> UpdateUser(Model model, @ModelAttribute @Validated UserEdit form, BindingResult bindingResult, Locale locale) {
+	public ResponseEntity<RestResult<NullData>> UpdateUser(Model model, @ModelAttribute @Validated UserEdit form, BindingResult bindingResult, Locale locale) {
 		if(bindingResult.hasErrors()) {
 			Map<String, String> errors = getErrorMessages(bindingResult, locale);
-			ResponseEntity<RestResult> responseEntity = new ResponseEntity<>(new RestResult(90, errors), HttpStatus.BAD_REQUEST);
+			ResponseEntity<RestResult<NullData>> responseEntity = new ResponseEntity<>(new RestResult<NullData>(90, errors), HttpStatus.BAD_REQUEST);
 			return responseEntity;
 			// return new RestResult(90, errors);
 		}
@@ -84,10 +91,10 @@ public class UserRestController {
 		try {
 			userService.updateUser(editUserData, form.getBeforeEmailAddress(), form.getVersion());
 		}catch(OptimisticLockingFailureException e){
-			ResponseEntity<RestResult> responseEntity = new ResponseEntity<>(new RestResult(91), HttpStatus.CONFLICT);
+			ResponseEntity<RestResult<NullData>> responseEntity = new ResponseEntity<>(new RestResult<NullData>(91), HttpStatus.CONFLICT);
 			return responseEntity;
 		}
-		ResponseEntity<RestResult> responseEntity = new ResponseEntity<>(new RestResult(0, null), HttpStatus.OK);
+		ResponseEntity<RestResult<NullData>> responseEntity = new ResponseEntity<>(new RestResult<NullData>(0, null), HttpStatus.OK);
 		return responseEntity;
 	}
 	

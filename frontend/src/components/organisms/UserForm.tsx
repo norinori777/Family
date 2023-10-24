@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { TextboxInHookForm } from '../../components/atoms/TextboxInHookForm'
 import { User } from '../../domain/user/types'
@@ -10,15 +10,21 @@ import useDirectAxios from '../../util/hooks/useDirectAxios'
 import { RegistUser } from '../../domain/registUser/types'
 import { useAxios } from '../../util/hooks/useAxios'
 import { CsrfToken } from '../../domain/csrf/types'
+import { SelectBoxInHookForm } from '../../components/atoms/SelectBoxInHookForm'
+import { TextMessage } from '../../components/atoms/TextMessage'
+import { AlertMessage } from '../../components/atoms/AlertMessage'
 
 interface UserFormProps {
   user: RegistUser
   isDisplay: boolean
+  roleList: { value: string; label: string }[]
   handleModal: () => void
   handleReGet: () => void
 }
 
 export const UserForm = (props: UserFormProps) => {
+  const [alertMessage, setAlertMessage] = useState('')
+  const [showAlert, setShowAlert] = useState(false)
   const { response, error, loading, sendRequest } = useDirectAxios<User, RegistUser>()
   const {
     data: csrfData,
@@ -37,6 +43,8 @@ export const UserForm = (props: UserFormProps) => {
     control,
     handleSubmit,
     formState: { errors },
+    reset,
+    setError,
   } = useForm<RegistUser>()
 
   const onSubmit = (data: RegistUser) => {
@@ -48,21 +56,42 @@ export const UserForm = (props: UserFormProps) => {
       headers: csrfToken,
       params: data,
     })
-      .then((response) => {
-        console.log(response)
-        handleModal()
-        handleReGet()
-      })
-      .catch((error) => console.log(error))
   }
 
   const handleModal = () => {
     props.handleModal()
+    setShowAlert(false)
+    setAlertMessage('')
+    reset()
   }
 
   const handleReGet = () => {
     props.handleReGet()
   }
+
+  useEffect(() => {
+    if (error == null && response != null) {
+      handleModal()
+      handleReGet()
+    }
+    if (error != null) {
+      if (error.response.status == 400) {
+        const { errors } = error.response.data
+        for (const [key, value] of Object.entries(errors)) {
+          setError(key as 'name' | 'emailAddress' | 'password' | 'roleId', {
+            type: 'server',
+            message: value as string,
+          })
+        }
+        setAlertMessage('入力情報に誤りがあります。')
+        setShowAlert(true)
+      }
+      if (error.response.status == 500) {
+        setAlertMessage('予期せぬエラーが発生しました。')
+        setShowAlert(true)
+      }
+    }
+  }, [response, error])
 
   return (
     <Modal isDisplayed={props.isDisplay}>
@@ -75,7 +104,34 @@ export const UserForm = (props: UserFormProps) => {
             description="ユーザー情報を入力して、登録ボタンをクリックしてください。"
             theme={'normal'}
           />
+          <AlertMessage message={alertMessage} showAlert={showAlert} theme={'danger'} />
           <form id="regist-user-form" onSubmit={handleSubmit(onSubmit)}>
+            <Controller
+              name="roleId"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <SelectBoxInHookForm
+                  name="roleId"
+                  field={field}
+                  label={'役割'}
+                  options={props.roleList ? props.roleList : []}
+                  description={''}
+                  theme={'primary'}
+                  error={
+                    errors.roleId && errors.roleId.type === 'required' ? (
+                      <TextMessage text={'ロールは必須です。'} theme={'danger'} size={'base'} />
+                    ) : '' + errors.name &&
+                      errors.name?.type === 'server' &&
+                      errors.name?.message != undefined ? (
+                      <TextMessage text={errors.name.message} theme={'danger'} size={'base'} />
+                    ) : (
+                      ''
+                    )
+                  }
+                />
+              )}
+            />
             <Controller
               name="name"
               control={control}
@@ -91,11 +147,21 @@ export const UserForm = (props: UserFormProps) => {
                   description={''}
                   theme={'primary'}
                   error={
-                    errors.name && errors.name?.type === 'required'
-                      ? '名前は必須です。'
-                      : '' + errors.name && errors.name?.type === 'maxLength'
-                      ? '名前は10文字以内で入力してください。'
-                      : ''
+                    errors.name && errors.name?.type === 'required' ? (
+                      <TextMessage text={'名前は必須です。'} theme={'danger'} size={'base'} />
+                    ) : '' + errors.name && errors.name?.type === 'maxLength' ? (
+                      <TextMessage
+                        text={'名前は10文字以内で入力してください。'}
+                        theme={'danger'}
+                        size={'base'}
+                      />
+                    ) : '' + errors.name &&
+                      errors.name?.type === 'server' &&
+                      errors.name?.message != undefined ? (
+                      <TextMessage text={errors.name.message} theme={'danger'} size={'base'} />
+                    ) : (
+                      ''
+                    )
                   }
                 />
               )}
@@ -115,11 +181,21 @@ export const UserForm = (props: UserFormProps) => {
                   description={''}
                   theme={'primary'}
                   error={
-                    errors.password && errors.password.type === 'required'
-                      ? 'パスワードは必須です。'
-                      : '' + errors.password && errors.password?.type === 'maxLength'
-                      ? 'パスワードは20文字以内で入力してください。'
-                      : ''
+                    errors.password && errors.password.type === 'required' ? (
+                      <TextMessage text={'パスワードは必須です。'} theme={'danger'} size={'base'} />
+                    ) : '' + errors.password && errors.password?.type === 'maxLength' ? (
+                      <TextMessage
+                        text={'パスワードは20文字以内で入力してください。'}
+                        theme={'danger'}
+                        size={'base'}
+                      />
+                    ) : '' + errors.name &&
+                      errors.name?.type === 'server' &&
+                      errors.name?.message != undefined ? (
+                      <TextMessage text={errors.name.message} theme={'danger'} size={'base'} />
+                    ) : (
+                      ''
+                    )
                   }
                 />
               )}
@@ -139,11 +215,25 @@ export const UserForm = (props: UserFormProps) => {
                   description={''}
                   theme={'primary'}
                   error={
-                    errors.emailAddress && errors.emailAddress.type === 'required'
-                      ? 'メールアドレスは必須です。'
-                      : '' + errors.emailAddress && errors.emailAddress?.type === 'maxLength'
-                      ? 'メールアドレスは255文字以内で入力してください。'
-                      : ''
+                    errors.emailAddress && errors.emailAddress.type === 'required' ? (
+                      <TextMessage
+                        text={'メールアドレスは必須です。'}
+                        theme={'danger'}
+                        size={'base'}
+                      />
+                    ) : '' + errors.emailAddress && errors.emailAddress?.type === 'maxLength' ? (
+                      <TextMessage
+                        text={'メールアドレスは255文字以内で入力してください。'}
+                        theme={'danger'}
+                        size={'base'}
+                      />
+                    ) : '' + errors.name &&
+                      errors.name?.type === 'server' &&
+                      errors.name?.message != undefined ? (
+                      <TextMessage text={errors.name.message} theme={'danger'} size={'base'} />
+                    ) : (
+                      ''
+                    )
                   }
                 />
               )}

@@ -28,4 +28,6 @@ public class RegistUser {
 	@NotBlank
 	@Length(min=1, max=319)
 	private String emailAddress;
+	@NotBlank
+	private String roleId;
 }

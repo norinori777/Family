@@ -15,9 +15,10 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class RestResult {
+public class RestResult<T> {
 
 	private int result;
+	private T data;
 	private Map<String, String>errors;
 	
 	// public RestResult(int result, BindingResult bindingResult, Locale locale){
@@ -34,6 +35,12 @@ public class RestResult {
 	// }
 	public RestResult(int result){
 		this.result = result;
+		this.data = null;
 		this.errors = null;
+	}
+	public RestResult(int result, Map<String, String> errors){
+		this.result = result;
+		this.data = null;
+		this.errors = errors;
 	}
 }
