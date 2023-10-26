@@ -6,4 +6,6 @@ public interface UserService {
     public User getUser(String emailAddress);
 
     public int updateUser(User user, String emailAddress, Integer version);
+
+    public void deleteUser(String emailAddress);
 }

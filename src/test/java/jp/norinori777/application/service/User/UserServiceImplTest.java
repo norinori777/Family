@@ -59,4 +59,11 @@ public class UserServiceImplTest {
         // updateOneメソッドが1回呼ばれたかどうかを検証
         verify(updateUserExclusiveControl,times(1)).updateUserExclusiveControl(user, "yamada@example.com", 1);
     }
+
+    @Test
+    void ユーザー削除時にユーザーが存在しない場合は例外が発生する() {
+        doReturn(0).when(userMapper).selectUserCount("hoge@gamil.com");
+        assertThrows(RuntimeException.class, () -> userService.deleteUser("hoge@gmail.com"));
+
+    }                  
 }

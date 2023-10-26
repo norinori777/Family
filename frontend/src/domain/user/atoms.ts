@@ -10,3 +10,18 @@ export const editUser = atom<EditUser>({
   key: 'editUser',
   default: { name: '', emailAddress: '', beforeEmailAddress: '', version: 0 },
 })
+
+export const deleteUser = atom<string>({
+  key: 'deleteUser',
+  default: '',
+})
+
+export const alertMessageListUser = atom<string>({
+  key: 'alertMessageListuser',
+  default: '',
+})
+
+export const alertShowListUser = atom<boolean>({
+  key: 'alertShowListUser',
+  default: false,
+})

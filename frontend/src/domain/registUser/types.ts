@@ -3,4 +3,5 @@ export type RegistUser = {
   name: string
   password: string
   emailAddress: string
+  roleId: string
 }

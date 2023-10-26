@@ -25,4 +25,13 @@ public class UserServiceImpl implements UserService {
     public int updateUser(User user, String emailAddress, Integer version) {
         return updateUserExclusiveControl.updateUserExclusiveControl(user, emailAddress, version);
     }
+
+    @Override
+    public void deleteUser(String emailAddress) {
+        // ユーザーの有無チェック
+        if (mapper.selectUserCount(emailAddress) == 0) {
+            throw new RuntimeException("ユーザーが存在しません");
+        }
+        mapper.deleteUser(emailAddress);
+    }
 }
