@@ -51,4 +51,20 @@ public class UserServiceImplIntegrationTest {
         assertEquals(user.getEmailAddress(), userMap.get("email_address"));
         assertEquals(3, userMap.get("version"));
     }
+
+    @Test
+    public void ユーザーが削除できること(){
+        String emailAddress = "Jiro@example.com";
+        userService.deleteUser(emailAddress);
+        Integer count = jdbcTemplate.queryForObject("SELECT count(*) FROM m_user where email_address = ?",  Integer.class, emailAddress);
+        assertEquals(0, count.intValue());
+    }
+
+    @Test
+    public void 存在しないユーザーを削除しようとした場合例外が発生すること(){
+        String emailAddress = "nouser@example.com";
+        assertThrows(RuntimeException.class, 
+            () -> userService.deleteUser(emailAddress), 
+            "ユーザーが存在しません");
+    }
 }

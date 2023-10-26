@@ -110,6 +110,7 @@ export const UserForm = (props: UserFormProps) => {
               name="roleId"
               control={control}
               rules={{ required: true }}
+              defaultValue={props.roleList[0].value}
               render={({ field }) => (
                 <SelectBoxInHookForm
                   name="roleId"

@@ -14,3 +14,8 @@ export const isDisplayRegistChatRoomModal = atom<boolean>({
   key: 'isDisplayRegistChatRoomModal',
   default: false,
 })
+
+export const isDisplayDeleteUserModal = atom<boolean>({
+  key: 'isDisplayDeleteUserModal',
+  default: false,
+})

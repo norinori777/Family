@@ -8,5 +8,9 @@ import jp.norinori777.domain.model.User.User;
 public interface UserMapper {
     public User selectUser(String emailAddress);
 
+    public int selectUserCount(String emailAddress);
+
     public User selectUserForUpdate(String emailAddress);
+
+    public void deleteUser(String emailAddress);
 }

@@ -1,4 +1,4 @@
-package jp.norinori777.application.controller.RegistUser.Model;
+package jp.norinori777.application.controller.User.Model;
 
 import org.hibernate.validator.constraints.Length;
 

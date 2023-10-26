@@ -11,4 +11,6 @@ public interface RoleMapper {
     public List<MasterRole> selectMasterRoles();
 
     public void insertUserRole(String emailAddress, String roleId);
+
+    public void deleteUserRole(String emailAddress);
 }

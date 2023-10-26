@@ -33,4 +33,14 @@
 		where email_address = #{emailAddress}
 		For Update
 	</select>
+	<select id="selectUserCount" resultType="int">
+		select
+			count(*)
+		from m_user
+		where email_address = #{emailAddress}
+	</select>
+	<delete id="deleteUser">
+		delete from m_user where email_address = #{emailAddress}
+	</delete>
+	
 </mapper>

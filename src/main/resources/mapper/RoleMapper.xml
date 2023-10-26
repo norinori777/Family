@@ -8,4 +8,7 @@
 	<insert id="insertUserRole">
 		INSERT INTO t_user_role (role_id, email_address) VALUES (#{roleId}, #{emailAddress});
 	</insert>
+	<delete id="deleteUserRole">
+		DELETE FROM t_user_role WHERE email_address = #{emailAddress};
+	</delete>
 </mapper>
