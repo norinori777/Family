@@ -3,6 +3,7 @@ import React from 'react'
 interface IconProps {
   action: () => void
   icon: React.ElementType
+  theme: 'primary' | 'secondary' | 'danger' | 'success' | 'warning' | 'normal' | 'white' | 'black'
 }
 
 export const Icon = (props: IconProps) => {
@@ -10,8 +11,8 @@ export const Icon = (props: IconProps) => {
     props.action()
   }
   return (
-    <div onClick={handleClick}>
-      <props.icon />
+    <div onClick={handleClick} className="cursor-pointer">
+      <props.icon theme={props.theme} />
     </div>
   )
 }
