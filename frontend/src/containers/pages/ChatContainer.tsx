@@ -7,12 +7,14 @@ import { CsrfToken } from '../../domain/csrf/types'
 import { TalkMessage } from '../../domain/TalkMessage/types'
 import { useParams } from 'react-router-dom'
 import { Paper } from '../../components/atoms/Paper'
+import { useChat } from '../../util/hooks/useChat'
 
 export const ChatContainer = () => {
   const params = useParams<{ roomId: string }>()
   const roomId = params.roomId
   const [stompClient, setStompClient] = useState<Stomp.Client | null>(null)
   const [receiveMessages, setReceiveMessages] = useState<TalkMessage[]>([])
+  const [first, setFirst] = useState<boolean>(true)
   const { data, error, isLoading } = useAxios<CsrfToken>({
     url: '/csrf',
     method: 'GET',
@@ -36,16 +38,19 @@ export const ChatContainer = () => {
   })
 
   const {
-    data: talkMessageData,
-    error: talkMessageError,
+    messages: talkMessageData,
     isLoading: isTalkMessageLoading,
-  } = useAxios<TalkMessage[]>({
+    containerRef,
+    handleScroll,
+    scrollToBottom,
+  } = useChat<TalkMessage>({
     url: '/talkmessage/list/' + roomId,
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
     reGet: 0,
+    positionGet: 'top',
   })
 
   useEffect(() => {
@@ -59,14 +64,19 @@ export const ChatContainer = () => {
       stompClient.subscribe('/topic/' + roomId + '/messages', (message) => {
         receiveMessage(JSON.parse(message.body))
       })
+      if (first) {
+        setFirst(false)
+        scrollToBottom()
+      }
     })
     return () => {
       socket.close()
     }
-  }, [isLoading, isUserIdLoading, isTalkMessageLoading])
+  }, [isLoading, isUserIdLoading, isTalkMessageLoading, talkMessageData])
 
   const receiveMessage = (receiveMessage: TalkMessage) => {
     setReceiveMessages((preMessages) => [...preMessages, receiveMessage])
+    scrollToBottom()
   }
 
   const handleMessageSubmit = (sendMessage: string) => {
@@ -77,11 +87,14 @@ export const ChatContainer = () => {
 
   return (
     <div className="w-96 sm:w-container-sm">
+      {isLoading && <div>loading...</div>}
       <Paper theme={'white'}>
         <Chat
           talkMessages={receiveMessages}
           submit={handleMessageSubmit}
           userId={useridData ?? 0}
+          handleScroll={handleScroll}
+          containerRef={containerRef}
         />
       </Paper>
     </div>
