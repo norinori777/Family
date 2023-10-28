@@ -10,6 +10,7 @@ describe('LinkItem', () => {
       text: 'Link Text',
       link: '/link',
       select: jest.fn(),
+      underline: false,
     }
     const { getByText } = render(
       <MemoryRouter>
@@ -24,6 +25,7 @@ describe('LinkItem', () => {
       text: 'Link Text',
       link: '/link',
       select: jest.fn(),
+      underline: false,
     }
     const { getByTestId } = render(
       <MemoryRouter>

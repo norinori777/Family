@@ -10,16 +10,16 @@ interface DeleteItemProps {
 }
 
 export const DeleteItem = (props: DeleteItemProps) => {
-    const [name, setName] = useState<string>(props.item.name)
-    const [value, setValue] = useState<string>(props.item.value)
+  const [name, setName] = useState<string>(props.item.name)
+  const [value, setValue] = useState<string>(props.item.value)
 
-    const handleClick = () => {
-        props.action()
-    }
-    return (
-        <div className="flex flex-row gap-1">
-            <TextMessage theme={'black'} text={props.item.label} size={'base'} />
-            <Icon icon={XCircle} action={handleClick} theme={props.theme} />
-        </div>
-    )
+  const handleClick = () => {
+    props.action()
+  }
+  return (
+    <div className="flex flex-row gap-1">
+      <TextMessage theme={'black'} text={props.item.label} size={'base'} />
+      <Icon icon={XCircle} action={handleClick} theme={props.theme} />
+    </div>
+  )
 }

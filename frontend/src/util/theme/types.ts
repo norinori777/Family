@@ -1,1 +1,9 @@
-export type theme = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'normal' | 'white' | 'black'
+export type theme =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'normal'
+  | 'white'
+  | 'black'

@@ -25,3 +25,10 @@ export const Normal: Story = {
     link: '/linkTitle',
   },
 }
+export const UnderLine: Story = {
+  args: {
+    text: 'リンクタイトル',
+    link: '/linkTitle',
+    underline: true,
+  },
+}

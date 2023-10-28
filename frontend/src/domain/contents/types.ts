@@ -1,7 +1,8 @@
 export type SideMenuItem = {
-  icon: React.ComponentType
+  icon: React.ElementType
   text: string
   link: string
+  theme: 'primary' | 'secondary' | 'danger' | 'success' | 'warning' | 'normal' | 'white' | 'black'
 }
 
 export type HeaderMenuItem = {

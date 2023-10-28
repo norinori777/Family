@@ -36,8 +36,8 @@ export const UserActionContainer = (props: UserActionContainerProps) => {
   }
   return (
     <div className="flex flex-row gap-2 cursor-pointer">
-      <Icon icon={Pencil} action={handleEditUser} />
-      <Icon icon={XCircle} action={handleDeleteUser} />
+      <Icon icon={Pencil} action={handleEditUser} theme={'primary'} />
+      <Icon icon={XCircle} action={handleDeleteUser} theme={'primary'} />
     </div>
   )
 }

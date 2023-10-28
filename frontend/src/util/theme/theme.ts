@@ -14,10 +14,10 @@ export const getTextTheme = (theme: theme) => {
       return 'text-warning-default'
     case 'normal':
       return 'text-normal-default'
-      case 'white':
-        return 'text-white'
-      case 'black':
-        return 'text-black'
+    case 'white':
+      return 'text-white'
+    case 'black':
+      return 'text-black'
   }
 }
 

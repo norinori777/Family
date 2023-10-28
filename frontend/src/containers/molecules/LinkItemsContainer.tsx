@@ -13,7 +13,7 @@ export const LinkItemsContainer = (props: LinkItemProps) => {
   const setSelectOne = (selected: string) => setSelect(selected)
   return (
     <>
-      <LinkItem text={props.text} link={props.link} select={setSelectOne} />
+      <LinkItem text={props.text} link={props.link} select={setSelectOne} underline={false} />
     </>
   )
 }
