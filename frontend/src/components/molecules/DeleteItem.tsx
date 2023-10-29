@@ -18,7 +18,7 @@ export const DeleteItem = (props: DeleteItemProps) => {
   }
   return (
     <div className="flex flex-row gap-1">
-      <TextMessage theme={'black'} text={props.item.label} size={'base'} />
+      <TextMessage theme={'black'} text={props.item.label} size={'base'} underline={false} />
       <Icon icon={XCircle} action={handleClick} theme={props.theme} />
     </div>
   )

@@ -1,29 +1,29 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { TextMessage } from './TextMessage'
 
-interface LinkItemProps {
+interface RouterLinkItemProps {
   text: string
-  onClick: () => void
+  link: string
+  select: (text: string) => void
   underline: boolean
   theme: 'primary' | 'secondary' | 'danger' | 'success' | 'warning' | 'normal' | 'white' | 'black'
   size: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl'
 }
 
-export const LinkItem = (props: LinkItemProps) => {
-  const handleClick = () => {
-    props.onClick()
-  }
+export const RouterLinkItem = (props: RouterLinkItemProps) => {
+  const handleClick = () => props.select(props.text)
 
   return (
     <>
-      <div className="cursor-pointer" onClick={handleClick}>
+      <Link data-testid="linkItem" onClick={handleClick} className="font-medium" to={props.link}>
         <TextMessage
           theme={props.theme}
           text={props.text}
           size={props.size}
           underline={props.underline}
         />
-      </div>
+      </Link>
     </>
   )
 }

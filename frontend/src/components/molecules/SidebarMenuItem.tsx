@@ -16,7 +16,7 @@ export const SidebarMenuItem = (props: SidebarMenuItemProps) => {
         {React.createElement(props.icon, { theme: props.theme })}
       </span>
       <NavLink className="text-white" to={props.link}>
-        <TextMessage theme={props.theme} text={props.text} size={'base'} />
+        <TextMessage theme={props.theme} text={props.text} size={'base'} underline={false} />
       </NavLink>
     </nav>
   )

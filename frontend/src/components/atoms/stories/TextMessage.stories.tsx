@@ -81,3 +81,12 @@ export const Base: Story = {
     size: 'base',
   },
 }
+
+export const underline: Story = {
+  args: {
+    text: 'ネットワークの接続が完了しました。',
+    theme: 'primary',
+    size: 'base',
+    underline: true,
+  },
+}
