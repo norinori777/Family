@@ -25,3 +25,13 @@ export const alertShowListUser = atom<boolean>({
   key: 'alertShowListUser',
   default: false,
 })
+
+export const alertMessageChatRoomForm = atom<string>({
+  key: 'alertMessageChatRoomForm',
+  default: '',
+})
+
+export const alertShowChatRoomForm = atom<boolean>({
+  key: 'alertShowChatRoomForm',
+  default: false,
+})

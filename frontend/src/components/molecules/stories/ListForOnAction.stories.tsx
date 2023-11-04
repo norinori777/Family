@@ -1,15 +1,24 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { ListForOnChange } from '../ListForOnChange'
-import { CheckBox } from '../../../components/atoms/CheckBox'
+import { ListForOnAction } from '../ListForOnAction'
+import { CheckBox } from '../../atoms/CheckBox'
+import { ChangeEvent } from 'react'
 
-const meta: Meta<typeof ListForOnChange<{ name: string; value: string }>> = {
+const meta: Meta<
+  typeof ListForOnAction<{ name: string; value: string }, ChangeEvent<HTMLInputElement>, number>
+> = {
   title: 'molecules/ListForOnChange',
-  component: ListForOnChange,
+  component: ListForOnAction,
   argTypes: {},
 }
 
 export default meta
-type Story = StoryObj<typeof ListForOnChange<{ label: string; name: string; value: string }>>
+type Story = StoryObj<
+  typeof ListForOnAction<
+    { label: string; name: string; value: string },
+    ChangeEvent<HTMLInputElement>,
+    number
+  >
+>
 
 export const RowThree: Story = {
   args: {
@@ -20,7 +29,7 @@ export const RowThree: Story = {
       { label: 'test3', name: 'test3', value: 'test3' },
     ],
     children: CheckBox,
-    onChange: () => {},
+    action: () => {},
   },
 }
 
@@ -35,7 +44,7 @@ export const RowFive: Story = {
       { label: 'test5', name: 'test5', value: 'test5' },
     ],
     children: CheckBox,
-    onChange: () => {},
+    action: () => {},
   },
 }
 
@@ -48,7 +57,7 @@ export const ColumnThree: Story = {
       { label: 'test3', name: 'test3', value: 'test3' },
     ],
     children: CheckBox,
-    onChange: () => {},
+    action: () => {},
   },
 }
 
@@ -63,6 +72,6 @@ export const ColumnFive: Story = {
       { label: 'test5', name: 'test5', value: 'test5' },
     ],
     children: CheckBox,
-    onChange: () => {},
+    action: () => {},
   },
 }

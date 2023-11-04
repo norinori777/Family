@@ -94,7 +94,7 @@ export const UserForm = (props: UserFormProps) => {
   }, [response, error])
 
   return (
-    <Modal isDisplayed={props.isDisplay}>
+    <Modal isDisplayed={props.isDisplay} zIndex={10}>
       {loading ? (
         <div>loading...</div>
       ) : (

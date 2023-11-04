@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ChangeEvent, CompositionEvent, useState } from 'react'
 import {
   getFocusRingTheme,
   getLightBackGroundTheme,
@@ -14,7 +14,8 @@ interface TextboxProps {
   description: string
   theme: theme
   value: string
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  handleChange?: (e: ChangeEvent<HTMLInputElement>) => void
+  handleDoubleByteChange?: (e: CompositionEvent<HTMLInputElement>) => void
 }
 
 export const Textbox = (props: TextboxProps) => {
@@ -48,6 +49,7 @@ export const Textbox = (props: TextboxProps) => {
         onFocus={onFocusHandle}
         onBlur={onBlurHandle}
         onChange={props.handleChange}
+        onCompositionEnd={props.handleDoubleByteChange}
       />
       <p className={`mt-2 text-sm ${textTheme}`}>{props.description}</p>
     </div>

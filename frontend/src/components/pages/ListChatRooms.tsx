@@ -5,8 +5,7 @@ import React from 'react'
 import { ChatRoom } from '../../domain/chatRoom/types'
 import { useAxios } from '../../util/hooks/useAxios'
 import { ChatRoomFormContainer } from '../../containers/organisms/ChatRoomFormContainer'
-import { DynamicTable } from '../../components/molecules/DynamicTable'
-import { DynamicRow } from '../../components/molecules/DynamicRow'
+import { ChatRoomActionTableContainer } from '../../containers/molecules/ChatRoomActionTableContainer'
 
 interface ListChatRoomProps {
   openHandle: () => void
@@ -37,11 +36,10 @@ export const ListChatRoom = (props: ListChatRoomProps) => {
         action={openHandle}
       />
       <ChatRoomFormContainer />
-      <DynamicTable<ChatRoom>
+      <ChatRoomActionTableContainer
         titleHeader={['roomId', 'roomName', 'roomDescription', 'createAt', 'updateAt']}
-        targetLink={['roomName']}
         items={data}
-        Row={DynamicRow}
+        actionColumn={5}
       />
     </div>
   )

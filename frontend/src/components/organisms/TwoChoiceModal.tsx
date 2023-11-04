@@ -30,7 +30,7 @@ export const TwoChoiceModal = (props: TwoChoiceModalProps) => {
 
   return (
     <>
-      <Modal isDisplayed={props.isDisplayed}>
+      <Modal isDisplayed={props.isDisplayed} zIndex={10}>
         <div className="flex flex-col gap-2">
           <ModalHeader title={props.title} theme={props.theme} />
           <ModalDescription description={props.description} theme={props.descriptionTheme} />
