@@ -75,6 +75,7 @@ export const ChatRoomForm = (props: ChatRoomFormProps) => {
 
   const handleModal = () => {
     props.handleModal()
+    props.setChatRoomMembers([])
     setShowAlert(false)
     setAlertMessage('')
     reset()
