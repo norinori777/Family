@@ -12,6 +12,8 @@ export type ChatRoom = {
 export type RegistChatRoom = {
   roomName: string
   roomDescription: string
+  roomId?: number
+  state: number
   roomOwnerId: number
   chatRoomMembers: ChatRoomMemberUser[]
 }

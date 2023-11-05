@@ -3,6 +3,7 @@ package jp.norinori777.application.controller.ChatRoom;
 import java.util.Locale;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
@@ -11,9 +12,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +33,7 @@ import jp.norinori777.domain.model.Room.ListChatRoomsService;
 import jp.norinori777.domain.model.Room.RegistRoom;
 import jp.norinori777.domain.model.Room.RegistRoomService;
 import jp.norinori777.domain.model.Room.Room;
-import jp.norinori777.domain.model.User.ChatRoomMemberUser;
+import jp.norinori777.domain.model.Room.ChatRoomMemberUser;
 import jp.norinori777.domain.model.User.User;
 import jp.norinori777.domain.model.User.UserAccountCredential;
 import lombok.extern.slf4j.Slf4j;
@@ -54,6 +57,40 @@ public class ChatRoomRestController {
 
     @Autowired
     private MessageSource messageSource;
+
+    @DeleteMapping("delete/{roomId}")
+    public ResponseEntity<RestResult<NullData>> deleteChatRoom(@PathVariable Integer roomId) {
+        try{
+            registRoomService.deleteRoom(roomId);
+        } catch(Exception e) {
+            log.error(e.getMessage(), e);
+            RestResponse<NullData> response = new RestResponse<>(99, null, null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response.createRestResponse();
+        }
+
+        RestResponse<NullData> response = new RestResponse<>(0, null, null, HttpStatus.OK);
+        return response.createRestResponse();
+    }
+
+    @PutMapping("update")
+    public ResponseEntity<RestResult<NullData>> updateChatRoom(@Validated @RequestBody RegistRoom registRoom, BindingResult bindingResult, Locale locale) {
+        if (bindingResult.hasErrors()) {
+            Map<String, String> errors = getErrorMessages(bindingResult, locale);
+            RestResponse<NullData> response = new RestResponse<>(90, errors, null, HttpStatus.BAD_REQUEST);
+            return response.createRestResponse();
+        }
+
+        try{
+            registRoomService.updateRoom(registRoom);
+        } catch(Exception e) {
+            log.error(e.getMessage(), e);
+            RestResponse<NullData> response = new RestResponse<>(99, null, null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response.createRestResponse();
+        }
+
+        RestResponse<NullData> response = new RestResponse<>(0, null, null, HttpStatus.OK);
+        return response.createRestResponse();
+    }
     
     @PostMapping("add")
     public ResponseEntity<RestResult<NullData>> addChatRoom(@Validated @RequestBody RegistRoom registRoom, BindingResult bindingResult, Locale locale) {
@@ -91,6 +128,7 @@ public class ChatRoomRestController {
         List<Room> rooms = listChatRoomsService.getChatRooms(userId);
         return rooms;
     }
+
     @GetMapping("members/{roomId}")
     public ResponseEntity<RestResult<List<ChatRoomMemberUser>>> listRoomMembers(@PathVariable Integer roomId) {
         RestResponse<List<ChatRoomMemberUser>> response;

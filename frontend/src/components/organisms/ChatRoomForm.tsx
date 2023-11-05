@@ -16,12 +16,11 @@ import { ChoiceChatRoomMemeberModalContainer } from '../../containers/organisms/
 import { isDisplayChoiceChatRoomMemberModal } from '../../domain/modal/atoms'
 import { useAxios } from '../../util/hooks/useAxios'
 import { RestResponse } from '../../domain/Rest/types'
-import { ListForOnAction } from '../../components/molecules/ListForOnAction'
-import { DeleteItem } from '../../components/molecules/DeleteItem'
 import { ChatRoomMemberUser } from '../../domain/user/types'
 import { ListChild } from '../../components/molecules/ListChild'
 import { TextMessage } from '../../components/atoms/TextMessage'
 import { convertChatRoomMemberUserToTextMessage } from '../../domain/user/operation'
+import { reGetChatRoomMemberFlag } from '../../domain/chatRoom/atoms'
 
 interface ChatRoomFormProps {
   chatRoom?: ChatRoom
@@ -36,30 +35,26 @@ interface ChatRoomFormProps {
 
 export const ChatRoomForm = (props: ChatRoomFormProps) => {
   const [chatRoom, setChatRoom] = useState<ChatRoom>()
-  const [mode, setMode] = useState<string>(props.editMode ? '編集' : '登録')
-  const [url, setUrl] = useState<string>(props.editMode ? 'update' : 'add')
-  const [method, setMethod] = useState<string>(props.editMode ? 'PUT' : 'POST')
-
-  if (props.editMode) {
-    const {
-      data: chatRoomMembers,
-      error: chatRoomMemberError,
-      isLoading: chatRoomMemberIsLoading,
-    } = useAxios<RestResponse<ChatRoomMemberUser[]>>({
-      url: '/chatroom/members/' + props.chatRoom?.roomId,
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      reGet: 0,
-    })
-    useEffect(() => {
-      if (chatRoomMemberError == null && chatRoomMembers != null) {
-        props.setChatRoomMembers(chatRoomMembers.data)
-        return
-      }
-    }, [chatRoomMembers, chatRoomMemberError, chatRoomMemberIsLoading])
-  }
+  const [reGetChatRoomMembersFlag, setReGetChatRoomMembersFlag] =
+    useRecoilState<number>(reGetChatRoomMemberFlag)
+  const {
+    data: chatRoomMembers,
+    error: chatRoomMemberError,
+    isLoading: chatRoomMemberIsLoading,
+  } = useAxios<RestResponse<ChatRoomMemberUser[]>>({
+    url: '/chatroom/members/' + props.chatRoom?.roomId,
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    reGet: reGetChatRoomMembersFlag,
+  })
+  useEffect(() => {
+    if (props.editMode && chatRoomMemberError == null && chatRoomMembers != null) {
+      props.setChatRoomMembers(chatRoomMembers.data)
+      return
+    }
+  }, [chatRoomMembers, chatRoomMemberError, chatRoomMemberIsLoading])
 
   const [alertMessage, setAlertMessage] = useState('')
   const [showAlert, setShowAlert] = useState(false)
@@ -99,6 +94,9 @@ export const ChatRoomForm = (props: ChatRoomFormProps) => {
 
   const onSubmit = (data: RegistChatRoom) => {
     if (isLoading || csrfToken == null) return
+    const url = props.editMode ? 'update' : 'add'
+    const method = props.editMode ? 'PUT' : 'POST'
+    const roomId = props.editMode ? props.chatRoom?.roomId : 0
     sendRequest({
       url: '/chatroom/' + url,
       method: method,
@@ -106,7 +104,7 @@ export const ChatRoomForm = (props: ChatRoomFormProps) => {
         'Content-Type': 'application/json',
         'X-CSRF-TOKEN': csrfToken.token,
       },
-      data: { ...data, chatRoomMembers: props.selectedMembers },
+      data: { ...data, roomId: roomId, state: 0, chatRoomMembers: props.selectedMembers },
     })
   }
   useEffect(() => {
@@ -138,9 +136,14 @@ export const ChatRoomForm = (props: ChatRoomFormProps) => {
           <div>loading...</div>
         ) : (
           <article className="flex flex-col gap-1">
-            <ModalHeader title={`チャットルーム${mode}`} theme={'primary'} />
+            <ModalHeader
+              title={`チャットルーム${props.editMode ? '編集' : '登録'}`}
+              theme={'primary'}
+            />
             <ModalDescription
-              description={`チャットルーム情報を入力して、${mode}ボタンをクリックしてください。`}
+              description={`チャットルーム情報を入力して、${
+                props.editMode ? '編集' : '登録'
+              }ボタンをクリックしてください。`}
               theme={'normal'}
             />
             <AlertMessage message={alertMessage} showAlert={showAlert} theme={'danger'} />
@@ -225,7 +228,12 @@ export const ChatRoomForm = (props: ChatRoomFormProps) => {
                 />
               </div>
               <div className="flex flex-row gap-2">
-                <Button type={'submit'} label={mode} theme={'primary'} action={() => {}} />
+                <Button
+                  type={'submit'}
+                  label={props.editMode ? '編集' : '登録'}
+                  theme={'primary'}
+                  action={() => {}}
+                />
                 <Button type={'button'} label={'閉じる'} theme={'normal'} action={handleModal} />
               </div>
             </form>

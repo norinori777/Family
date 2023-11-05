@@ -80,6 +80,13 @@ export const ChoiceChatRoomMemeberModalContainer = () => {
     setAlertShowChatRoomFormAtom(false)
   }
 
+  // ここで、チャットルームメンバーの選択状態を初期化する
+  useEffect(() => {
+    setTempSelectedMembers(selectedMembersAtom)
+    setFilterMember(member)
+  }, [selectedMembersAtom])
+
+  // ここで、チャットルームメンバーの選択状態を初期化する
   useEffect(() => {
     const chatRoomMemberCandidate = filterChatRoomMemberList(member, filter)
     const chatRoomMemberCheckedCandidate = changeCheckedUsers(

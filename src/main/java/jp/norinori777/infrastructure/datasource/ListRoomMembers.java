@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import jp.norinori777.domain.model.User.ChatRoomMemberUser;
+import jp.norinori777.domain.model.Room.ChatRoomMemberUser;
 
 @Mapper
 public interface ListRoomMembers {

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import jp.norinori777.domain.model.Room.ChatRoomMemberUser;
 import jp.norinori777.domain.model.Room.RegistRoom;
 import jp.norinori777.domain.model.Room.RegistRoomService;
+import jp.norinori777.infrastructure.datasource.ListRoomMembers;
 import jp.norinori777.infrastructure.datasource.RegistRoomMapper;
 
 @Service
@@ -17,14 +18,54 @@ public class RegistRoomServiceImpl implements RegistRoomService {
 
 	@Autowired
 	private RegistRoomMapper mapper;
+
+	@Autowired ListRoomMembers listRoomMembersMapper;
 	
 	@Override
 	public void addRoom(RegistRoom room) {
 		mapper.insertChatRoom(room);
 		List<ChatRoomMemberUser>members = room.getChatRoomMembers();
+	
+		mapper.insertChatRoomMembers(members);
+	}
+
+	@Override
+	public void updateRoom(RegistRoom room) {
+		mapper.updateChatRoom(room);
+		List<ChatRoomMemberUser>members = room.getChatRoomMembers();
+		List<ChatRoomMemberUser>nowMembers = listRoomMembersMapper.selectRoomMembers(room.getRoomId());
+
+		mapper.updateChatRoom(room);
+
 		for(ChatRoomMemberUser member : members) {
-			member.setRoomId(room.getRoomId());
-			mapper.insertChatRoomMember(member);
+			if(!isExistMember(member, nowMembers)){
+				// TODO: ここでルームIDをセットするのはおかしい
+				// TODO: SETTERを利用して代入しているため、オブジェクトの使い回しになっている
+				member.setRoomId(room.getRoomId());
+				mapper.insertChatRoomMember(member);
+			} 
+		}
+		for(ChatRoomMemberUser nowMember : nowMembers) {
+			if(!isExistMember(nowMember, members)) mapper.deleteChatRoomMember(nowMember);
 		}
 	}
+
+	private boolean isExistMember(ChatRoomMemberUser member, List<ChatRoomMemberUser> verifiedMembers) {
+		for(ChatRoomMemberUser verifiedMember : verifiedMembers) {
+			if(member.getUserId().equals(verifiedMember.getUserId())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public void deleteRoom(Integer roomId) {
+		// TODO: ルームメンバーを削除
+		// TODO: トークを削除
+		mapper.deleteChatRoom(roomId);
+				// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'deleteRoom'");
+	}
+
 }

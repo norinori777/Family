@@ -34,4 +34,53 @@
 			now()
 		)
 	</insert>
+
+	<insert id="insertChatRoomMembers" parameterType="java.util.List">
+		insert into t_room_member(
+			room_id,
+			user_id,
+			state,
+			create_at,
+			update_at
+		) values
+		<foreach item="item" collection="list" separator=",">
+			(
+				#{item.roomId},
+				#{item.userId},
+				0,
+				now(),
+				now()
+			)
+		</foreach>
+	</insert>
+
+	<delete id="deleteChatRoomMember" parameterType="jp.norinori777.domain.model.Room.ChatRoomMemberUser">
+		delete from t_room_member
+		where room_id = ${roomId} and user_id = ${userId}
+	</delete>
+
+	<delete id="deleteChatRoomMembers" parameterType="java.util.List">
+		delete from t_room_member
+		where (room_id, user_id) in
+		<foreach item="item" collection="list" open="(" separator="," close=")">
+			(#{item.roomId}, #{item.userId})
+		</foreach>
+	</delete>
+
+	<update id="updateChatRoom">
+		update m_room
+		set
+			room_name = #{roomName},
+			room_description = #{roomDescription},
+			state = #{state},
+			update_at = now()
+		where
+			room_id = #{roomId}
+	</update>
+
+	<delete id="deleteChatRoom">
+		delete from m_room
+		where
+			room_id = #{roomId}
+	</delete>
 </mapper>

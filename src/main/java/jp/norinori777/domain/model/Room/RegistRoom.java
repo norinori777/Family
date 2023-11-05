@@ -14,10 +14,11 @@ public class RegistRoom {
     @Size(max = 32)
     //private RoomName roomName;
     private String roomName;
-    @Size(max = 256)
     //private RoomDescription roomDescription;
+    @Size(max = 256)
     private String roomDescription;
     @Min(1)
     private Integer roomOwnerId;
+    private Integer state;
     private List<ChatRoomMemberUser> chatRoomMembers;
 }

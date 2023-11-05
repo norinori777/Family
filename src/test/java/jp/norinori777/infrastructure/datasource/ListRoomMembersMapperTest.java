@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
-import jp.norinori777.domain.model.User.ChatRoomMemberUser;
+import jp.norinori777.domain.model.Room.ChatRoomMemberUser;
 
 @Sql("ListRoomMembersMapperTest.sql")
 @SpringBootTest

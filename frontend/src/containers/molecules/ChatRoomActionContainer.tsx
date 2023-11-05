@@ -1,7 +1,12 @@
 import React from 'react'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { ChatRoom } from '../../domain/chatRoom/types'
-import { deleteChatRoom, editChatRoom, editModeChatRoom } from '../../domain/chatRoom/atoms'
+import {
+  deleteChatRoom,
+  editChatRoom,
+  editModeChatRoom,
+  reGetChatRoomMemberFlag,
+} from '../../domain/chatRoom/atoms'
 import {
   isDisplayChatRoomDeleteModal,
   isDisplayRegistChatRoomModal,
@@ -19,6 +24,9 @@ export const ChatRoomActionContainer = (props: ChatRoomActionContainerProps) => 
   const [isDisplayedChatRoomEditModalAtom, setIsDisplayedChatRoomEditModalAtom] = useRecoilState(
     isDisplayRegistChatRoomModal
   )
+
+  const [reGetChatRoomMembersFlag, setReGetChatRoomMembersFlag] =
+    useRecoilState<number>(reGetChatRoomMemberFlag)
   const [deleteChatRoomAtom, setDeleteChatRoomAtom] = useRecoilState(deleteChatRoom)
   const [isDisplayedChatRoomDeleteModalAtom, setIsDisplayedChatRoomDeleteModalAtom] =
     useRecoilState(isDisplayChatRoomDeleteModal)
@@ -34,6 +42,7 @@ export const ChatRoomActionContainer = (props: ChatRoomActionContainerProps) => 
       createAt: props.item.createAt,
       updateAt: props.item.updateAt,
     })
+    setReGetChatRoomMembersFlag(reGetChatRoomMembersFlag + 1)
     setIsDisplayedChatRoomEditModalAtom(!isDisplayedChatRoomEditModalAtom)
   }
 

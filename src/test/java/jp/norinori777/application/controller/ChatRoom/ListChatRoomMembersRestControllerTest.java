@@ -20,7 +20,7 @@ import jp.norinori777.application.service.ChatRoom.ListRoomMembersService;
 import jp.norinori777.domain.model.Login.LoginUserService;
 import jp.norinori777.domain.model.Room.ListChatRoomsService;
 import jp.norinori777.domain.model.Room.RegistRoomService;
-import jp.norinori777.domain.model.User.ChatRoomMemberUser;
+import jp.norinori777.domain.model.Room.ChatRoomMemberUser;
 
 @WebMvcTest(value = ChatRoomRestController.class, excludeAutoConfiguration = {SecurityAutoConfiguration.class})
 public class ListChatRoomMembersRestControllerTest {
@@ -51,6 +51,6 @@ public class ListChatRoomMembersRestControllerTest {
 
         mockMvc.perform(get("/chatroom/members/100000"))
             .andExpect(status().isOk())
-            .andExpect(content().json("{'result':0, 'errors':null, 'data': [{'roomId':10000, 'userId':10000, 'userName':'aaa', 'emailAddress':'a@example.com'},{'roomId':10000, 'userId':10001, 'userName':'bbb', 'emailAddress':'b@example.com'},{'roomId':10000, 'userId':10002, 'userName':'ccc', 'emailAddress':'c@example.com',{'roomId':10000, 'userId':10003, 'userName':'ddd', 'emailAddress':'d@example.com'}}]}"));
+            .andExpect(content().json("{'result':0, 'errors':null, 'data': [{'roomId':10000, 'userId':10000, 'name':'aaa', 'emailAddress':'a@example.com'},{'roomId':10000, 'userId':10001, 'name':'bbb', 'emailAddress':'b@example.com'},{'roomId':10000, 'userId':10002, 'name':'ccc', 'emailAddress':'c@example.com'},{'roomId':10000, 'userId':10003, 'name':'ddd', 'emailAddress':'d@example.com'}]}"));
     }
 }

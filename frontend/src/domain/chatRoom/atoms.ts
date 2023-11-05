@@ -7,6 +7,11 @@ export const reGetCatRoomFlag = atom<number>({
   default: 0,
 })
 
+export const reGetChatRoomMemberFlag = atom<number>({
+  key: 'reGetChatRoomMemberFlag',
+  default: 0,
+})
+
 export const editChatRoom = atom<ChatRoom>({
   key: 'editChatRoom',
   default: {
