@@ -13,5 +13,7 @@ public interface TalkMessageMapper {
     public void deleteTalkMessage(Integer message_id);
 
     public List<TalkMessage> selectTalkMessages(Integer room_id);
+
+    public void deleteChatRoomAllTalkMessages(Integer room_id);
     
 }

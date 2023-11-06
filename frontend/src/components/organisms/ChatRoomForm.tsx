@@ -21,6 +21,7 @@ import { ListChild } from '../../components/molecules/ListChild'
 import { TextMessage } from '../../components/atoms/TextMessage'
 import { convertChatRoomMemberUserToTextMessage } from '../../domain/user/operation'
 import { reGetChatRoomMemberFlag } from '../../domain/chatRoom/atoms'
+import { ChatRoomDeleteModalContainer } from '../../containers/organisms/ChatRoomDeleteModalContainer'
 
 interface ChatRoomFormProps {
   chatRoom?: ChatRoom
@@ -132,6 +133,7 @@ export const ChatRoomForm = (props: ChatRoomFormProps) => {
   return (
     <>
       <ChoiceChatRoomMemeberModalContainer />
+      <ChatRoomDeleteModalContainer />
       <Modal isDisplayed={props.isDisplay} zIndex={10}>
         {loading ? (
           <div>loading...</div>

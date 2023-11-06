@@ -22,4 +22,6 @@ public interface RegistRoomMapper {
 	public int deleteChatRoomMembers(ChatRoomMemberUser[] members);
 
 	public int deleteChatRoom(Integer roomId);
+
+	public int deleteChatRoomAllMembers(Integer roomId);
 }

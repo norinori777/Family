@@ -11,6 +11,7 @@ import jp.norinori777.domain.model.Room.RegistRoom;
 import jp.norinori777.domain.model.Room.RegistRoomService;
 import jp.norinori777.infrastructure.datasource.ListRoomMembers;
 import jp.norinori777.infrastructure.datasource.RegistRoomMapper;
+import jp.norinori777.infrastructure.datasource.TalkMessageMapper;
 
 @Service
 @Transactional
@@ -18,6 +19,9 @@ public class RegistRoomServiceImpl implements RegistRoomService {
 
 	@Autowired
 	private RegistRoomMapper mapper;
+
+	@Autowired
+	private TalkMessageMapper talkMessageMapper;
 
 	@Autowired ListRoomMembers listRoomMembersMapper;
 	
@@ -61,11 +65,10 @@ public class RegistRoomServiceImpl implements RegistRoomService {
 
 	@Override
 	public void deleteRoom(Integer roomId) {
-		// TODO: ルームメンバーを削除
-		// TODO: トークを削除
+		// TODO:　例外設計を検討する
+		talkMessageMapper.deleteChatRoomAllTalkMessages(roomId);
+		mapper.deleteChatRoomAllMembers(roomId);
 		mapper.deleteChatRoom(roomId);
-				// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'deleteRoom'");
 	}
 
 }

@@ -38,4 +38,10 @@
 		delete from t_talk_messages
 		where message_id = #{messageId}
 	</delete>
+
+	
+	<delete id="deleteChatRoomAllTalkMessages">
+		delete from t_talk_messages
+		where room_id = ${roomId}
+	</delete>
 </mapper>
