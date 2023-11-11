@@ -98,7 +98,17 @@
 		  <dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-messaging</artifactId>
-		  </dependency>
+		</dependency>
+		<dependency>
+    		<groupId>com.evernote</groupId>
+    		<artifactId>evernote-api</artifactId>
+    		<version>1.25.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.scribejava</groupId>
+			<artifactId>scribejava-apis</artifactId>
+			<version>8.3.3</version>
+		</dependency>
 		
 	</dependencies>
 
