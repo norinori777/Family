@@ -3,11 +3,11 @@ import { Pencil } from '../../components/Icons/Pencil'
 import { test } from '../../components/pages/test'
 
 const sideMenuItems: SideMenuItem[] = [
-  { icon: Pencil, text: 'MenuTitle6', link: '/test6' },
-  { icon: Pencil, text: 'MenuTitle7', link: '/test7' },
-  { icon: Pencil, text: 'MenuTitle8', link: '/test8' },
-  { icon: Pencil, text: 'MenuTitle9', link: '/test9' },
-  { icon: Pencil, text: 'MenuTitle10', link: '/test10' },
+  { icon: Pencil, text: 'MenuTitle6', link: '/test6', theme: 'white' },
+  { icon: Pencil, text: 'MenuTitle7', link: '/test7', theme: 'white' },
+  { icon: Pencil, text: 'MenuTitle8', link: '/test8', theme: 'white' },
+  { icon: Pencil, text: 'MenuTitle9', link: '/test9', theme: 'white' },
+  { icon: Pencil, text: 'MenuTitle10', link: '/test10', theme: 'white' },
 ]
 
 const contentItems: ContentItem[] = [

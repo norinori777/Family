@@ -3,9 +3,10 @@ import { SidebarMenuItem } from './SidebarMenuItem'
 
 interface SidebarMenuListProps {
   items: {
-    icon: React.ComponentType
+    icon: React.ElementType
     text: string
     link: string
+    theme: 'primary' | 'secondary' | 'danger' | 'success' | 'warning' | 'normal' | 'white' | 'black'
   }[]
 }
 
@@ -14,7 +15,13 @@ export const SidebarMenuList = (prorps: SidebarMenuListProps) => {
     <div className="flex flex-col gap-10">
       {prorps.items?.map((item) => {
         return (
-          <SidebarMenuItem key={item.text} icon={item.icon} text={item.text} link={item.link} />
+          <SidebarMenuItem
+            key={item.text}
+            icon={item.icon}
+            text={item.text}
+            link={item.link}
+            theme={item.theme}
+          />
         )
       })}
     </div>

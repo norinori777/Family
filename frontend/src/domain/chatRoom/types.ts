@@ -1,3 +1,5 @@
+import { ChatRoomMemberUser } from '../../domain/user/types'
+
 export type ChatRoom = {
   roomId: number
   roomName: string
@@ -10,5 +12,8 @@ export type ChatRoom = {
 export type RegistChatRoom = {
   roomName: string
   roomDescription: string
+  roomId?: number
+  state: number
   roomOwnerId: number
+  chatRoomMembers: ChatRoomMemberUser[]
 }

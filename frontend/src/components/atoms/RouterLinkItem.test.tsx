@@ -2,7 +2,7 @@ import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, fireEvent } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import { LinkItem } from './LinkItem'
+import { RouterLinkItem } from './RouterLinkItem'
 
 describe('LinkItem', () => {
   it('renders link text', () => {
@@ -10,10 +10,21 @@ describe('LinkItem', () => {
       text: 'Link Text',
       link: '/link',
       select: jest.fn(),
+      underline: false,
+      theme: 'primary' as
+        | 'primary'
+        | 'secondary'
+        | 'danger'
+        | 'success'
+        | 'warning'
+        | 'normal'
+        | 'white'
+        | 'black',
+      size: 'base' as 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl',
     }
     const { getByText } = render(
       <MemoryRouter>
-        <LinkItem {...props} />
+        <RouterLinkItem {...props} />
       </MemoryRouter>
     )
     expect(getByText(props.text)).toBeInTheDocument()
@@ -24,10 +35,21 @@ describe('LinkItem', () => {
       text: 'Link Text',
       link: '/link',
       select: jest.fn(),
+      underline: false,
+      theme: 'primary' as
+        | 'primary'
+        | 'secondary'
+        | 'danger'
+        | 'success'
+        | 'warning'
+        | 'normal'
+        | 'white'
+        | 'black',
+      size: 'base' as 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl',
     }
     const { getByTestId } = render(
       <MemoryRouter>
-        <LinkItem {...props} />
+        <RouterLinkItem {...props} />
       </MemoryRouter>
     )
     const linkItem = getByTestId('linkItem')

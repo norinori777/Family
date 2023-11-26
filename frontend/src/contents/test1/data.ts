@@ -6,11 +6,11 @@ import { ChatContainer } from '../../containers/pages/ChatContainer'
 import { ListChatRoomContainer } from '../../containers/pages/ListChatRoomConatainer'
 
 const sideMenuItems: SideMenuItem[] = [
-  { icon: Pencil, text: 'Chat', link: '/Chat/1' },
-  { icon: Pencil, text: 'ユーザー情報', link: '/User' },
-  { icon: Pencil, text: 'チャットルーム', link: '/ChatRoom' },
-  { icon: Pencil, text: 'MenuTitle4', link: '/test4' },
-  { icon: Pencil, text: 'MenuTitle5', link: '/test5' },
+  { icon: Pencil, text: 'Chat', link: '/Chat/1', theme: 'white' },
+  { icon: Pencil, text: 'ユーザー情報', link: '/User', theme: 'white' },
+  { icon: Pencil, text: 'チャットルーム', link: '/ChatRoom', theme: 'white' },
+  { icon: Pencil, text: 'MenuTitle4', link: '/test4', theme: 'white' },
+  { icon: Pencil, text: 'MenuTitle5', link: '/test5', theme: 'white' },
 ]
 
 const contentItems: ContentItem[] = [

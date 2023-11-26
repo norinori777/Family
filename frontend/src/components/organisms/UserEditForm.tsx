@@ -106,7 +106,7 @@ export const UserEditForm = (props: UserEditForm) => {
   }, [error, response])
 
   return (
-    <Modal isDisplayed={props.isDisplay}>
+    <Modal isDisplayed={props.isDisplay} zIndex={10}>
       {loading ? (
         <div>loading...</div>
       ) : (
@@ -134,17 +134,28 @@ export const UserEditForm = (props: UserEditForm) => {
                   theme={'primary'}
                   error={
                     errors.name && errors.name?.type === 'required' ? (
-                      <TextMessage text={'名前は必須です'} theme={'danger'} size={'base'} />
+                      <TextMessage
+                        text={'名前は必須です'}
+                        theme={'danger'}
+                        size={'base'}
+                        underline={false}
+                      />
                     ) : '' + errors.name && errors.name?.type === 'maxLength' ? (
                       <TextMessage
                         text={'名前は10文字以内で入力してください。'}
                         theme={'danger'}
                         size={'base'}
+                        underline={false}
                       />
                     ) : '' + errors.name &&
                       errors.name?.type === 'server' &&
                       errors.name?.message != undefined ? (
-                      <TextMessage text={errors.name.message} theme={'danger'} size={'base'} />
+                      <TextMessage
+                        text={errors.name.message}
+                        theme={'danger'}
+                        size={'base'}
+                        underline={false}
+                      />
                     ) : (
                       ''
                     )
@@ -172,12 +183,14 @@ export const UserEditForm = (props: UserEditForm) => {
                         text={'メールアドレスは必須です。'}
                         theme={'danger'}
                         size={'base'}
+                        underline={false}
                       />
                     ) : '' + errors.emailAddress && errors.emailAddress?.type === 'maxLength' ? (
                       <TextMessage
                         text={'メールアドレスは255文字以内で入力してください。'}
                         theme={'danger'}
                         size={'base'}
+                        underline={false}
                       />
                     ) : '' + errors.emailAddress &&
                       errors.emailAddress?.type === 'server' &&
@@ -186,6 +199,7 @@ export const UserEditForm = (props: UserEditForm) => {
                         text={errors.emailAddress.message}
                         theme={'danger'}
                         size={'base'}
+                        underline={false}
                       />
                     ) : (
                       ''

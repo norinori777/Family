@@ -94,7 +94,7 @@ export const UserForm = (props: UserFormProps) => {
   }, [response, error])
 
   return (
-    <Modal isDisplayed={props.isDisplay}>
+    <Modal isDisplayed={props.isDisplay} zIndex={10}>
       {loading ? (
         <div>loading...</div>
       ) : (
@@ -121,11 +121,21 @@ export const UserForm = (props: UserFormProps) => {
                   theme={'primary'}
                   error={
                     errors.roleId && errors.roleId.type === 'required' ? (
-                      <TextMessage text={'ロールは必須です。'} theme={'danger'} size={'base'} />
+                      <TextMessage
+                        text={'ロールは必須です。'}
+                        theme={'danger'}
+                        size={'base'}
+                        underline={false}
+                      />
                     ) : '' + errors.name &&
                       errors.name?.type === 'server' &&
                       errors.name?.message != undefined ? (
-                      <TextMessage text={errors.name.message} theme={'danger'} size={'base'} />
+                      <TextMessage
+                        text={errors.name.message}
+                        theme={'danger'}
+                        size={'base'}
+                        underline={false}
+                      />
                     ) : (
                       ''
                     )
@@ -149,17 +159,28 @@ export const UserForm = (props: UserFormProps) => {
                   theme={'primary'}
                   error={
                     errors.name && errors.name?.type === 'required' ? (
-                      <TextMessage text={'名前は必須です。'} theme={'danger'} size={'base'} />
+                      <TextMessage
+                        text={'名前は必須です。'}
+                        theme={'danger'}
+                        size={'base'}
+                        underline={false}
+                      />
                     ) : '' + errors.name && errors.name?.type === 'maxLength' ? (
                       <TextMessage
                         text={'名前は10文字以内で入力してください。'}
                         theme={'danger'}
                         size={'base'}
+                        underline={false}
                       />
                     ) : '' + errors.name &&
                       errors.name?.type === 'server' &&
                       errors.name?.message != undefined ? (
-                      <TextMessage text={errors.name.message} theme={'danger'} size={'base'} />
+                      <TextMessage
+                        text={errors.name.message}
+                        theme={'danger'}
+                        size={'base'}
+                        underline={false}
+                      />
                     ) : (
                       ''
                     )
@@ -183,17 +204,28 @@ export const UserForm = (props: UserFormProps) => {
                   theme={'primary'}
                   error={
                     errors.password && errors.password.type === 'required' ? (
-                      <TextMessage text={'パスワードは必須です。'} theme={'danger'} size={'base'} />
+                      <TextMessage
+                        text={'パスワードは必須です。'}
+                        theme={'danger'}
+                        size={'base'}
+                        underline={false}
+                      />
                     ) : '' + errors.password && errors.password?.type === 'maxLength' ? (
                       <TextMessage
                         text={'パスワードは20文字以内で入力してください。'}
                         theme={'danger'}
                         size={'base'}
+                        underline={false}
                       />
                     ) : '' + errors.name &&
                       errors.name?.type === 'server' &&
                       errors.name?.message != undefined ? (
-                      <TextMessage text={errors.name.message} theme={'danger'} size={'base'} />
+                      <TextMessage
+                        text={errors.name.message}
+                        theme={'danger'}
+                        size={'base'}
+                        underline={false}
+                      />
                     ) : (
                       ''
                     )
@@ -221,17 +253,24 @@ export const UserForm = (props: UserFormProps) => {
                         text={'メールアドレスは必須です。'}
                         theme={'danger'}
                         size={'base'}
+                        underline={false}
                       />
                     ) : '' + errors.emailAddress && errors.emailAddress?.type === 'maxLength' ? (
                       <TextMessage
                         text={'メールアドレスは255文字以内で入力してください。'}
                         theme={'danger'}
                         size={'base'}
+                        underline={false}
                       />
                     ) : '' + errors.name &&
                       errors.name?.type === 'server' &&
                       errors.name?.message != undefined ? (
-                      <TextMessage text={errors.name.message} theme={'danger'} size={'base'} />
+                      <TextMessage
+                        text={errors.name.message}
+                        theme={'danger'}
+                        size={'base'}
+                        underline={false}
+                      />
                     ) : (
                       ''
                     )

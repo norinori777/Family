@@ -107,5 +107,10 @@ module.exports = {
       },
     },
   },
+  purge: {
+    options: {
+      safelist: ['z-10', 'z-20', 'z-30', 'z-40', 'z-50'], // ここに動的に生成する可能性のあるクラス名を追加
+    },
+  },
   plugins: [],
 };

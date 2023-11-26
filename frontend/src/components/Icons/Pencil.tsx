@@ -1,6 +1,11 @@
 import React from 'react'
-
-export const Pencil = () => {
+import { getTextTheme } from '../../util/theme/theme'
+import { theme } from '../../util/theme/types'
+interface Pencilrops {
+  theme: theme
+}
+export const Pencil = (props: Pencilrops) => {
+  const theme = getTextTheme(props.theme)
   return (
     <>
       <svg
@@ -9,7 +14,7 @@ export const Pencil = () => {
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className="w-6 h-6"
+        className={`w-6 h-6 ${theme}`}
       >
         <path
           strokeLinecap="round"
