@@ -2,10 +2,8 @@ package jp.norinori777.infrastructure.datasource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.Map;
 
 import org.junit.jupiter.api.Test;
-import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
@@ -15,6 +13,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
 import jp.norinori777.domain.model.User.User;
+import jp.norinori777.infrastructure.datasource.chat.UserMapper;
 
 @Sql("UserMapperTest.sql")
 @Transactional

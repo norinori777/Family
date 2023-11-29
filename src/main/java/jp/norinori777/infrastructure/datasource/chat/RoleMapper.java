@@ -1,4 +1,4 @@
-package jp.norinori777.infrastructure.datasource;
+package jp.norinori777.infrastructure.datasource.chat;
 
 import java.util.List;
 

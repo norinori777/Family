@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jp.norinori777.domain.model.Room.ChatRoomMemberUser;
-import jp.norinori777.infrastructure.datasource.ListRoomMembers;
+import jp.norinori777.infrastructure.datasource.chat.ListRoomMembers;
 
 @Service
 public class ListRoomMembersServiceImpl implements ListRoomMembersService {

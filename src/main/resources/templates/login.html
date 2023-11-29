@@ -3,24 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <title>ログイン</title>
+    <link href="/css/index.css" rel="stylesheet" />
   </head>
   <body>
-    <form id="loginForm" method="post" th:action="@{/login}">
-      <label>メールアドレス:</label>
-      <input type="text" name="username" /><br />
-      <br />
-      <label>パスワード：</label>
-      <input type="password" name="password" /><br />
-      <br />
-      <input type="submit" value="ログイン" /><br />
-      <br />
-      <p
-        th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
-        th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
-        class="text-danger"
-      >
-        ログインエラーメッセージ
-      </p>
-    </form>
+    <div class="flex" style="justify-content: space-around; align-items: center; margin-top: 10rem">
+      <div class="w-96" style="height: 24rem;">
+        <form class="flex flex-col gap-2" id="loginForm" method="post" th:action="@{/login}">
+          <div class="flex flex-col">
+            <label class="block mb-2 text-sm font-medium  text-primary-default">メールアドレス:</label>
+            <input class="focus:ring-primary-default ring-gray-300 ring-2 focus:ring-2 focus:outline-none focus:text-primary-default placeholder-gray-300 focus:placeholder-primary-light text-sm rounded-lg block w-full p-2.5" type="text" name="username" />
+          </div>
+          <div class="flex flex-col">
+            <label class="block mb-2 text-sm font-medium  text-primary-default">パスワード：</label>
+            <input class="focus:ring-primary-default ring-gray-300 ring-2 focus:ring-2 focus:outline-none focus:text-primary-default placeholder-gray-300 focus:placeholder-primary-light text-sm rounded-lg block w-full p-2.5" type="password" name="password" /><br />
+          </div>
+          <input class="text-white font-bold py-2 px-4 rounded bg-primary-default hover:bg-primary-dark" type="submit" value="ログイン" /><br />
+          <p
+            th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
+            th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+            class="text-danger"
+          >
+            ログインエラーメッセージ
+          </p>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
