@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jp.norinori777.domain.model.User.User;
-import jp.norinori777.infrastructure.datasource.UserMapper;
 import jp.norinori777.infrastructure.datasource.Repository.UpdateUserExclusiveControl;
+import jp.norinori777.infrastructure.datasource.chat.UserMapper;
 
 @Service
 public class UserServiceImpl implements UserService {

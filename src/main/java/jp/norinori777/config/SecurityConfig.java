@@ -11,6 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
+import jakarta.servlet.http.HttpServletResponse;
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -19,22 +21,23 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .formLogin(login->login
-            .loginProcessingUrl("/login")
-            .loginPage("/login")
-            .defaultSuccessUrl("/hello", true)
-            .failureUrl("/login/error")
-            .permitAll()
-        ).logout(logout -> logout.logoutSuccessUrl("/login")
+                .exceptionHandling(handling -> handling.authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED)))
+                .formLogin(login -> login
+                                .loginProcessingUrl("/login")
+                                .loginPage("/login")
+                                .defaultSuccessUrl("/ChatRoom", true)
+                                .failureUrl("/login/error")
+                                .permitAll()
+                ).logout(logout -> logout.logoutSuccessUrl("/login")
         ).headers(headers -> headers.frameOptions().sameOrigin()
         ).authorizeHttpRequests(authz -> authz
-            .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-            .requestMatchers("/").permitAll()
-            .requestMatchers("/general").hasRole("GENERAL")
-            .requestMatchers("/admin").hasRole("ADMIN")
-            .anyRequest().authenticated()
-        )
-        .csrf(csrf -> csrf.csrfTokenRepository(new HttpSessionCsrfTokenRepository()));
+                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                        .requestMatchers("/").permitAll()
+                        .requestMatchers("/general").hasRole("GENERAL")
+                        .requestMatchers("/admin").hasRole("ADMIN")
+                        .anyRequest().authenticated()
+        ).csrf(csrf -> csrf.csrfTokenRepository(new HttpSessionCsrfTokenRepository())
+        ).sessionManagement(sessionManagement -> sessionManagement.invalidSessionUrl("/login"));
 
         return http.build();
     }

@@ -42,6 +42,11 @@ export const useAxios = <T>({
         if (isMounted) {
           setError(error)
           setIsLoading(false)
+
+          // Redirect to login page if the user is not authenticated
+          if (error.response.status === 401) {
+            window.location.href = '/login'
+          }
         }
       }
     }

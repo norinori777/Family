@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import jp.norinori777.domain.model.User.User;
-import jp.norinori777.infrastructure.datasource.EditUserMapper;
-import jp.norinori777.infrastructure.datasource.UserMapper;
+import jp.norinori777.infrastructure.datasource.chat.EditUserMapper;
+import jp.norinori777.infrastructure.datasource.chat.UserMapper;
 
 @Repository
 public class UpdateUserExclusiveControl {

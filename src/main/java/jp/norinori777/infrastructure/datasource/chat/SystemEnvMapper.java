@@ -1,4 +1,4 @@
-package jp.norinori777.infrastructure.datasource;
+package jp.norinori777.infrastructure.datasource.chat;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

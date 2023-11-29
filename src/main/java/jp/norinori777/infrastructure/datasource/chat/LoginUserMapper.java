@@ -1,4 +1,4 @@
-package jp.norinori777.infrastructure.datasource;
+package jp.norinori777.infrastructure.datasource.chat;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import jp.norinori777.domain.model.User.User;
 
 @Mapper
 public interface LoginUserMapper {
-	public User selectOne(String emailAddress);
+	public User selectUser(String emailAddress);
 
 	public List<String> getRoleList(String emailAddress);
 }

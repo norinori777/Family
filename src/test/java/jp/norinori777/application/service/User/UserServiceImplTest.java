@@ -5,18 +5,15 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.dao.OptimisticLockingFailureException;
 
 import jp.norinori777.domain.model.User.User;
-import jp.norinori777.infrastructure.datasource.EditUserMapper;
-import jp.norinori777.infrastructure.datasource.UserMapper;
 import jp.norinori777.infrastructure.datasource.Repository.UpdateUserExclusiveControl;
+import jp.norinori777.infrastructure.datasource.chat.UserMapper;
 
 @ExtendWith(MockitoExtension.class) // Mockitoを使用するためのアノテーション
 public class UserServiceImplTest {

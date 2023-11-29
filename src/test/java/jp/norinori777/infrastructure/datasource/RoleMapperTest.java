@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 import jp.norinori777.domain.model.Role.MasterRole;
+import jp.norinori777.infrastructure.datasource.chat.RoleMapper;
 
 // @Sql("RoleMapperTest.sql")
 @Transactional

@@ -21,9 +21,11 @@ const useDirectAxios = <T, D>() => {
       await setState({ ...state, response: res, error: null, loading: false })
     } catch (error: any) {
       await setState({ ...state, error: error, loading: false })
+      if (error.response.status === 401) {
+        window.location.href = '/login'
+      }
     }
   }
-
   return { ...state, sendRequest }
 }
 
