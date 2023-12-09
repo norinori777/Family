@@ -16,7 +16,7 @@ interface TextAreaProps {
   rowLength: number
   theme: theme
   field: any
-  error?: string
+  error: string | React.JSX.Element
 }
 
 export const TextAreaInHookForm = (props: TextAreaProps) => {

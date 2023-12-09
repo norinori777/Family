@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainTitle タイトルの表示 1`] = `
+<div>
+  <div
+    class="w-72"
+  >
+    <h1
+      class="text-primary-default text-2xl font-bold"
+    >
+      タイトル
+    </h1>
+  </div>
+</div>
+`;
+
+exports[`タイトルの表示 1`] = `
+<div>
+  <div
+    class="w-72"
+  >
+    <h1
+      class="text-primary-default text-2xl font-bold"
+    >
+      タイトル
+    </h1>
+  </div>
+</div>
+`;
