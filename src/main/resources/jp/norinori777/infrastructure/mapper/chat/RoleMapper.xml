@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.norinori777.infrastructure.mapper.chat.RoleMapper">
+	<select id="selectMasterRoles" resultType="jp.norinori777.domain.model.Role.MasterRole">
+		SELECT role_id, role_name FROM m_role;
+	</select>
+
+	<insert id="insertUserRole">
+		INSERT INTO t_user_role (role_id, email_address) VALUES (#{roleId}, #{emailAddress});
+	</insert>
+	<delete id="deleteUserRole">
+		DELETE FROM t_user_role WHERE email_address = #{emailAddress};
+	</delete>
+</mapper>

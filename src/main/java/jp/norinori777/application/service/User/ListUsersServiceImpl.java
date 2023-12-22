@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jp.norinori777.domain.model.User.User;
-import jp.norinori777.infrastructure.datasource.chat.ListUserMapper;
+import jp.norinori777.infrastructure.mapper.chat.ListUserMapper;
 
 @Service
 public class ListUsersServiceImpl implements ListUserService {

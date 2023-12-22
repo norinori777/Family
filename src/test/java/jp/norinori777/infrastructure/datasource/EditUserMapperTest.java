@@ -14,7 +14,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
 import jp.norinori777.domain.model.User.User;
-import jp.norinori777.infrastructure.datasource.chat.EditUserMapper;
+import jp.norinori777.infrastructure.mapper.chat.EditUserMapper;
 
 @Sql("EditUserMapperTest.sql")
 @Transactional

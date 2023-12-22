@@ -5,13 +5,14 @@ import { UserContainer } from '../../containers/pages/UserContainer'
 import { ChatContainer } from '../../containers/pages/ChatContainer'
 import { ListChatRoomContainer } from '../../containers/pages/ListChatRoomConatainer'
 import { CycleDoContainer } from '../../containers/pages/CycleDoContainer'
+import { KindleScribeNoteToEvernoteSetting } from '../../containers/pages/KindleScribeNoteToEvernoteSetting'
 
 const sideMenuItems: SideMenuItem[] = [
   { icon: Pencil, text: 'チャットルーム', link: '/ChatRoom', theme: 'white' },
   { icon: Pencil, text: 'CycleDo', link: '/CycleDo', theme: 'white' },
   { icon: Pencil, text: 'Chat', link: '/Chat/1', theme: 'white' },
   { icon: Pencil, text: 'ユーザー情報', link: '/User', theme: 'white' },
-  { icon: Pencil, text: 'MenuTitle5', link: '/test5', theme: 'white' },
+  { icon: Pencil, text: 'バッチ設定', link: '/Setting', theme: 'white' },
 ]
 
 const contentItems: ContentItem[] = [
@@ -19,7 +20,7 @@ const contentItems: ContentItem[] = [
   { link: '/CycleDo', key: 'CycleDo', component: CycleDoContainer },
   { link: '/Chat/:roomId', key: 'chat', component: ChatContainer },
   { link: '/User', key: 'user', component: UserContainer },
-  { link: '/test5', key: 'test5', component: test },
+  { link: '/Setting', key: 'Setting', component: KindleScribeNoteToEvernoteSetting },
 ]
 
 const headerMenuItem: HeaderMenuItem = {

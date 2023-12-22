@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.norinori777.infrastructure.mapper.chat.SystemEnvMapper">
+    <select id="selectSystemEnv" resultType="jp.norinori777.domain.model.SystemEnv.SystemEnv">
+        select
+            id,
+            key,
+            value,
+            to_char(create_at, 'YYYY-MM-DD') as create_at,
+            to_char(update_at, 'YYYY-MM-DD') as update_at
+        from m_system_envs
+        where key = #{key}
+    </select>
+</mapper>

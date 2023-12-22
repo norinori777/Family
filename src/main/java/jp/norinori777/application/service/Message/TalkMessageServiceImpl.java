@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import jp.norinori777.domain.model.Message.TalkMessage;
 import jp.norinori777.domain.model.Message.TalkMessageService;
-import jp.norinori777.infrastructure.datasource.chat.TalkMessageMapper;
+import jp.norinori777.infrastructure.mapper.chat.TalkMessageMapper;
 
 @Service
 public class TalkMessageServiceImpl implements TalkMessageService {

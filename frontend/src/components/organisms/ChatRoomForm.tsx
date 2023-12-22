@@ -169,8 +169,8 @@ export const ChatRoomForm = (props: ChatRoomFormProps) => {
                       errors.roomName && errors.roomName?.type === 'required'
                         ? 'チャットルーム名は必須です。'
                         : '' + errors.roomName && errors.roomName?.type === 'maxLength'
-                        ? 'チャットルーム名は32文字以内で入力してください。'
-                        : ''
+                          ? 'チャットルーム名は32文字以内で入力してください。'
+                          : ''
                     }
                   />
                 )}

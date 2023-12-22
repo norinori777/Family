@@ -11,7 +11,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
 import jp.norinori777.domain.model.Room.ChatRoomMemberUser;
-import jp.norinori777.infrastructure.datasource.chat.ListRoomMembers;
+import jp.norinori777.infrastructure.mapper.chat.ListRoomMembers;
 
 @Sql("ListRoomMembersMapperTest.sql")
 @SpringBootTest

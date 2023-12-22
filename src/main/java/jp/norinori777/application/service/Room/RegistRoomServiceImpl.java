@@ -9,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import jp.norinori777.domain.model.Room.ChatRoomMemberUser;
 import jp.norinori777.domain.model.Room.RegistRoom;
 import jp.norinori777.domain.model.Room.RegistRoomService;
-import jp.norinori777.infrastructure.datasource.chat.ListRoomMembers;
-import jp.norinori777.infrastructure.datasource.chat.RegistRoomMapper;
-import jp.norinori777.infrastructure.datasource.chat.TalkMessageMapper;
+import jp.norinori777.infrastructure.mapper.chat.ListRoomMembers;
+import jp.norinori777.infrastructure.mapper.chat.RegistRoomMapper;
+import jp.norinori777.infrastructure.mapper.chat.TalkMessageMapper;
 
 @Service
 @Transactional

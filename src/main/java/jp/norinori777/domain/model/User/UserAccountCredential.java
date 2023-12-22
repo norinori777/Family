@@ -44,6 +44,9 @@ public class UserAccountCredential implements UserDetails {
 
 	@Override
 	public boolean isAccountNonLocked() {
+		if(this.loginMissTimes == null) {
+			return true;
+		}	
 		return this.loginMissTimes < 5;
 	}
 

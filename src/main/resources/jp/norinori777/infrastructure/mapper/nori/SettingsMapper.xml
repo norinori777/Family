@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.norinori777.infrastructure.mapper.nori.SettingsMapper">
+    <select id="selectSettings" resultType="jp.norinori777.domain.model.KindleScribeEvernoteSettings.Setting">
+        select * from  m_setings        
+    </select>
+    <update id="updateSetting" parameterType="jp.norinori777.domain.model.KindleScribeEvernoteSettings.Setting">
+        update m_setings set value = ${value} where name = ${name}
+    </update>
+</mapper>

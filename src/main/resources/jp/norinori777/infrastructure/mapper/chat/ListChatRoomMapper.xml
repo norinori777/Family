@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.norinori777.infrastructure.mapper.chat.ListChatRoomMapper">
+	<select id="selectChatRooms" resultType="jp.norinori777.domain.model.Room.Room">
+		select 
+			m.room_id,
+			room_name, 
+			room_description,
+            room_owner_id,
+			m.state,
+            to_char(m.create_at, 'YYYY-MM-DD') as create_at, 
+			to_char(m.update_at, 'YYYY-MM-DD') as update_at
+		from m_room m
+		left outer join t_room_member on m.room_id = t_room_member.room_id and t_room_member.user_id = #{userId}	
+		where t_room_member.user_id = #{userId} OR room_owner_id = #{userId}
+	</select>
+</mapper>

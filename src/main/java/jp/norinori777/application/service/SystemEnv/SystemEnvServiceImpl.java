@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jp.norinori777.domain.model.SystemEnv.SystemEnv;
-import jp.norinori777.infrastructure.datasource.chat.SystemEnvMapper;
+import jp.norinori777.infrastructure.mapper.chat.SystemEnvMapper;
 
 @Service
 public class SystemEnvServiceImpl implements SystemEnvService {

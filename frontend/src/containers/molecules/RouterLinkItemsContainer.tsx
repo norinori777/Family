@@ -18,7 +18,7 @@ export const RouterLinkItemsContainer = (props: RouterLinkItemProps) => {
         link={props.link}
         select={setSelectOne}
         underline={false}
-        theme={'primary'}
+        theme={'black'}
         size={'base'}
       />
     </>
