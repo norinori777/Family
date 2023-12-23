@@ -7,6 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 import jp.norinori777.domain.model.KindleScribeEvernoteSettings.Setting;
 
 @Mapper
-public interface ListSettings {
+public interface SettingsMapper {
     public List<Setting> selectSettings();
 }

@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
@@ -46,7 +47,12 @@ public class NoriDataSourceConfig {
     }
 
     @Bean(name = {"noriTransactionManager"})
-    public PlatformTransactionManager noriTransactionManager(DataSource noriDataSource) {
+    public PlatformTransactionManager noriTransactionManager(@Qualifier("noriDataSource") DataSource noriDataSource) {
         return new DataSourceTransactionManager(noriDataSource);
+    }
+
+    @Bean(name = {"noriJdbcTemplate"}) 
+    public JdbcTemplate noriJdbcTemplate(@Qualifier("noriDataSource") DataSource noriDataSource) {
+        return new JdbcTemplate(noriDataSource);
     }
 }

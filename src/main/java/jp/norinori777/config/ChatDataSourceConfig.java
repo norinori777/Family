@@ -11,6 +11,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
@@ -51,7 +52,13 @@ public class ChatDataSourceConfig {
 
     @Bean(name={"chatTransactionManager"})
     @Primary
-    public PlatformTransactionManager chatTransactionManager(DataSource chatDataSource) {
+    public PlatformTransactionManager chatTransactionManager(@Qualifier("chatDataSource") DataSource chatDataSource) {
         return new DataSourceTransactionManager(chatDataSource);
+    }
+
+    @Bean(name={"chatJdbcTemplate"})
+    @Primary
+    public JdbcTemplate chatJdbcTemplate(@Qualifier("chatDataSource") DataSource chatDataSource) {
+        return new JdbcTemplate(chatDataSource);
     }
 }

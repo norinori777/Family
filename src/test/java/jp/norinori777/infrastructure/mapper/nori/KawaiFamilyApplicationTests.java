@@ -1,4 +1,4 @@
-package jp.norinori777;
+package jp.norinori777.infrastructure.mapper.nori;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
