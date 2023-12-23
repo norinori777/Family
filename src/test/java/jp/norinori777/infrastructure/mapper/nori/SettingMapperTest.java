@@ -3,6 +3,7 @@ package jp.norinori777.infrastructure.mapper.nori;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
@@ -35,21 +36,25 @@ public class SettingMapperTest {
     JdbcTemplate jdbcTemplate;
 
     @Autowired
-    private SettingsMapper listSettings;
+    private SettingsMapper mapper;
 
     private List<Setting> settings;
 
     @Test
     public void 設定値を取得できること(){
-        settings = listSettings.selectSettings();
+        settings = mapper.selectSettings();
         
         assertEquals(5, settings.size());
     }
 
     @Test
-    public void 設定値を取得できること2(){
-        settings = listSettings.selectSettings();
-        
-        assertEquals(5, settings.size());
+    public void 設定値を更新できること(){
+        Setting setting = new Setting("TOKENS_DIRECTORY_PATH", "./hoge");
+        int result = mapper.updateSetting(setting);
+
+        assertEquals(1, result);
+
+        Map<String, Object> settingMap = jdbcTemplate.queryForMap("SELECT * FROM m_settings WHERE name = ?", "TOKENS_DIRECTORY_PATH");
+        assertEquals("./hoge", settingMap.get("value"));
     }
 }

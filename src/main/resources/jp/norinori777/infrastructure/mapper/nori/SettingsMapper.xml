@@ -5,6 +5,6 @@
         select * from  m_settings        
     </select>
     <update id="updateSetting" parameterType="jp.norinori777.domain.model.KindleScribeEvernoteSettings.Setting">
-        update m_settings set value = ${value} where name = ${name}
+        update m_settings set value = #{value} where name = #{name}
     </update>
 </mapper>

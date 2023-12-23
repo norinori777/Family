@@ -4,8 +4,16 @@ import lombok.Data;
 
 @Data
 public class Setting {
-    private String name;
-    private String value;
+    private final String name;
+    private final String value;
+
+    public Setting(String name, String value) {
+        if(name == null || name.isEmpty()) throw new IllegalArgumentException("name is empty");
+        if(value == null || value.isEmpty()) throw new IllegalArgumentException("value is empty");
+
+        this.name = name;
+        this.value = value;
+    }
 }
 
 

@@ -9,4 +9,6 @@ import jp.norinori777.domain.model.KindleScribeEvernoteSettings.Setting;
 @Mapper
 public interface SettingsMapper {
     public List<Setting> selectSettings();
+
+    public int updateSetting(Setting setting);
 }
