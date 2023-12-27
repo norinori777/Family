@@ -6,11 +6,14 @@ import lombok.Data;
 
 @Data
 public class DownLoadFolder {
+    
+    private Integer id;
+
     @NotNull
     @Pattern(regexp = "^[a-zA-Z]$", message = "Only single alphabet characters are allowed")
     private String initial;
 
     @NotNull
     @Pattern(regexp = "^[a-zA-Z0-9-_\\\\\\:]+$", message = "Invalid directory path")
-    private String downloadFolder;
+    private String path;
 }

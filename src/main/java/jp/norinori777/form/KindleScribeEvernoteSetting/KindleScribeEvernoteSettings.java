@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jp.norinori777.domain.model.KindleScribeEvernoteSettings.OutputPdfPath;
 import lombok.Data;
 
 @Data
@@ -23,10 +24,10 @@ public class KindleScribeEvernoteSettings {
     private String tokensDirectoryPath;
     @NotBlank
     @Email
-    private String mail_user_id;
+    private String mailUserId;
     @NotBlank
     @Email
-    private String sender_mail;
+    private String senderMail;
     @NotBlank
-    private List<DownLoadFolder> downloadFolders;
+    private List<OutputPdfPath> outputPdfPaths;
 }

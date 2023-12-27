@@ -18,11 +18,12 @@ import { LinkItem } from '../../components/atoms/LinkItem'
 
 interface KindleScribeNoteToEvernoteFormProps {
   setting: KindleScribeNoteToEvernote
+  alertMessage: string
 }
 
 export const KindleScribeNoteToEvernoteForm = (props: KindleScribeNoteToEvernoteFormProps) => {
-  const [alertMessage, setAlertMessage] = useState('')
-  const [showAlert, setShowAlert] = useState(false)
+  const [alertMessage, setAlertMessage] = useState(props.alertMessage)
+  const [showAlert, setShowAlert] = useState(props.alertMessage != '' ? true : false)
   const { response, error, loading, sendRequest } = useDirectAxios<
     KindleScribeNoteToEvernote,
     KindleScribeNoteToEvernote
@@ -53,8 +54,8 @@ export const KindleScribeNoteToEvernoteForm = (props: KindleScribeNoteToEvernote
     if (isCsrfLoading) return
     const csrfToken = csrfData != null ? { [csrfData.headerName]: csrfData.token } : {}
     sendRequest({
-      url: '/batch/setting',
-      method: 'POST',
+      url: '/kindleScribeNoteToEvernote/setting',
+      method: 'PUT',
       headers: csrfToken,
       params: data,
     })

@@ -3,14 +3,12 @@ package jp.norinori777.application.controller.ChatRoom;
 import java.util.Locale;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.List;
 
 import jp.norinori777.application.service.ChatRoom.ListRoomMembersService;
@@ -36,6 +33,7 @@ import jp.norinori777.domain.model.Room.Room;
 import jp.norinori777.domain.model.Room.ChatRoomMemberUser;
 import jp.norinori777.domain.model.User.User;
 import jp.norinori777.domain.model.User.UserAccountCredential;
+import jp.norinori777.util.FormErrorMessage;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -75,7 +73,8 @@ public class ChatRoomRestController {
     @PutMapping("update")
     public ResponseEntity<RestResult<NullData>> updateChatRoom(@Validated @RequestBody RegistRoom registRoom, BindingResult bindingResult, Locale locale) {
         if (bindingResult.hasErrors()) {
-            Map<String, String> errors = getErrorMessages(bindingResult, locale);
+            FormErrorMessage formErrorMessage = new FormErrorMessage(messageSource, bindingResult, locale);
+            Map<String, String> errors = formErrorMessage.getErrorMessages();
             RestResponse<NullData> response = new RestResponse<>(90, errors, null, HttpStatus.BAD_REQUEST);
             return response.createRestResponse();
         }
@@ -95,7 +94,8 @@ public class ChatRoomRestController {
     @PostMapping("add")
     public ResponseEntity<RestResult<NullData>> addChatRoom(@Validated @RequestBody RegistRoom registRoom, BindingResult bindingResult, Locale locale) {
         if (bindingResult.hasErrors()) {
-            Map<String, String> errors = getErrorMessages(bindingResult, locale);
+            FormErrorMessage formErrorMessage = new FormErrorMessage(messageSource, bindingResult, locale);
+            Map<String, String> errors = formErrorMessage.getErrorMessages();
             RestResponse<NullData> response = new RestResponse<>(90, errors, null, HttpStatus.BAD_REQUEST);
             return response.createRestResponse();
         }
@@ -140,16 +140,5 @@ public class ChatRoomRestController {
             response = new RestResponse<List<ChatRoomMemberUser>>(99, null, null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return response.createRestResponse();
-    }
-
-
-    private Map<String, String> getErrorMessages(BindingResult bindingResult, Locale locale){
-        Map<String, String> errors = new HashMap<>();
-        List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-        for (FieldError error : fieldErrors) {
-            String message = messageSource.getMessage(error, locale);
-            errors.put(error.getField(), message);
-        }
-        return errors;
     }
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.norinori777.infrastructure.mapper.nori.OutputPdfPathMapper">
+    <select id="selectOutputPdfPaths" resultType="jp.norinori777.domain.model.KindleScribeEvernoteSettings.OutputPdfPath">
+        select * from  m_output_pdf_paths        
+    </select>
+
+    <insert id="insertOutputPdfPath" parameterType="jp.norinori777.domain.model.KindleScribeEvernoteSettings.OutputPdfPath">
+        insert into m_output_pdf_paths (initial, path, created_at, updated_at) values (#{initial}, #{path}, now(), now())
+    </insert>
+
+    <update id="updateOutputPdfPath" parameterType="jp.norinori777.domain.model.KindleScribeEvernoteSettings.OutputPdfPath">
+        update m_output_pdf_paths set initial = #{initial}, path = #{path} , updated_at = now() where id = #{id}
+    </update>
+
+    <delete id="deleteOutputPdfPath" parameterType="jp.norinori777.domain.model.KindleScribeEvernoteSettings.OutputPdfPath">
+        delete from m_output_pdf_paths where id = #{id}
+    </delete>
+</mapper>
