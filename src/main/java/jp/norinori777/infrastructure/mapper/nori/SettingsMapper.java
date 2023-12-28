@@ -11,4 +11,6 @@ public interface SettingsMapper {
     public List<Setting> selectSettings();
 
     public int updateSetting(Setting setting);
+
+    public int upsertSetting(Setting setting);
 }

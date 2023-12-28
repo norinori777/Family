@@ -9,6 +9,13 @@
         insert into m_output_pdf_paths (initial, path, created_at, updated_at) values (#{initial}, #{path}, now(), now())
     </insert>
 
+    <insert id="upsertOutputPdfPath" parameterType="jp.norinori777.domain.model.KindleScribeEvernoteSettings.OutputPdfPath">
+        INSERT INTO m_output_pdf_paths (initial, path, created_at, updated_at) 
+        VALUES (#{initial}, #{path}, now(), now()) 
+        ON CONFLICT (initial)
+        DO UPDATE SET path = #{path}, updated_at = now()
+    </insert>
+
     <update id="updateOutputPdfPath" parameterType="jp.norinori777.domain.model.KindleScribeEvernoteSettings.OutputPdfPath">
         update m_output_pdf_paths set initial = #{initial}, path = #{path} , updated_at = now() where id = #{id}
     </update>

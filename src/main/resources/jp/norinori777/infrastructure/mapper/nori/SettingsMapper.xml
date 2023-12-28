@@ -7,4 +7,10 @@
     <update id="updateSetting" parameterType="jp.norinori777.domain.model.KindleScribeEvernoteSettings.Setting">
         update m_settings set value = #{value} where name = #{name}
     </update>
+    <insert id="upsertSetting" parameterType="jp.norinori777.domain.model.KindleScribeEvernoteSettings.Setting">
+        INSERT INTO m_settings (name, value, created_at, updated_at) 
+        VALUES (#{name}, #{value}, now(), now())
+        ON CONFLICT (name)
+        DO UPDATE SET value = #{value}, updated_at = now()
+    </insert>
 </mapper>

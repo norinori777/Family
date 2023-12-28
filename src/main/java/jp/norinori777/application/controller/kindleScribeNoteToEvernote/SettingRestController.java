@@ -54,6 +54,14 @@ public class SettingRestController {
     @PutMapping("/setting")
     public ResponseEntity<RestResult<NullData>> updateSetting(@Validated @RequestBody KindleScribeEvernoteSettings kindleScribeEvernoteSettings, BindingResult bindingResult, Locale locale){
         RestResponse<NullData> restResponse;
+
+        if(bindingResult.hasErrors()){
+            FormErrorMessage formErrorMessage = new FormErrorMessage(messageSource, bindingResult, locale);
+            Map<String, String> errors = formErrorMessage.getErrorMessages();
+            restResponse = new RestResponse<NullData>(90, errors, null, HttpStatus.BAD_REQUEST);
+            return restResponse.createRestResponse();
+        }
+
         try {
             settingService.setSetting(kindleScribeEvernoteSettings);
             restResponse = new RestResponse<NullData>(0, null, null, HttpStatus.OK);

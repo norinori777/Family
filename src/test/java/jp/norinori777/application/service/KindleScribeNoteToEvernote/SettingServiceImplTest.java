@@ -73,29 +73,29 @@ public class SettingServiceImplTest {
         verify(outputPdfPathMapper, times(1)).selectOutputPdfPaths();
     }
 
-    @Test
-    public void バッチ設定値が取得がNULLだった場合例外が発生すること() {
-        when(settingsMapper.selectSettings()).thenReturn(null);
+    // @Test
+    // public void バッチ設定値が取得がNULLだった場合例外が発生すること() {
+    //     when(settingsMapper.selectSettings()).thenReturn(null);
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            settingService.getSettings();
-        });
+    //     Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+    //         settingService.getSettings();
+    //     });
 
-        assertEquals("settings is null", exception.getMessage());
-        verify(settingsMapper, times(1)).selectSettings();
-        verify(outputPdfPathMapper, times(0)).selectOutputPdfPaths();
-    }
+    //     assertEquals("settings is null", exception.getMessage());
+    //     verify(settingsMapper, times(1)).selectSettings();
+    //     verify(outputPdfPathMapper, times(0)).selectOutputPdfPaths();
+    // }
 
-    @Test
-    public void バッチ設定値が取得が空だった場合例外が発生すること() {
-        when(settingsMapper.selectSettings()).thenReturn(new ArrayList());
+    // @Test
+    // public void バッチ設定値が取得が空だった場合例外が発生すること() {
+    //     when(settingsMapper.selectSettings()).thenReturn(new ArrayList());
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            settingService.getSettings();
-        });
+    //     Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+    //         settingService.getSettings();
+    //     });
 
-        assertEquals("settings is empty", exception.getMessage());
-        verify(settingsMapper, times(1)).selectSettings();
-        verify(outputPdfPathMapper, times(0)).selectOutputPdfPaths();
-    }
+    //     assertEquals("settings is empty", exception.getMessage());
+    //     verify(settingsMapper, times(1)).selectSettings();
+    //     verify(outputPdfPathMapper, times(0)).selectOutputPdfPaths();
+    // }
 }

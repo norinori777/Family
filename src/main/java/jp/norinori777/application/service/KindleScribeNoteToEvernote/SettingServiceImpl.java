@@ -45,21 +45,21 @@ public class SettingServiceImpl implements SettingService {
     public void setSetting(KindleScribeEvernoteSettings kindleScribeEvernoteSettings) {
 
         try {
-            Setting applicationName = new Setting("applicatoin_name", kindleScribeEvernoteSettings.getApplicationName());
+            Setting applicationName = new Setting("application_name", kindleScribeEvernoteSettings.getApplicationName());
             Setting credentialsJson = new Setting("credentials_json", kindleScribeEvernoteSettings.getCredentialsJson());
             Setting tokensDirectoryPath = new Setting("tokens_directory_path",
                     kindleScribeEvernoteSettings.getTokensDirectoryPath());
             Setting mailUserId = new Setting("mail_user_id", kindleScribeEvernoteSettings.getMailUserId());
             Setting senderMail = new Setting("sender_mail", kindleScribeEvernoteSettings.getSenderMail());
     
-            settingsMapper.updateSetting(applicationName);
-            settingsMapper.updateSetting(credentialsJson);
-            settingsMapper.updateSetting(tokensDirectoryPath);
-            settingsMapper.updateSetting(mailUserId);
-            settingsMapper.updateSetting(senderMail);
+            settingsMapper.upsertSetting(applicationName);
+            settingsMapper.upsertSetting(credentialsJson);
+            settingsMapper.upsertSetting(tokensDirectoryPath);
+            settingsMapper.upsertSetting(mailUserId);
+            settingsMapper.upsertSetting(senderMail);
     
             kindleScribeEvernoteSettings.getOutputPdfPaths().forEach(outputPdfPath -> {
-                outputPdfPathMapper.updateOutputPdfPath(outputPdfPath);
+                outputPdfPathMapper.upsertOutputPdfPath(outputPdfPath);
             }); 
         } catch (Exception e) {
             throw e;

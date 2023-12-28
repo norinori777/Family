@@ -14,5 +14,7 @@ public interface OutputPdfPathMapper {
 
     public int updateOutputPdfPath(OutputPdfPath outputPdfPath);
 
+    public int upsertOutputPdfPath(OutputPdfPath outputPdfPath);
+
     public int deleteOutputPdfPath(OutputPdfPath outputPdfPath); 
 }

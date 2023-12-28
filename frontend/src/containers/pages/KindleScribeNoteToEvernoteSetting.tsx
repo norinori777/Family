@@ -9,8 +9,8 @@ export const KindleScribeNoteToEvernoteSetting = () => {
     credentialsJson: '',
     tokensDirectoryPath: '',
     mailUserId: '',
-    senderEmail: '',
-    downloadPaths: [],
+    senderMail: '',
+    outputPdfPaths: [],
   }
 
   const [settings, setSettings] = useState<KindleScribeNoteToEvernote>(defaultDettings)
@@ -30,12 +30,14 @@ export const KindleScribeNoteToEvernoteSetting = () => {
   })
 
   useEffect(() => {
-    if (settingError == null && isSettingLoading != null)
+    if(isSettingLoading) return
+    if (settingError == null && settingData != null)
       setSettings(settingData ?? defaultDettings)
     if (settingError != null) {
+      // TODO: エラーメッセージのリソースからの取か
       setAlertMessage('設定の取得に失敗しました。')
     }
-  }, [settingData, settingError, isSettingLoading])
+  }, [isSettingLoading, settingData, settingError])
 
   return (
     <div>

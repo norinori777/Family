@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
-  DownloadPath,
+  outputPdfPath,
   KindleScribeNoteToEvernote,
 } from '../../domain/KindleScribeNoteToEvernote/types'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
@@ -24,6 +24,7 @@ interface KindleScribeNoteToEvernoteFormProps {
 export const KindleScribeNoteToEvernoteForm = (props: KindleScribeNoteToEvernoteFormProps) => {
   const [alertMessage, setAlertMessage] = useState(props.alertMessage)
   const [showAlert, setShowAlert] = useState(props.alertMessage != '' ? true : false)
+  const [alertMessageTheme, setAlertMessageTheme] = useState<'danger' | 'success'>('danger')
   const { response, error, loading, sendRequest } = useDirectAxios<
     KindleScribeNoteToEvernote,
     KindleScribeNoteToEvernote
@@ -53,22 +54,43 @@ export const KindleScribeNoteToEvernoteForm = (props: KindleScribeNoteToEvernote
   const onSubmit = (data: KindleScribeNoteToEvernote) => {
     if (isCsrfLoading) return
     const csrfToken = csrfData != null ? { [csrfData.headerName]: csrfData.token } : {}
+    const encodedData = {
+      ...data,
+      tokensDirectoryPath: encodeURIComponent(data.tokensDirectoryPath),
+      outputPdfPaths: data.outputPdfPaths.map((item) => ({
+        initial: item.initial,
+        path: encodeURIComponent(item.path),
+      })),
+    }
     sendRequest({
       url: '/kindleScribeNoteToEvernote/setting',
       method: 'PUT',
       headers: csrfToken,
-      params: data,
+      data: data,
     })
   }
 
-  const { fields, append, remove } = useFieldArray({ control, name: 'downloadPaths' })
+  useEffect(() => {
+    if (error == null && response != null) {
+      setAlertMessage('設定の更新に成功しました。')
+      setAlertMessageTheme('success')
+      setShowAlert(true)
+    }
+    if (error != null) {
+      setAlertMessage('設定の更新に失敗しました。')
+      setAlertMessageTheme('danger')
+      setShowAlert(true)
+    }
+  }, [response, error])
+
+  const { fields, append, remove } = useFieldArray({ control, name: 'outputPdfPaths' })
 
   return (
     <div className="flex flex-col gap-2 w-full sm:w-2/3 md:w-2/3 lg:w-1/2 xl:1/3">
       <TextMessage text="KindleScribeNoteToEvernoteバッチ設定" theme="primary" size="3xl" />
       <section className="ml-2">
         <TextMessage text="設定変更後、更新ボタンを押下してください。" theme="normal" size="xl" />
-        <AlertMessage message={alertMessage} showAlert={showAlert} theme={'danger'} />
+        <AlertMessage message={alertMessage} showAlert={showAlert} theme={alertMessageTheme} />
       </section>
       <section className="ml-2">
         <form id="batch-setting-form" onSubmit={handleSubmit(onSubmit)}>
@@ -168,7 +190,7 @@ export const KindleScribeNoteToEvernoteForm = (props: KindleScribeNoteToEvernote
             name="mailUserId"
             control={control}
             defaultValue={props.setting.mailUserId}
-            rules={{ required: true, maxLength: 10 }}
+            rules={{ required: true, maxLength: 256 }}
             render={({ field }) => (
               <TextboxInHookForm
                 name="mailUserId"
@@ -210,13 +232,13 @@ export const KindleScribeNoteToEvernoteForm = (props: KindleScribeNoteToEvernote
             )}
           />
           <Controller
-            name="senderEmail"
+            name="senderMail"
             control={control}
-            defaultValue={props.setting.senderEmail}
-            rules={{ required: true, maxLength: 10 }}
+            defaultValue={props.setting.senderMail}
+            rules={{ required: true, maxLength: 256 }}
             render={({ field }) => (
               <TextboxInHookForm
-                name="senderEmail"
+                name="senderMail"
                 field={field}
                 type={'text'}
                 label={'送信元メールアドレス'}
@@ -224,14 +246,14 @@ export const KindleScribeNoteToEvernoteForm = (props: KindleScribeNoteToEvernote
                 description={''}
                 theme={'primary'}
                 error={
-                  errors.senderEmail && errors.senderEmail?.type === 'required' ? (
+                  errors.senderMail && errors.senderMail?.type === 'required' ? (
                     <TextMessage
                       text={'送信元メールアドレスは必須です。'}
                       theme={'danger'}
                       size={'base'}
                       underline={false}
                     />
-                  ) : '' + errors.senderEmail && errors.senderEmail?.type === 'maxLength' ? (
+                  ) : '' + errors.senderMail && errors.senderMail?.type === 'maxLength' ? (
                     <TextMessage
                       text={'送信元メールアドレスは256文字以内で入力してください。'}
                       theme={'danger'}
@@ -239,10 +261,10 @@ export const KindleScribeNoteToEvernoteForm = (props: KindleScribeNoteToEvernote
                       underline={false}
                     />
                   ) : '' + errors.applicationName &&
-                    errors.senderEmail?.type === 'server' &&
-                    errors.senderEmail?.message != undefined ? (
+                    errors.senderMail?.type === 'server' &&
+                    errors.senderMail?.message != undefined ? (
                     <TextMessage
-                      text={errors.senderEmail.message}
+                      text={errors.senderMail.message}
                       theme={'danger'}
                       size={'base'}
                       underline={false}
@@ -310,16 +332,16 @@ export const KindleScribeNoteToEvernoteForm = (props: KindleScribeNoteToEvernote
             size={'base'}
           />
           <Controller
-            name="downloadPaths"
+            name="outputPdfPaths"
             control={control}
-            defaultValue={props.setting.downloadPaths}
+            defaultValue={props.setting.outputPdfPaths}
             rules={{ required: true }}
             render={({ field }) => (
               <div className="flex flex-col gap-2">
-                {fields.map((item: DownloadPath, index: number) => (
+                {fields.map((item: outputPdfPath, index: number) => (
                   <div key={item.initial} className="flex flex-row gap-2 items-center">
                     <Controller
-                      name={`downloadPaths.${index}.initial`}
+                      name={`outputPdfPaths.${index}.initial`}
                       control={control}
                       defaultValue={item.initial}
                       rules={{ required: true, maxLength: 1 }}
@@ -333,26 +355,26 @@ export const KindleScribeNoteToEvernoteForm = (props: KindleScribeNoteToEvernote
                           description={''}
                           theme={'primary'}
                           error={
-                            errors.downloadPaths &&
-                            errors.downloadPaths[index]?.initial?.type === 'required' ? (
+                            errors.outputPdfPaths &&
+                            errors.outputPdfPaths[index]?.initial?.type === 'required' ? (
                               <TextMessage
                                 text={'イニシャルは必須です。'}
                                 theme={'danger'}
                                 size={'base'}
                                 underline={false}
                               />
-                            ) : '' + errors.downloadPaths &&
-                              errors.downloadPaths?.[index]?.initial?.type === 'maxLength' ? (
+                            ) : '' + errors.outputPdfPaths &&
+                              errors.outputPdfPaths?.[index]?.initial?.type === 'maxLength' ? (
                               <TextMessage
                                 text={'イニシャルは１文字以内で入力してください。'}
                                 theme={'danger'}
                                 size={'base'}
                                 underline={false}
                               />
-                            ) : '' + errors.downloadPaths &&
-                              errors.downloadPaths?.[index]?.type === 'server' ? (
+                            ) : '' + errors.outputPdfPaths &&
+                              errors.outputPdfPaths?.[index]?.type === 'server' ? (
                               <TextMessage
-                                text={errors.downloadPaths?.[index]?.message ?? ''}
+                                text={errors.outputPdfPaths?.[index]?.message ?? ''}
                                 theme={'danger'}
                                 size={'base'}
                                 underline={false}
@@ -365,7 +387,7 @@ export const KindleScribeNoteToEvernoteForm = (props: KindleScribeNoteToEvernote
                       )}
                     />
                     <Controller
-                      name={`downloadPaths.${index}.path`}
+                      name={`outputPdfPaths.${index}.path`}
                       control={control}
                       defaultValue={item.path}
                       rules={{ required: true, maxLength: 2048 }}
@@ -379,24 +401,24 @@ export const KindleScribeNoteToEvernoteForm = (props: KindleScribeNoteToEvernote
                           description={''}
                           theme={'primary'}
                           error={
-                            errors.downloadPaths &&
-                            errors.downloadPaths?.[index]?.path?.type === 'required' ? (
+                            errors.outputPdfPaths &&
+                            errors.outputPdfPaths?.[index]?.path?.type === 'required' ? (
                               <TextMessage
                                 text={'ダウンロードパスは必須です。'}
                                 theme={'danger'}
                                 size={'base'}
                                 underline={false}
                               />
-                            ) : '' + errors.downloadPaths &&
-                              errors.downloadPaths?.[index]?.path?.type === 'maxLength' ? (
+                            ) : '' + errors.outputPdfPaths &&
+                              errors.outputPdfPaths?.[index]?.path?.type === 'maxLength' ? (
                               <TextMessage
                                 text={'ダウンロードパスは2048文字以内で入力してください。'}
                                 theme={'danger'}
                                 size={'base'}
                                 underline={false}
                               />
-                            ) : '' + errors.downloadPaths &&
-                              errors.downloadPaths?.[index]?.path?.type === 'server' &&
+                            ) : '' + errors.outputPdfPaths &&
+                              errors.outputPdfPaths?.[index]?.path?.type === 'server' &&
                               errors.credentialsJson?.message != undefined ? (
                               <TextMessage
                                 text={errors.credentialsJson.message}

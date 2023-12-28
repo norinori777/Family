@@ -20,7 +20,7 @@ public class KindleScribeEvernoteSettings {
     @Length(min = 1, max = 2046)
     private String credentialsJson;
     @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9-_\\\\\\:]+$", message = "Invalid directory path")
+    @Pattern(regexp = "^[a-zA-Z0-9-:_\\.\\\\/_]+$", message = "Invalid directory path")
     private String tokensDirectoryPath;
     @NotBlank
     @Email
@@ -28,6 +28,6 @@ public class KindleScribeEvernoteSettings {
     @NotBlank
     @Email
     private String senderMail;
-    @NotBlank
+    // @NotBlank
     private List<OutputPdfPath> outputPdfPaths;
 }

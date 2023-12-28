@@ -3,11 +3,11 @@ export type KindleScribeNoteToEvernote = {
   credentialsJson: string
   tokensDirectoryPath: string
   mailUserId: string
-  senderEmail: string
-  downloadPaths: DownloadPath[]
+  senderMail: string
+  outputPdfPaths: outputPdfPath[]
 }
 
-export type DownloadPath = {
+export type outputPdfPath = {
   initial: keyof typeof initialLetters | ''
   path: string
 }

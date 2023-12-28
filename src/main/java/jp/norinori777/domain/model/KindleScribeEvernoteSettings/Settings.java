@@ -6,9 +6,6 @@ public class Settings {
     private final List<Setting> settings;
 
     public Settings(List<Setting> settings) {
-        if(settings == null) throw new IllegalArgumentException("settings is null");
-        if(settings.isEmpty()) throw new IllegalArgumentException("settings is empty");
-
         this.settings = settings;
     }
 

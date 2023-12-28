@@ -81,8 +81,8 @@ public class SettingRestControllerTest {
         kindleScribeEvernoteSettings.setApplicationName("a");
         kindleScribeEvernoteSettings.setCredentialsJson("b");
         kindleScribeEvernoteSettings.setTokensDirectoryPath("c");
-        kindleScribeEvernoteSettings.setMailUserId("d");
-        kindleScribeEvernoteSettings.setSenderMail("e");
+        kindleScribeEvernoteSettings.setMailUserId("hoge@hoge.co.jp");
+        kindleScribeEvernoteSettings.setSenderMail("mege@mege.co.jp");
         kindleScribeEvernoteSettings.setOutputPdfPaths(outputPdfPaths);
     
         String requestBody = objectMapper.writeValueAsString(kindleScribeEvernoteSettings);
@@ -97,6 +97,33 @@ public class SettingRestControllerTest {
    }
 
     @Test
+    public void setting更新リクエストのValidation確認() throws Exception{
+        List<OutputPdfPath> outputPdfPaths = new ArrayList();
+        outputPdfPaths.add(new OutputPdfPath(1,"a", "b"));
+        outputPdfPaths.add(new OutputPdfPath(2,"c", "d"));
+        outputPdfPaths.add(new OutputPdfPath(3,"e", "f"));
+
+        KindleScribeEvernoteSettings kindleScribeEvernoteSettings = new KindleScribeEvernoteSettings();
+        kindleScribeEvernoteSettings.setApplicationName("a");
+        kindleScribeEvernoteSettings.setCredentialsJson("b");
+        kindleScribeEvernoteSettings.setTokensDirectoryPath("c");
+        kindleScribeEvernoteSettings.setMailUserId("@hoge.co.jp");
+        kindleScribeEvernoteSettings.setSenderMail("mege@mege.co.jp");
+        kindleScribeEvernoteSettings.setOutputPdfPaths(outputPdfPaths);
+    
+        String requestBody = objectMapper.writeValueAsString(kindleScribeEvernoteSettings);
+
+        doThrow(IllegalArgumentException.class).when(settingService).setSetting(kindleScribeEvernoteSettings);
+
+        mockMvc.perform(put("/kindleScribeNoteToEvernote/setting")
+                .contentType("application/json")
+                .content(requestBody))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.result").value(90))
+                .andExpect(jsonPath("$.data").isEmpty());
+    }
+
+    @Test
     public void setting更新リクエストの例外確認() throws Exception{
         List<OutputPdfPath> outputPdfPaths = new ArrayList();
         outputPdfPaths.add(new OutputPdfPath(1,"a", "b"));
@@ -107,8 +134,8 @@ public class SettingRestControllerTest {
         kindleScribeEvernoteSettings.setApplicationName("a");
         kindleScribeEvernoteSettings.setCredentialsJson("b");
         kindleScribeEvernoteSettings.setTokensDirectoryPath("c");
-        kindleScribeEvernoteSettings.setMailUserId("d");
-        kindleScribeEvernoteSettings.setSenderMail("e");
+        kindleScribeEvernoteSettings.setMailUserId("hoge@hoge.co.jp");
+        kindleScribeEvernoteSettings.setSenderMail("mege@mege.co.jp");
         kindleScribeEvernoteSettings.setOutputPdfPaths(outputPdfPaths);
     
         String requestBody = objectMapper.writeValueAsString(kindleScribeEvernoteSettings);
