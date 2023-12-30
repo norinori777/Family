@@ -1,5 +1,5 @@
 import React from 'react'
-import { getTextTheme } from '../../util/theme/theme'
+import { getTextDarkTheme } from '../../util/theme/theme'
 
 interface TextMessageProps {
   text: string
@@ -11,7 +11,7 @@ interface TextMessageProps {
 export const TextMessage = (props: TextMessageProps) => {
   const underline = props.underline ? 'underline' : ''
   const textSize = 'text-' + props.size
-  const textTheme = getTextTheme(props.theme)
+  const textTheme = getTextDarkTheme(props.theme)
 
   return (
     <>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { KindleScribeNoteToEvernoteForm } from '../../components/organisms/KindleScribeNoteToEvernoteForm'
 import { KindleScribeNoteToEvernote } from '../../domain/KindleScribeNoteToEvernote/types'
 import { useAxios } from '../../util/hooks/useAxios'
+import { RestResponse } from '../../domain/Rest/types'
 
 export const KindleScribeNoteToEvernoteSetting = () => {
   const defaultDettings: KindleScribeNoteToEvernote = {
@@ -20,7 +21,7 @@ export const KindleScribeNoteToEvernoteSetting = () => {
     data: settingData,
     error: settingError,
     isLoading: isSettingLoading,
-  } = useAxios<KindleScribeNoteToEvernote>({
+  } = useAxios<RestResponse<KindleScribeNoteToEvernote>>({
     url: '/kindleScribeNoteToEvernote/setting',
     method: 'GET',
     headers: {
@@ -30,9 +31,9 @@ export const KindleScribeNoteToEvernoteSetting = () => {
   })
 
   useEffect(() => {
-    if(isSettingLoading) return
+    if (isSettingLoading) return
     if (settingError == null && settingData != null)
-      setSettings(settingData ?? defaultDettings)
+      setSettings(settingData.data ?? defaultDettings)
     if (settingError != null) {
       // TODO: エラーメッセージのリソースからの取か
       setAlertMessage('設定の取得に失敗しました。')
