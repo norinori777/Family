@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jp.norinori777.domain.model.KindleScribeEvernoteSettings.OutputPdfPath;
-import jp.norinori777.domain.model.KindleScribeEvernoteSettings.Setting;
+import jp.norinori777.domain.model.KindleScribeEvernoteSettings.UpdatorSetting;
 import jp.norinori777.domain.model.KindleScribeEvernoteSettings.Settings;
 import jp.norinori777.form.KindleScribeEvernoteSetting.KindleScribeEvernoteSettings;
 import jp.norinori777.infrastructure.mapper.nori.OutputPdfPathMapper;
@@ -45,12 +45,12 @@ public class SettingServiceImpl implements SettingService {
     public void setSetting(KindleScribeEvernoteSettings kindleScribeEvernoteSettings) {
 
         try {
-            Setting applicationName = new Setting("application_name", kindleScribeEvernoteSettings.getApplicationName());
-            Setting credentialsJson = new Setting("credentials_json", kindleScribeEvernoteSettings.getCredentialsJson());
-            Setting tokensDirectoryPath = new Setting("tokens_directory_path",
+            UpdatorSetting applicationName = new UpdatorSetting("application_name", kindleScribeEvernoteSettings.getApplicationName());
+            UpdatorSetting credentialsJson = new UpdatorSetting("credentials_json", kindleScribeEvernoteSettings.getCredentialsJson());
+            UpdatorSetting tokensDirectoryPath = new UpdatorSetting("tokens_directory_path",
                     kindleScribeEvernoteSettings.getTokensDirectoryPath());
-            Setting mailUserId = new Setting("mail_user_id", kindleScribeEvernoteSettings.getMailUserId());
-            Setting senderMail = new Setting("sender_mail", kindleScribeEvernoteSettings.getSenderMail());
+            UpdatorSetting mailUserId = new UpdatorSetting("mail_user_id", kindleScribeEvernoteSettings.getMailUserId());
+            UpdatorSetting senderMail = new UpdatorSetting("sender_mail", kindleScribeEvernoteSettings.getSenderMail());
     
             settingsMapper.upsertSetting(applicationName);
             settingsMapper.upsertSetting(credentialsJson);

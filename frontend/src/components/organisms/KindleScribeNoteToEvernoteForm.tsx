@@ -3,7 +3,7 @@ import {
   outputPdfPath,
   KindleScribeNoteToEvernote,
 } from '../../domain/KindleScribeNoteToEvernote/types'
-import { Controller, useFieldArray, useForm } from 'react-hook-form'
+import { Controller, set, useFieldArray, useForm } from 'react-hook-form'
 import { TextMessage } from '../../components/atoms/TextMessage'
 import { AlertMessage } from '../../components/atoms/AlertMessage'
 import { useAxios } from '../../util/hooks/useAxios'
@@ -48,6 +48,7 @@ export const KindleScribeNoteToEvernoteForm = (props: KindleScribeNoteToEvernote
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
     setError,
   } = useForm<KindleScribeNoteToEvernote>()
 
@@ -69,6 +70,15 @@ export const KindleScribeNoteToEvernoteForm = (props: KindleScribeNoteToEvernote
       data: data,
     })
   }
+
+  useEffect(() => {
+    setValue('applicationName', props.setting.applicationName)
+    setValue('credentialsJson', props.setting.credentialsJson)
+    setValue('mailUserId', props.setting.mailUserId)
+    setValue('senderMail', props.setting.senderMail)
+    setValue('tokensDirectoryPath', props.setting.tokensDirectoryPath)
+    setValue('outputPdfPaths', props.setting.outputPdfPaths)
+  }, [props.setting])
 
   useEffect(() => {
     if (error == null && response != null) {
@@ -101,7 +111,7 @@ export const KindleScribeNoteToEvernoteForm = (props: KindleScribeNoteToEvernote
             rules={{ required: true, maxLength: 10 }}
             render={({ field }) => (
               <TextboxInHookForm
-                name="name"
+                name="applicationName"
                 field={field}
                 type={'text'}
                 label={'アプリケーション名'}

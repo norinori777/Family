@@ -1,7 +1,6 @@
 package jp.norinori777.application.service.KindleScribeNoteToEvernote;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import jp.norinori777.domain.model.KindleScribeEvernoteSettings.OutputPdfPath;
-import jp.norinori777.domain.model.KindleScribeEvernoteSettings.Setting;
+import jp.norinori777.domain.model.KindleScribeEvernoteSettings.ViewerSetting;
 import jp.norinori777.form.KindleScribeEvernoteSetting.KindleScribeEvernoteSettings;
 import jp.norinori777.infrastructure.mapper.nori.OutputPdfPathMapper;
 import jp.norinori777.infrastructure.mapper.nori.SettingsMapper;
@@ -34,12 +33,12 @@ public class SettingServiceImplTest {
     @Test
     public void testGetSettings() {
         // Arrange
-        List<Setting> settings = new ArrayList();
-        settings.add(new Setting("application_name", "b"));
-        settings.add(new Setting("credentials_json", "d"));
-        settings.add(new Setting("tokens_directory_path", "f"));
-        settings.add(new Setting("mail_user_id", "h"));
-        settings.add(new Setting("sender_mail", "j"));
+        List<ViewerSetting> settings = new ArrayList();
+        settings.add(new ViewerSetting("application_name", "b"));
+        settings.add(new ViewerSetting("credentials_json", "d"));
+        settings.add(new ViewerSetting("tokens_directory_path", "f"));
+        settings.add(new ViewerSetting("mail_user_id", "h"));
+        settings.add(new ViewerSetting("sender_mail", "j"));
 
         when(settingsMapper.selectSettings()).thenReturn(settings);
 

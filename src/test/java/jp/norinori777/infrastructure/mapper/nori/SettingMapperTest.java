@@ -17,7 +17,8 @@ import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.transaction.annotation.Transactional;
 
 import jp.norinori777.config.NoriDataSourceConfig;
-import jp.norinori777.domain.model.KindleScribeEvernoteSettings.Setting;
+import jp.norinori777.domain.model.KindleScribeEvernoteSettings.UpdatorSetting;
+import jp.norinori777.domain.model.KindleScribeEvernoteSettings.ViewerSetting;
 
 
 // @SpringBootTest
@@ -38,7 +39,7 @@ public class SettingMapperTest {
     @Autowired
     private SettingsMapper mapper;
 
-    private List<Setting> settings;
+    private List<ViewerSetting> settings;
 
     @Test
     public void 設定値を取得できること(){
@@ -49,7 +50,7 @@ public class SettingMapperTest {
 
     @Test
     public void 設定値を更新できること(){
-        Setting setting = new Setting("TOKENS_DIRECTORY_PATH", "./hoge");
+        UpdatorSetting setting = new UpdatorSetting("TOKENS_DIRECTORY_PATH", "./hoge");
         int result = mapper.updateSetting(setting);
 
         assertEquals(1, result);

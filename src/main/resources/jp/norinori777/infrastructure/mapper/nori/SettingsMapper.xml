@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jp.norinori777.infrastructure.mapper.nori.SettingsMapper">
-    <select id="selectSettings" resultType="jp.norinori777.domain.model.KindleScribeEvernoteSettings.Setting">
+    <select id="selectSettings" resultType="jp.norinori777.domain.model.KindleScribeEvernoteSettings.ViewerSetting">
         select * from  m_settings        
     </select>
-    <update id="updateSetting" parameterType="jp.norinori777.domain.model.KindleScribeEvernoteSettings.Setting">
+    <update id="updateSetting" parameterType="jp.norinori777.domain.model.KindleScribeEvernoteSettings.UpdatorSetting">
         update m_settings set value = #{value} where name = #{name}
     </update>
-    <insert id="upsertSetting" parameterType="jp.norinori777.domain.model.KindleScribeEvernoteSettings.Setting">
+    <insert id="upsertSetting" parameterType="jp.norinori777.domain.model.KindleScribeEvernoteSettings.UpdatorSetting">
         INSERT INTO m_settings (name, value, created_at, updated_at) 
         VALUES (#{name}, #{value}, now(), now())
         ON CONFLICT (name)
