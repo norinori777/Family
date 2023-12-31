@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import jp.norinori777.domain.model.KindleScribeEvernoteSettings.Setting;
+import jp.norinori777.domain.model.KindleScribeEvernoteSettings.UpdatorSetting;
+import jp.norinori777.domain.model.KindleScribeEvernoteSettings.ViewerSetting;
 
 @Mapper
 public interface SettingsMapper {
-    public List<Setting> selectSettings();
+    public List<ViewerSetting> selectSettings();
 
-    public int updateSetting(Setting setting);
+    public int updateSetting(UpdatorSetting setting);
 
-    public int upsertSetting(Setting setting);
+    public int upsertSetting(UpdatorSetting setting);
 }
