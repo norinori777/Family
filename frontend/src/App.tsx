@@ -5,7 +5,7 @@ import { MainContantsContainer } from './containers/organisms/MainContentsContai
 
 export const App = () => {
   return (
-    <div className="flex flex-col h-screen w-screen">
+    <div className="flex flex-col w-screen">
       <HeaderWithMenuLinkConatainer />
       <div className="flex flex-row h-full w-full bg-slate-100">
         <SideMenuContainer />
