@@ -734,6 +734,10 @@ video {
   height: 100vh;
 }
 
+.h-0 {
+  height: 0px;
+}
+
 .min-h-full {
   min-height: 100%;
 }
