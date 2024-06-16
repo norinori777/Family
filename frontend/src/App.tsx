@@ -8,8 +8,12 @@ export const App = () => {
     <div className="flex flex-col w-screen">
       <HeaderWithMenuLinkConatainer />
       <div className="flex flex-row h-full w-full bg-slate-100">
-        <SideMenuContainer />
-        <MainContantsContainer />
+        <div>
+          <SideMenuContainer />
+        </div>
+        <div>
+          <MainContantsContainer />
+        </div>
       </div>
     </div>
   )

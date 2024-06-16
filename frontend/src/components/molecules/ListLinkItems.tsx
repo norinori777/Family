@@ -10,7 +10,7 @@ interface ListLinkItemsProps {
 
 export const ListLinkItems = (props: ListLinkItemsProps) => {
   return (
-    <div className="flex flex-row md:justify-around max-md:gap-2">
+    <div className="flex flex-row space-x-4 md:justify-around max-md:gap-2">
       {props.items.map((item) => {
         return <RouterLinkItemsContainer key={item.text} text={item.text} link={item.initialLink} />
       })}

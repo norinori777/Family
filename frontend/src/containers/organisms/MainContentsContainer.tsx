@@ -12,7 +12,7 @@ export const MainContantsContainer = () => {
   searchContent(location.pathname)
 
   return (
-    <main className="flex-auto h-full w-full">
+    <main className="flex-auto h-screen overflow-auto">
       <MainContents contentItems={contentItems} />
     </main>
   )
