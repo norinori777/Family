@@ -28,11 +28,11 @@ public class SettingServiceImpl implements SettingService {
             List<OutputPdfPath> outputPdfPaths = outputPdfPathMapper.selectOutputPdfPaths();
     
             KindleScribeEvernoteSettings kindleScribeEvernoteSettings = new KindleScribeEvernoteSettings();
-            kindleScribeEvernoteSettings.setApplicationName(settings.get("application_name"));
-            kindleScribeEvernoteSettings.setCredentialsJson(settings.get("credentials_json"));
-            kindleScribeEvernoteSettings.setTokensDirectoryPath(settings.get("tokens_directory_path"));
-            kindleScribeEvernoteSettings.setMailUserId(settings.get("mail_user_id"));
-            kindleScribeEvernoteSettings.setSenderMail(settings.get("sender_mail"));
+            kindleScribeEvernoteSettings.setApplicationName(settings.get("APPLICATION_NAME"));
+            kindleScribeEvernoteSettings.setCredentialsJson(settings.get("CREDENTIALS_JSON"));
+            kindleScribeEvernoteSettings.setTokensDirectoryPath(settings.get("TOKENS_DIRECTORY_PATH"));
+            kindleScribeEvernoteSettings.setMailUserId(settings.get("MAIL_USER_ID"));
+            kindleScribeEvernoteSettings.setSenderMail(settings.get("SENDER_EMAIL"));
             kindleScribeEvernoteSettings.setOutputPdfPaths(outputPdfPaths);
 
             return kindleScribeEvernoteSettings;
@@ -45,12 +45,12 @@ public class SettingServiceImpl implements SettingService {
     public void setSetting(KindleScribeEvernoteSettings kindleScribeEvernoteSettings) {
 
         try {
-            UpdatorSetting applicationName = new UpdatorSetting("application_name", kindleScribeEvernoteSettings.getApplicationName());
-            UpdatorSetting credentialsJson = new UpdatorSetting("credentials_json", kindleScribeEvernoteSettings.getCredentialsJson());
-            UpdatorSetting tokensDirectoryPath = new UpdatorSetting("tokens_directory_path",
+            UpdatorSetting applicationName = new UpdatorSetting("APPLICATION_NAME", kindleScribeEvernoteSettings.getApplicationName());
+            UpdatorSetting credentialsJson = new UpdatorSetting("CREDENTIALS_JSON", kindleScribeEvernoteSettings.getCredentialsJson());
+            UpdatorSetting tokensDirectoryPath = new UpdatorSetting("TOKENS_DIRECTORY_PATH",
                     kindleScribeEvernoteSettings.getTokensDirectoryPath());
-            UpdatorSetting mailUserId = new UpdatorSetting("mail_user_id", kindleScribeEvernoteSettings.getMailUserId());
-            UpdatorSetting senderMail = new UpdatorSetting("sender_mail", kindleScribeEvernoteSettings.getSenderMail());
+            UpdatorSetting mailUserId = new UpdatorSetting("MAIL_USER_ID", kindleScribeEvernoteSettings.getMailUserId());
+            UpdatorSetting senderMail = new UpdatorSetting("SENDER_EMAIL", kindleScribeEvernoteSettings.getSenderMail());
     
             settingsMapper.upsertSetting(applicationName);
             settingsMapper.upsertSetting(credentialsJson);

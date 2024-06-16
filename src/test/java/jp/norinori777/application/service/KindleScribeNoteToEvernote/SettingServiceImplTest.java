@@ -34,11 +34,11 @@ public class SettingServiceImplTest {
     public void testGetSettings() {
         // Arrange
         List<ViewerSetting> settings = new ArrayList();
-        settings.add(new ViewerSetting("application_name", "b"));
-        settings.add(new ViewerSetting("credentials_json", "d"));
-        settings.add(new ViewerSetting("tokens_directory_path", "f"));
-        settings.add(new ViewerSetting("mail_user_id", "h"));
-        settings.add(new ViewerSetting("sender_mail", "j"));
+        settings.add(new ViewerSetting("APPLICATION_NAME", "b"));
+        settings.add(new ViewerSetting("CREDENTIALS_JSON", "d"));
+        settings.add(new ViewerSetting("TOKENS_DIRECTORY_PATH", "f"));
+        settings.add(new ViewerSetting("MAIL_USER_ID", "h"));
+        settings.add(new ViewerSetting("SENDER_EMAIL", "j"));
 
         when(settingsMapper.selectSettings()).thenReturn(settings);
 

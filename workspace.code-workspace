@@ -1,0 +1,12 @@
+{
+	"folders": [],
+	"settings": {
+		"java.compile.nullAnalysis.mode": "automatic",
+		"maven.view": "flat",
+		"java.configuration.updateBuildConfiguration": "interactive",
+		"DockerRun.DisableDockerrc": true,
+		"DockerRun.Containers": [
+			"54409737053b"
+		]
+	}
+}
